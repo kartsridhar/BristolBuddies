@@ -57,4 +57,29 @@ ___
 ## Non-functional Requirements
 
 1. **Application Usability**
--1.1. 
+
+* Readability - Need to make sure the font is comfortable for the user as well as avoiding colours that dissolve into the background.Make sure to keep spacing consistent and ensure clarity is maintained throughout the text used.
+* Too many buttons : We need to make sure to keep the number of taps to a minimum for the user by keeping a balance between providing enough information and making navigation quick. 
+* Single platform - By keeping the application just on the Android platform, we can focus all our time optimizing for one platform so it would provide a better overall user experience.
+* Avoid confusing content - need to avoid focusing on impressive design over usable architecture which involve getting rid of features which might overcomplicate the architecture.Maintain simplicity with easy to understand tools.
+
+2. **Responsiveness**
+* Startup time: Users are impatient when they are opening apps so to improve startup time we need to load less things within this time to improve user experience.This involves reducing the size of bitmaps, delaying the initialization of the background processes so the first screen loads faster.
+* Loading data : User's data need to be loaded from a server before anything is shown to the user but this request needs to streamlined to be as fast as possible.This is fundamental to the messaging service feature because the history of messages sent have to be loaded as soon as the user clicks onto this service.This could be done by either optimizing the API or optimizing the app itself to be faster. 
+* Network Requests: The less data you request the faster your response time is going to be so it is worth starting to make the request for the next page of data before you reach the last item of the current page. 
+* Processing time: Matching a student with a buddy needs to be quick. If the algorithm takes too long it could dissuade the user from continuing use since it is one of the very first interactions the user will have with the application.
+
+3. **Reliablility**
+* Software Monitoring - We want to make sure to account for the reliability of the system in its future operation which involves monitoring the software for crashes and bugs and fixing them accordingly.This is because we could only estimate future reliabiity by loking at the past.
+* Adaptive Approach to developing- Every change in the system's architecture affects the reliability(could lead to a crash).This is particularly important for the Bristol Buddies application because it should be able to scale for use for up to 500 people by 2022 so we need to be able to push changes in a way that does not make the entire system unusable. 
+* Minimise down-time : Since we are being tasked to build a social application,We will have to reconfigure the architecture frequently so the abiity to assess its impact on the reliability of the application and determine the most reliable configuration is critical .Since it is also a messaging application, down-time needs to be low to avoid major inconvienience for the user.
+
+4. **Security**
+* Secure code from ground up: We should stick to modern well-supported algorithms coupled with API encryption so none of the information we request from the database to aid the matching process does not fall into the wrong hands.Code should be secure but not at the cost of peformance or user experience. 
+* Secure Network Connections : Server that our API is accessing should have measures to protect data and prevent unauthorised access. APIs should be verfied so we can prevent eavesdropping on information passing between the students and the database. 
+* Authentication: During registration, the students and buddies would be asked to pick a password which would be stored according to Data Protection laws so once they log out, they would be able to log back in with ease.Since passwords are sensitive, they will need to be stored in encrypted form(base 64).  
+* Detecting Vulnerabilities: Before code is pushed, it should be tested vigorously not only for confirming functionality but also for security so potential vulnerabilities are detected and corrected beforehand. 
+
+
+5. **Aesthetics**
+* Sleak and simple- the design of the application should be kept simple with a consistent colour code . Design should not be cluttered with a lot of text or images.
