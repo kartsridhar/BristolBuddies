@@ -25,12 +25,20 @@
 
 ___
 
-## Student Flow
+## User Flow-Chart
 
 ![](StudentFlow.jpg)
 
 * Initially, the user will have to register if they haven't already signed up so this involves filling in the questionaire which in turn triggers the matching process to find a suitable buddy.
 * If the user has already registered before the student can log in where their login credentials are cross-checked with the database and then they are given access to both the community and messaging features.
+
+### Using the Messaging Service: Alternative flow
+1. The Student must login by entering his/her credentials.
+2. The Student can access the Community to check the upcoming events and announcements. On choosing the option to send a message to the buddy about the event, the Student can access the messaging service.
+
+### Using the Messaging Service: Exceptional flow
+1. The Student tries to login with the wrong credentials.
+2. The Student should be redirected to the login page with an alert message asking to login again. 
 
 ___
 
