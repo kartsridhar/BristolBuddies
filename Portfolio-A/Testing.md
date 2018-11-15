@@ -4,4 +4,5 @@ Making sure the database works as intended is going to be one of the most crucia
 
 Next, we shall test the matching algorithm and all the functionalities of the application. To do this we are going to use unit tests. This will allow us to test every functionality such as clicking on a notification brings you to the relevant information, and test corner cases in an efficient manner. We’ll be using JUnit to write and check those tests.
 
-The user interface is a component that is going to be challenging to test.  we are unable to test it objectively and thus cannot write unit tests to test functionality.Instead, We will instead use a panel of students, coming both from European and Asian countries, to see if they find the design intuitive. Our goal is that both groups can navigate through the app and use every function without any help.
+The user interface is a component that is going to be challenging to test.  we are unable to test it objectively and thus cannot write unit tests to test functionality.Instead, We will use a panel of students, coming both from European and Asian countries, to see if they find the design intuitive. Our goal is that both groups can navigate through the app and use every function without any help.
+
