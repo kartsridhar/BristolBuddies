@@ -25,6 +25,15 @@
 
 ___
 
+## Student Flow
+
+![](StudentFlow.jpg)
+
+* Initially, the user will have to register if they haven't already signed up so this involves filling in the questionaire which in turn triggers the matching process to find a suitable buddy.
+* If the user has already registered before the student can log in where their login credentials are cross-checked with the database and then they are given access to both the community and messaging features.
+
+___
+
 ## Functional Requirements
 
 1. **Student/Buddy registration**
@@ -53,9 +62,14 @@ ___
 * Prioritising - After filling in the questionnaire, we give the students the liberty to prioritise their criteria so that it improves our matching search as well has helps them get the right buddy.
 
 5. **Messaging Service**
-*
+* The student needs to be able to send and receive messages with their allocated buddy.
+    * Should include an option to set up notifications from the application to see when someone has sent you a message.
+    * Need to be able to store conversation history and provide users with this in case they log in with a different machine.
+    * Need to be ale to send and receive messages without any loss of data  to improve user experience.
+* Group messaging should also be supported to create a channel of communication between all buddies and all students.
+    * needs to be scalable because the global transfer programme is set to expand within a few years time so it needs to be able to cope with the load on the system.
 
----
+___
 
 ## Non-functional Requirements
 
@@ -84,6 +98,4 @@ ___
 * Detecting Vulnerabilities - Before code is pushed, it should be tested vigorously not only for confirming functionality but also for security so potential vulnerabilities are detected and corrected beforehand.
 
 5. **Aesthetics**
-* Sleek and simple- the design of the application should be kept simple with a consistent colour code. Design should not be cluttered with a lot of text or images  
-
-    ![](StudentFlow.jpg)
+* Sleek and simple- the design of the application should be kept simple with a consistent colour code. Design should not be cluttered with a lot of text or images.
