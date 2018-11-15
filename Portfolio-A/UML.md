@@ -19,8 +19,8 @@
 ### Student User
 In this class, we are taking in the unique ID of the student, their name, age, email, gender , course and password. The first function we will implement in our application is *getDetails*() which gets all the data inputted by the user in the front end. *register* () stores this data in the database and *retrieveDetails*(id,Password) returns this data from the database to check if login credentials are the same.
 
-### Events
-In the events class, we are taking in a bitset which stores which options the users picked for their questionaire. *getselectedOptions()* does precisely this by getting the options that the user selected in the questionaire part of the registration process. *converttoList()* - converts these options into a bitset so it is easier to work with.
+### Questionnaire
+In the questionnaire class, we are taking in a bitset which stores which options the users picked for their questionaire. *getselectedOptions()* does precisely this by getting the options that the user selected in the questionaire part of the registration process. *converttoList()* - converts these options into a bitset so it is easier to work with.
 *storeOptions*() - stores this bitset in the database.
 
 ### Matching
