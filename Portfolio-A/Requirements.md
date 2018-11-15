@@ -38,7 +38,7 @@ ___
 
 ### Using the Messaging Service: Exceptional flow
 1. The Student tries to login with the wrong credentials.
-2. The Student should be redirected to the login page with an alert message asking to login again. 
+2. The Student should be redirected to the login page with an alert message asking to login again.
 
 ___
 
@@ -82,7 +82,6 @@ ___
 ## Non-functional Requirements
 
 1. **Application Usability**
-
 * Readability - Need to make sure the font is comfortable for the user as well as avoiding colours that dissolve into the background. Make sure to keep spacing consistent and ensure clarity is maintained throughout the text used.
 * Too many buttons - We need to make sure to keep the number of taps to a minimum for the user by keeping a balance between providing enough information and making navigation quick.
 * Single platform - By keeping the application just on the Android platform, we can focus all our time optimizing for one platform so it would provide a better overall user experience.
