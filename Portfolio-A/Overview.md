@@ -2,6 +2,9 @@
 
 The University of Bristol International Office is launching a new Global Transfer Programme for students studying abroad to transfer to specific programmes. To smoothen this process,  the University is promoting the development of a **mobile Android application** that would match these students with a buddy that would help guide them through their stay. 
 
+## Domain of Application
+Since we are doing this project for the University of Bristol International Office, the domain of our application is going to be primarily in the Higher-Education sector. 
+
 
 ## The Problem
 * A June 2018 Study by The Netherlands-Based Erasmus Student Network found that two out of 3 international students regularly experienced loneliness.
