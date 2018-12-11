@@ -3,8 +3,11 @@ package com.example.brisbuds.BristolBuddies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.sql.Connection;
 import java.util.Optional;
 import java.util.Properties;
+
+import static com.example.brisbuds.BristolBuddies.DBConnection.getConnection;
 
 @SpringBootApplication
 public class BristolBuddiesApplication {
@@ -23,6 +26,7 @@ public class BristolBuddiesApplication {
 
 
 	public static void main(String[] args) {
+		Connection c = getConnection();
 		myProps.setProperty("server.address",host.orElse("localhost"));
 		myProps.setProperty("server.port",port.orElse("8080"));
 		SpringApplication app = new SpringApplication(BristolBuddiesApplication.class);

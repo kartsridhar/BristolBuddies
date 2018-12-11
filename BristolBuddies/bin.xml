@@ -18,7 +18,7 @@
             <directory>${project.build.directory}</directory>
             <outputDirectory></outputDirectory>
             <includes>
-                <include>EmployeeRESTApp-1.0.jar.jar</include>
+                <include>BristolBuddies-0.0.1-SNAPSHOT.jar</include>
             </includes>
         </fileSet>
     </fileSets>

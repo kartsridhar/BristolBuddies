@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class StudentDbDAO implements StudentDAO{
     List<Student> sList = null;
-    private final Connection conn = DBConnection.getInstance().getConnection();
+    private final Connection conn = DBConnection.getConnection();
 
 
     public List<Student> query(String sqlQueryStr) {
@@ -141,7 +141,7 @@ public class StudentDbDAO implements StudentDAO{
 
     @Override
     public boolean update(long id, Student student){
-        String updateTableSQL = "UPDATE EMPLOYEE SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?  WHERE ID=?";
+        String updateTableSQL = "UPDATE BRISBUDS SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?  WHERE ID=?";
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(updateTableSQL);) {
             preparedStatement.setString(1, student.getFirstName());
