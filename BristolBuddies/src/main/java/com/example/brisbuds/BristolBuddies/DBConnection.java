@@ -10,11 +10,7 @@ import oracle.jdbc.pool.OracleDataSource;
 
 public class DBConnection {
 
-<<<<<<< HEAD
     private static final String URL = "jdbc:mysql://@129.150.124.250/mydatabase";
-=======
-    private static final String URL = "jdbc:mysql://@129.150.124.250:3306/mydatabase";
->>>>>>> ba4b2431ec6619ca67cfdc034061d02bc5aafe52
     private static final String username = "root";
     private static final String password = "Br!st0lBudd!e5";
 
@@ -24,8 +20,9 @@ public class DBConnection {
      System.out.println("connecting");
      try{
          Class.forName("com.mysql.cj.jdbc.Driver");
+         System.out.println("found driver");
          con = DriverManager.getConnection(URL,username,password);
-         System.out.println("connected");
+         System.out.println("connected to");
      }
      catch(ClassNotFoundException e) {
          System.out.println("driver not found");
@@ -34,6 +31,7 @@ public class DBConnection {
          System.out.println("SQL fail");
          e.printStackTrace();
      }
+     System.out.println("connected");
      return con;
     }
 //    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
