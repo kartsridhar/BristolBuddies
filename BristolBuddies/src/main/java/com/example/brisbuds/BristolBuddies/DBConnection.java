@@ -10,9 +10,9 @@ import oracle.jdbc.pool.OracleDataSource;
 
 public class DBConnection {
 
-    private static final String URL = "jdbc:mysql://@129.150.135.168:3306/BrisBuds";
-    private static final String username = "system";
-    private static final String password = "ScPuQtMkfh78UE8g_";
+    private static final String URL = "jdbc:mysql://@129.150.124.250/mydatabase";
+    private static final String username = "root";
+    private static final String password = "Br!st0lBudd!e5";
 
 
     public static Connection getConnection(){
