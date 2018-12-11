@@ -1,0 +1,5 @@
+#!/bin/bash
+COM="curl -X GET -i $TESTHOSTNAME/employees/104"
+echo Executing:  $COM
+$COM
+echo

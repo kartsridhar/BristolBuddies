@@ -17,10 +17,10 @@
           $(".ui-dialog-titlebar-close").click();
           server = $("#servUrl").val();
           user = $("#userName").val()
-          loadStudents();
+          loadEmployees();
         });
       }else{
-        loadStudents();
+        loadEmployees();
       }
   });
 
@@ -120,13 +120,13 @@
   "    </div>"+
   "  </div>"+
   "  <div style=\"padding-left:35px;\">"+
-  "    <img src=\"birthdate.png\">"+obj.yearofStudy+""+
+  "    <img src=\"birthdate.png\">"+obj.birthDate+""+
   "  </div>"+
   "  <div style=\"padding-left:35px;\">"+
-  "    <a href=\"mailto:"+obj.userName+"\"><img src=\"email.png\">"+obj.userName+"</a>"+
+  "    <a href=\"mailto:"+obj.email+"\"><img src=\"email.png\">"+obj.email+"</a>"+
   "    <div style=\"padding-left:35px;\">"+
   "    </div>"+
-  "    <a href=\"tel:"+obj.password+"\"><img src=\"phone.png\"> "+obj.password+"</a>"+
+  "    <a href=\"tel:"+obj.phone+"\"><img src=\"phone.png\"> "+obj.phone+"</a>"+
   "  </div>"+
   "  <div style=\"padding-left:35px;\">"+
   "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
@@ -139,7 +139,7 @@
 </script>
   <script>
     $(function(){
-      function bindDetail(element, student){
+      function bindDetail(element, employee){
         element.find(".backButton").on("click", function(){
           $("#detail").hide(400, "swing", function(){ $("#people").show(400, "swing")});
         });
@@ -148,7 +148,7 @@
             modal: true,
             title: "Confirm Delete",
             open: function() {
-              var markup = 'Are you sure you want to delete '+student.firstName+' ' + student.lastName +"?";
+              var markup = 'Are you sure you want to delete '+employee.firstName+' ' + employee.lastName +"?";
               $(this).html(markup);
             },
             buttons: {
@@ -156,11 +156,11 @@
                 $("#detail").html("DELETING...");
                 $( this ).dialog( "close" );
                 $.ajax({
-                  url:server +"students/"+student.id,
+                  url:server +"employees/"+employee.id,
                   method:"DELETE"
                   }).done(function(data){
                     $("#detail").hide();
-                    loadStudents();
+                    loadEmployees();
                   });
               },
               Cancel: function(){
@@ -170,40 +170,38 @@
           });
         });
         element.find(".editButton").on("click",function(){
-          $("#editFirstName").val(student.firstName);
-          $("#editLastName").val(student.lastName);
-          $("#editgender").val(student.gender);
-          $("#edituserName").val(student.userName);
-          $("#editpassword").val(student.password);
-          $("#editDept").val(student.department);
-          $("#edityearofStudy").val(student.yearofStudy);
-
+          $("#editFirstName").val(employee.firstName);
+          $("#editLastName").val(employee.lastName);
+          $("#editEmail").val(employee.email);
+          $("#editPhone").val(employee.phone);
+          $("#editBirthDate").val(employee.birthDate);
+          $("#editTitle").val(employee.title);
+          $("#editDept").val(employee.department);
 
           $('#editDialog').dialog({
             modal:true,
-            title: student.firstName+' ' + student.lastName,
+            title: employee.firstName+' ' + employee.lastName,
             buttons: {
               "Update": function(){
-                var editStudent={
+                var editEmployee={
                   firstName:$("#editFirstName").val(),
                   lastName:$("#editLastName").val(),
-                  gender:$("#editgender").val(),
-                  userName:$("#edituserName").val(),
-                  password:$("#editpassword").val(),
+                  email:$("#editEmail").val(),
+                  phone:$("#editPhone").val(),
+                  birthDate:$("#editBirthDate").val(),
+                  title:$("#editTitle").val(),
                   department:$("#editDept").val()
-                  yearofStudy:$("#edityearofStudy").val(),
-
                 };
                 $("#detail").html("UPDATING...");
                 $( this ).dialog( "close" );
                 $.ajax({
-                  url:server +"students/"+student.id,
+                  url:server +"employees/"+employee.id,
                   method:"PUT",
-                  data:JSON.stringify(editStudent),
+                  data:JSON.stringify(editEmployee),
                   contentType: 'application/json',
                   }).done(function(data){
                     $("#detail").hide();
-                    loadStudents();
+                    loadEmployees();
                 });
               },
               Cancel: function() {
@@ -218,36 +216,36 @@
 
           $("#addFirstName").val("");
           $("#addLastName").val("");
-          $("#addgender").val("");
-          $("#adduserName").val("");
-          $("#addpassword").val("");
+          $("#addEmail").val("");
+          $("#addPhone").val("");
+          $("#addBirthDate").val("");
+          $("#addTitle").val("");
           $("#addDept").val("");
-          $("#addyearofStudy").val("");
 
         $("#addDialog").dialog({
             modal:true,
-            title: "Add new student",
+            title: "Add new employee",
             buttons:{
               "Add":function(){
-                var addStudent={
+                var addEmployee={
                   firstName:$("#addFirstName").val(),
                   lastName:$("#addLastName").val(),
-                  gender:$("#addgender").val(),
-                  userName:$("#adduserName").val(),
-                  password:$("#addpassword").val(),
+                  email:$("#addEmail").val(),
+                  phone:$("#addPhone").val(),
+                  birthDate:$("#addBirthDate").val(),
+                  title:$("#addTitle").val(),
                   department:$("#addDept").val()
-                  yearofStudy:$("#addyearofStudy").val(),
                 };
                 $("#detail").html("ADDING...");
                 $( this ).dialog( "close" );
                 $.ajax({
-                  url:server +"students",
+                  url:server +"employees",
                   method:"POST",
-                  data:JSON.stringify(addStudent),
-                  contentType: servUrl'application/json',
+                  data:JSON.stringify(addEmployee),
+                  contentType: 'application/json',
                   }).done(function(data){
                     $("#detail").hide();
-                    loadStudents();
+                    loadEmployees();
                 });
               },
               "Cancel":function(){
@@ -263,7 +261,7 @@
           $("#people").show();
           $("#people").html("SEARCHING...");
           $.ajax({
-            url:server+"students/"+ $("#searchType").val()+"/"+encodeURIComponent(searchTerm),
+            url:server+"employees/"+ $("#searchType").val()+"/"+encodeURIComponent(searchTerm),
             method:"GET"
           }).done(function(data){
             $("#people").empty();
@@ -271,13 +269,13 @@
             if(data.length==0){
               $("#people").html("No results found...");
             }else{
-              data.forEach(function(student){
-                var item = $(peopleTemplate.render(student));
+              data.forEach(function(employee){
+                var item = $(peopleTemplate.render(employee));
                 item.on("click", function(){
-                  var detailItem = $(detailTemplate.render(student));
+                  var detailItem = $(detailTemplate.render(employee));
                   $("#detail").empty();
                   $("#detail").append(detailItem);
-                  bindDetail(detailItem, student);
+                  bindDetail(detailItem, employee);
                   $("#people").hide(400, "swing", function(){ $("#detail").show(400, "swing")});
                 });
                 $("#people").append(item);
@@ -286,7 +284,7 @@
             $("#people").show(400, "swing");
           });
         }else{
-          loadStudents();
+          loadEmployees();
         }
       });
       $("#searchText").on("keyup", function(e){
@@ -297,23 +295,22 @@
 
     });
 
-
-   function loadStudents(){
+   function loadEmployees(){
         $("#people").show();
         $("#people").html("LOADING...");
         $.ajax({
-          url:server +"students",
+          url:server +"employees",
           method:"GET"
         }).done(function(data){
           $("#people").hide();
           $("#people").empty();
-          data.forEach(function(student){
-            var item = $(peopleTemplate.render(student));
+          data.forEach(function(employee){
+            var item = $(peopleTemplate.render(employee));
             item.on("click", function(){
-              var detailItem = $(detailTemplate.render(student));
+              var detailItem = $(detailTemplate.render(employee));
               $("#detail").empty();
               $("#detail").append(detailItem);
-              bindDetail(detailItem, student);
+              bindDetail(detailItem, employee);
               $("#people").hide(400, "swing", function(){ $("#detail").show(400, "swing")});
             });
             $("#people").append(item);
@@ -325,17 +322,16 @@
 </head>
 
 <body>
-  <h1>Admin Version of Database</h1>
+  <h1>Cloud Employee App</h1>
   <nav>
     <h2>People</h2>
     <table width="100%">
       <tr>
         <td>
           <input style="display:inline-block;" type="text" size="20" id="searchText"><select id="searchType">
-            <option value="firstname">By first name</option>
             <option value="lastname">By last name</option>
             <option value="department">By department</option>
-            <option value="username">By username</option>
+            <option value="title">By title</option>
           </select>
           <input id="searchButton" value="search" type="button">
         </td>
@@ -358,11 +354,11 @@
 
         <label for="editFirstName">First Name</label><input type="text" id="editFirstName" value="" class="text ui-widget-content ui-corner-all">
         <label for="editLastName">Last Name</label><input type="text" id="editLastName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editgender">Gender</label><input type="text" id="editgender" value="" class="text ui-widget-content ui-corner-all">
-        <label for="edituserName">Username</label><input type="text" id="edituserName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editpassword">Password</label><input type="text" id="editpassword" value="" class="text ui-widget-content ui-corner-all">
+        <label for="editEmail">Email</label><input type="text" id="editEmail" value="" class="text ui-widget-content ui-corner-all">
+        <label for="editPhone">Phone</label><input type="text" id="editPhone" value="" class="text ui-widget-content ui-corner-all">
+        <label for="editBirthDate">Birthdate</label><input type="text" id="editBirthDate" value="" class="text ui-widget-content ui-corner-all">
+        <label for="editTitle">Title</label><input type="text" id="editTitle" value="" class="text ui-widget-content ui-corner-all">
         <label for="editDept">Department</label><input type="text" id="editDept" value="" class="text ui-widget-content ui-corner-all">
-        <label for="edityearofStudy">YearOfStudy</label><input type="text" id="edityearofStudy" value="" class="text ui-widget-content ui-corner-all">
 
         <!-- Allow form submission with keyboard without duplicating the dialog button -->
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -377,11 +373,11 @@
 
         <label for="addFirstName">First Name</label><input type="text" id="addFirstName" value="" class="text ui-widget-content ui-corner-all">
         <label for="addLastName">Last Name</label><input type="text" id="addLastName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addgender">Gender</label><input type="text" id="addgender" value="" class="text ui-widget-content ui-corner-all">
-        <label for="adduserName">Username</label><input type="text" id="adduserName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addpassword">password</label><input type="text" id="addpassword" value="" class="text ui-widget-content ui-corner-all">
+        <label for="addEmail">Email</label><input type="text" id="addEmail" value="" class="text ui-widget-content ui-corner-all">
+        <label for="addPhone">Phone</label><input type="text" id="addPhone" value="" class="text ui-widget-content ui-corner-all">
+        <label for="addBirthDate">Birthdate</label><input type="text" id="addBirthDate" value="" class="text ui-widget-content ui-corner-all">
+        <label for="addTitle">Title</label><input type="text" id="addTitle" value="" class="text ui-widget-content ui-corner-all">
         <label for="addDept">Department</label><input type="text" id="addDept" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addyearofStudy">YearOfStudy</label><input type="text" id="addyearofStudy" value="" class="text ui-widget-content ui-corner-all">
 
         <!-- Allow form submission with keyboard without duplicating the dialog button -->
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">

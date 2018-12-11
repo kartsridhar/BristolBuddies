@@ -18,9 +18,9 @@ public class MockStudentList {
 
             ObjectMapper mapper = new ObjectMapper();
 
-            Student[] myEmployees = mapper.readValue(jsonString, Student[].class);
+            Student[] myStudents = mapper.readValue(jsonString, Student[].class);
 
-            eList.addAll(Arrays.asList(myEmployees));
+            eList.addAll(Arrays.asList(myStudents));
 
         } catch (IOException exception) {
             System.out.println("Error: " + exception.getMessage());
