@@ -26,7 +26,7 @@ public class BristolBuddiesApplication {
 
 
 	public static void main(String[] args) {
-		Connection c = getConnection();
+		//Connection c = getConnection();
 		myProps.setProperty("server.address",host.orElse("localhost"));
 		myProps.setProperty("server.port",port.orElse("8080"));
 		SpringApplication app = new SpringApplication(BristolBuddiesApplication.class);
