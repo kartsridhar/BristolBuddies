@@ -2,14 +2,14 @@
 
 <head>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
+          crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
-    crossorigin="anonymous"></script>
+          crossorigin="anonymous"></script>
   <link href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css" rel="stylesheet">
 
   <script>
     var promptDialog=false;
-    var server="";
+    var server="http://127.0.0.1:8080/";
     $(function(){
       if(promptDialog){
         $("#connectDialog").dialog({ closeOnEscape: false, modal: true, width: "auto", resize: "auto", open: function (event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); } });
@@ -99,8 +99,8 @@
   "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
   "    <div class=\"peopleContent\">"+
   "      <h4>"+obj.firstName+" "+obj.lastName+"</h4>"+
-  "      "+obj.title+"<br>"+
-  "      <small>"+obj.department+"</small>"+
+  "      "+obj.department+"<br>"+
+  "      <small>"+obj.userName+"</small>"+
   "    </div>"+
   "  </div>"+
   "";
@@ -115,15 +115,15 @@
   "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
   "    <div class=\"peopleContent\">"+
   "      <h3>"+obj.firstName+" "+obj.lastName+"</h3>"+
-  "      "+obj.title+"<br>"+
-  "      <small>"+obj.department+"</small>"+
+  "      "+obj.department+"<br>"+
+  "      <small>"+obj.userName+"</small>"+
   "    </div>"+
   "  </div>"+
   "  <div style=\"padding-left:35px;\">"+
   "    <img src=\"birthdate.png\">"+obj.yearofStudy+""+
   "  </div>"+
   "  <div style=\"padding-left:35px;\">"+
-  "    <a href=\"mailto:"+obj.userName+"\"><img src=\"email.png\">"+obj.userName+"</a>"+
+  "    <a href=\"mailto:"+obj.gender+"\"><img src=\"email.png\">"+obj.gender+"</a>"+
   "    <div style=\"padding-left:35px;\">"+
   "    </div>"+
   "    <a href=\"tel:"+obj.password+"\"><img src=\"phone.png\"> "+obj.password+"</a>"+
@@ -136,6 +136,7 @@
   "  </div>"+
   "";
   }
+
 </script>
   <script>
     $(function(){
@@ -297,7 +298,8 @@
 
     });
 
-
+</script>
+    <script>
    function loadStudents(){
         $("#people").show();
         $("#people").html("LOADING...");
@@ -325,74 +327,74 @@
 </head>
 
 <body>
-  <h1>Admin Version of Database</h1>
-  <nav>
-    <h2>People</h2>
-    <table width="100%">
-      <tr>
-        <td>
-          <input style="display:inline-block;" type="text" size="20" id="searchText"><select id="searchType">
-            <option value="firstname">By first name</option>
-            <option value="lastname">By last name</option>
-            <option value="department">By department</option>
-            <option value="username">By username</option>
-          </select>
-          <input id="searchButton" value="search" type="button">
-        </td>
-        <td align="right" width="10%">
-          <input id="addButton" value="Add New" type="button">
-        </td>
-      </tr>
-    </table>
-  </nav>
-  <div id="people" class="container">
-    LOADING...
-  </div>
-  <div id="detail">
-  </div>
+<h1>Admin Version of Database</h1>
+<nav>
+  <h2>People</h2>
+  <table width="100%">
+    <tr>
+      <td>
+        <input style="display:inline-block;" type="text" size="20" id="searchText"><select id="searchType">
+        <option value="firstname">By first name</option>
+        <option value="lastname">By last name</option>
+        <option value="department">By department</option>
+        <option value="username">By username</option>
+      </select>
+        <input id="searchButton" value="search" type="button">
+      </td>
+      <td align="right" width="10%">
+        <input id="addButton" value="Add New" type="button">
+      </td>
+    </tr>
+  </table>
+</nav>
+<div id="people" class="container">
+  LOADING...
+</div>
+<div id="detail">
+</div>
 
-  <div id="editDialog">
-    <p class="validateTips">All form fields are required.</p>
-    <form>
-      <fieldset>
+<div id="editDialog">
+  <p class="validateTips">All form fields are required.</p>
+  <form>
+    <fieldset>
 
-        <label for="editFirstName">First Name</label><input type="text" id="editFirstName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editLastName">Last Name</label><input type="text" id="editLastName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editgender">Gender</label><input type="text" id="editgender" value="" class="text ui-widget-content ui-corner-all">
-        <label for="edituserName">Username</label><input type="text" id="edituserName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editpassword">Password</label><input type="text" id="editpassword" value="" class="text ui-widget-content ui-corner-all">
-        <label for="editDept">Department</label><input type="text" id="editDept" value="" class="text ui-widget-content ui-corner-all">
-        <label for="edityearofStudy">YearOfStudy</label><input type="text" id="edityearofStudy" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editFirstName">First Name</label><input type="text" id="editFirstName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editLastName">Last Name</label><input type="text" id="editLastName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editgender">Gender</label><input type="text" id="editgender" value="" class="text ui-widget-content ui-corner-all">
+      <label for="edituserName">Username</label><input type="text" id="edituserName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editpassword">Password</label><input type="text" id="editpassword" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editDept">Department</label><input type="text" id="editDept" value="" class="text ui-widget-content ui-corner-all">
+      <label for="edityearofStudy">YearOfStudy</label><input type="text" id="edityearofStudy" value="" class="text ui-widget-content ui-corner-all">
 
-        <!-- Allow form submission with keyboard without duplicating the dialog button -->
-        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-      </fieldset>
-    </form>
-  </div>
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
 
-  <div id="addDialog">
-    <p class="validateTips">All form fields are required.</p>
-    <form>
-      <fieldset>
+<div id="addDialog">
+  <p class="validateTips">All form fields are required.</p>
+  <form>
+    <fieldset>
 
-        <label for="addFirstName">First Name</label><input type="text" id="addFirstName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addLastName">Last Name</label><input type="text" id="addLastName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addgender">Gender</label><input type="text" id="addgender" value="" class="text ui-widget-content ui-corner-all">
-        <label for="adduserName">Username</label><input type="text" id="adduserName" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addpassword">password</label><input type="text" id="addpassword" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addDept">Department</label><input type="text" id="addDept" value="" class="text ui-widget-content ui-corner-all">
-        <label for="addyearofStudy">YearOfStudy</label><input type="text" id="addyearofStudy" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addFirstName">First Name</label><input type="text" id="addFirstName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addLastName">Last Name</label><input type="text" id="addLastName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addgender">Gender</label><input type="text" id="addgender" value="" class="text ui-widget-content ui-corner-all">
+      <label for="adduserName">Username</label><input type="text" id="adduserName" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addpassword">password</label><input type="text" id="addpassword" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addDept">Department</label><input type="text" id="addDept" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addyearofStudy">YearOfStudy</label><input type="text" id="addyearofStudy" value="" class="text ui-widget-content ui-corner-all">
 
-        <!-- Allow form submission with keyboard without duplicating the dialog button -->
-        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-      </fieldset>
-    </form>
-  </div>
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
 
-  <div id="connectDialog" title="Please select your service.">
-    <input id="servUrl" type="text" size="60" value="http://127.0.0.1:8080/" /><br/>
-    <button id="connect">Connect</button>
-  </div>
+<div id="connectDialog" title="Please select your service.">
+  <input id="servUrl" type="text" size="60" value="http://127.0.0.1:8080/" /><br/>
+  <button id="connect">Connect</button>
+</div>
 
 </body>
 
