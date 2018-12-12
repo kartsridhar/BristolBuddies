@@ -105,37 +105,37 @@
   "  </div>"+
   "";
   }
-</script>
-  <script id="detailTemplate">
-  var detailTemplate = {};
-  detailTemplate.render = function(obj){
-  return "" +
-  "  <div class=\"peopleTitle\">"+
-  "    <div class=\"portrait\"><a href=\"#\" class=\"backButton\"><img src=\"back.png\"></a></div>"+
-  "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
-  "    <div class=\"peopleContent\">"+
-  "      <h3>"+obj.firstName+" "+obj.lastName+"</h3>"+
-  "      "+obj.department+"<br>"+
-  "      <small>"+obj.userName+"</small>"+
-  "    </div>"+
-  "  </div>"+
-  "  <div style=\"padding-left:35px;\">"+
-  "    <img src=\"birthdate.png\">"+obj.yearofStudy+""+
-  "  </div>"+
-  "  <div style=\"padding-left:35px;\">"+
-  "    <a href=\"mailto:"+obj.gender+"\"><img src=\"email.png\">"+obj.gender+"</a>"+
-  "    <div style=\"padding-left:35px;\">"+
-  "    </div>"+
-  "    <a href=\"tel:"+obj.password+"\"><img src=\"phone.png\"> "+obj.password+"</a>"+
-  "  </div>"+
-  "  <div style=\"padding-left:35px;\">"+
-  "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
-  "    <div style=\"padding-left:35px;\">"+
-  "    </div>"+
-  "    <a href=\"#\" class=\"deleteButton\"><img src=\"delete.png\">Delete</a>"+
-  "  </div>"+
-  "";
-  }
+  </script>
+    <script id="detailTemplate">
+        var detailTemplate = {};
+        detailTemplate.render = function(obj){
+            return "" +
+                "  <div class=\"peopleTitle\">"+
+                "    <div class=\"portrait\"><a href=\"#\" class=\"backButton\"><img src=\"back.png\"></a></div>"+
+                "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
+                "    <div class=\"peopleContent\">"+
+                "      <h3>"+obj.firstName+" "+obj.lastName+"</h3>"+
+                "      "+obj.department+"<br>"+
+                "      <small>"+obj.userName+"</small>"+
+                "    </div>"+
+                "  </div>"+
+                "  <div style=\"padding-left:35px;\">"+
+                "    <img src=\"graduation.png\">"+ obj.yearofStudy+""+
+                "  </div>"+
+                "  <div style=\"padding-left:35px;\">"+
+                "    <img src=\"gender-symbol.png\">"+obj.gender+""+
+                "    <div style=\"padding-left:35px;\">"+
+                "    </div>"+
+                "    <img src=\"safe.png\"> "+obj.password+""+
+                "  </div>"+
+                "  <div style=\"padding-left:35px;\">"+
+                "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
+                "    <div style=\"padding-left:35px;\">"+
+                "    </div>"+
+                "    <a href=\"#\" class=\"deleteButton\"><img src=\"delete.png\">Delete</a>"+
+                "  </div>"+
+                "";
+        }
 
 </script>
   <script>

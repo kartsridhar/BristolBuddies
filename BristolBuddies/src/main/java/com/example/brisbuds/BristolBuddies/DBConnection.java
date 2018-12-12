@@ -20,7 +20,6 @@ public class DBConnection {
      System.out.println("connecting");
      try{
          Class.forName("com.mysql.cj.jdbc.Driver");
-         System.out.println("found driver");
          con = DriverManager.getConnection(URL,username,password);
          System.out.println("connected");
      }

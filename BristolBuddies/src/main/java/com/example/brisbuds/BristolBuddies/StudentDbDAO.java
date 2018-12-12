@@ -124,14 +124,11 @@ public class StudentDbDAO implements StudentDAO{
             preparedStatement.setString(5, student.getPassword());
             preparedStatement.setString(6, student.getDepartment());
             preparedStatement.setString(7, student.getYearofStudy());
-            System.out.println(preparedStatement.toString());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println();
             System.out.println("SQL Add Error: " + e.getMessage());
             return false;
-
         } catch (Exception e) {
             System.out.println("Add Error: " + e.getMessage());
             return false;
@@ -152,6 +149,7 @@ public class StudentDbDAO implements StudentDAO{
             preparedStatement.setString(5, student.getPassword());
             preparedStatement.setString(6, student.getDepartment());
             preparedStatement.setString(7, student.getYearofStudy());
+            preparedStatement.setString(8, Long.toString(id));
 
             preparedStatement.executeUpdate();
             return true;
@@ -171,7 +169,7 @@ public class StudentDbDAO implements StudentDAO{
         String deleteRowSQL = "DELETE FROM BRISBUDS WHERE ID=?";
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(deleteRowSQL)) {
-            preparedStatement.setLong(1, id);
+            preparedStatement.setString(1, Long.toString(id));
             preparedStatement.executeUpdate();
             return true;
 
