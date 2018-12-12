@@ -203,7 +203,8 @@
                   data:JSON.stringify(editStudent),
                   contentType: 'application/json',
                   }).done(function(data){
-                    $("#detail").hide();
+                    alert(data)
+                      $("#detail").hide();
                     loadStudents();
                 });
               },
@@ -245,7 +246,7 @@
                   url:server +"students",
                   method:"POST",
                   data:JSON.stringify(addStudent),
-                  contentType: servUrl('application/json'),
+                  contentType: 'application/json',
                   }).done(function(data){
                     $("#detail").hide();
                     loadStudents();
@@ -291,7 +292,7 @@
         }
       });
       $("#searchText").on("keyup", function(e){
-        if(e.keyCode == 13){
+        if(e.getKeyCode() == 13){
           $("#searchButton").trigger("click");
         }
       });
@@ -391,10 +392,7 @@
   </form>
 </div>
 
-<div id="connectDialog" title="Please select your service.">
-  <input id="servUrl" type="text" size="60" value="http://127.0.0.1:8080/" /><br/>
-  <button id="connect">Connect</button>
-</div>
+
 
 </body>
 

@@ -110,9 +110,9 @@ public class StudentDbDAO implements StudentDAO{
 
     @Override
     public boolean add(Student student){
-        String insertTableSQL = "INSERT INTO BRISBUDS "
-                + "(ID, FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DELETE, YEAROFSTUDY) "
-                + "VALUES(BRISBUDS==_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+        String insertTableSQL = "INSERT INTO BRISBUDS"
+            + "(FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DEPARTMENT, YEAROFSTUDY) "
+                + "VALUES(?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(insertTableSQL)) {
@@ -124,10 +124,11 @@ public class StudentDbDAO implements StudentDAO{
             preparedStatement.setString(5, student.getPassword());
             preparedStatement.setString(6, student.getDepartment());
             preparedStatement.setString(7, student.getYearofStudy());
-
+            System.out.println(preparedStatement.toString());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
+            System.out.println();
             System.out.println("SQL Add Error: " + e.getMessage());
             return false;
 

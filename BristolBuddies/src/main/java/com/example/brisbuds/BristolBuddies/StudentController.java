@@ -52,6 +52,7 @@ public class StudentController {
         }
 
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/lastname/{name}")
     public ResponseEntity getByLastName(@PathVariable String name) {
 
