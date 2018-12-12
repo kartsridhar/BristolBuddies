@@ -22,7 +22,7 @@ public class DBConnection {
          Class.forName("com.mysql.cj.jdbc.Driver");
          System.out.println("found driver");
          con = DriverManager.getConnection(URL,username,password);
-         System.out.println("connected to");
+         System.out.println("connected");
      }
      catch(ClassNotFoundException e) {
          System.out.println("driver not found");
@@ -31,7 +31,6 @@ public class DBConnection {
          System.out.println("SQL fail");
          e.printStackTrace();
      }
-     System.out.println("connected");
      return con;
     }
 //    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";

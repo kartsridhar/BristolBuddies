@@ -191,7 +191,7 @@
                   gender:$("#editgender").val(),
                   userName:$("#edituserName").val(),
                   password:$("#editpassword").val(),
-                  department:$("#editDept").val()
+                  department:$("#editDept").val(),
                   yearofStudy:$("#edityearofStudy").val(),
 
                 };
@@ -236,7 +236,7 @@
                   gender:$("#addgender").val(),
                   userName:$("#adduserName").val(),
                   password:$("#addpassword").val(),
-                  department:$("#addDept").val()
+                  department:$("#addDept").val(),
                   yearofStudy:$("#addyearofStudy").val(),
                 };
                 $("#detail").html("ADDING...");
@@ -245,7 +245,7 @@
                   url:server +"students",
                   method:"POST",
                   data:JSON.stringify(addStudent),
-                  contentType: servUrl'application/json',
+                  contentType: servUrl('application/json'),
                   }).done(function(data){
                     $("#detail").hide();
                     loadStudents();
