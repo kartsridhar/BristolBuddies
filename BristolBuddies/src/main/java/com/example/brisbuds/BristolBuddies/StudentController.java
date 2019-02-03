@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/students1")
 public class StudentController {
 
     StudentDAO edao = new StudentDbDAO();
