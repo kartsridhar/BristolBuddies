@@ -30,7 +30,6 @@ public class BristolBuddiesApplication {
 		myProps.setProperty("server.port",port.orElse("8080"));
 		SpringApplication app = new SpringApplication(BristolBuddiesApplication.class);
 		app.setDefaultProperties(myProps);
-		app.setDefaultProperties(myProps);
 		app.run(args);
 
 	}
