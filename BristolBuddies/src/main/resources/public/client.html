@@ -9,7 +9,7 @@
 
   <script>
     var promptDialog=false;
-    var server="http://127.0.0.1:8080/";
+    var server="http://" + window.location.hostname + ":8080/";
     $(function(){
       if(promptDialog){
         $("#connectDialog").dialog({ closeOnEscape: false, modal: true, width: "auto", resize: "auto", open: function (event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); } });
