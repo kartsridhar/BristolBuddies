@@ -106,7 +106,8 @@
   "";
   }
   </script>
-    <script id="detailTemplate">
+
+  <script id="detailTemplate">
         var detailTemplate = {};
         detailTemplate.render = function(obj){
             return "" +
@@ -129,93 +130,94 @@
                 "    <img src=\"safe.png\"> "+obj.password+""+
                 "  </div>"+
                 "  <div style=\"padding-left:35px;\">"+
-                "    <a href=\"#\" onclick='alert(\"Not implemented yet\")' class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
+                "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
                 "    <div style=\"padding-left:35px;\">"+
                 "    </div>"+
-                "    <a href=\"#\" onclick='alert(\"Not implemented yet\")' class=\"deleteButton\"><img src=\"delete.png\">Delete</a>"+
+                "    <a href=\"#\" class=\"deleteButton\"><img src=\"delete.png\">Delete</a>"+
                 "  </div>"+
                 "";
         }
 
 </script>
+
   <script>
-    $(function(){
+
       function bindDetail(element, student){
-        element.find(".backButton").on("click", function(){
-          $("#detail").hide(400, "swing", function(){ $("#people").show(400, "swing")});
-        });
-        element.find(".deleteButton").on("click", function(){
-          $('<div></div>').dialog({
-            modal: true,
-            title: "Confirm Delete",
-            open: function() {
-              var markup = 'Are you sure you want to delete '+student.firstName+' ' + student.lastName +"?";
-              $(this).html(markup);
-            },
-            buttons: {
-              Ok: function() {
-                $("#detail").html("DELETING...");
-                $( this ).dialog( "close" );
-                $.ajax({
-                  url:server +"students/"+student.id,
-                  method:"DELETE"
-                  }).done(function(data){
-                    $("#detail").hide();
-                    loadStudents();
-                  });
-              },
-              Cancel: function(){
-                $( this ).dialog( "close" );
-              }
-            }
+          element.find(".backButton").on("click", function(){
+              $("#detail").hide(400, "swing", function(){ $("#people").show(400, "swing")});
           });
-        });
-        element.find(".editButton").on("click",function(){
-          $("#editFirstName").val(student.firstName);
-          $("#editLastName").val(student.lastName);
-          $("#editgender").val(student.gender);
-          $("#edituserName").val(student.userName);
-          $("#editpassword").val(student.password);
-          $("#editDept").val(student.department);
-          $("#edityearofStudy").val(student.yearofStudy);
-
-
-          $('#editDialog').dialog({
-            modal:true,
-            title: student.firstName+' ' + student.lastName,
-            buttons: {
-              "Update": function(){
-                var editStudent={
-                  firstName:$("#editFirstName").val(),
-                  lastName:$("#editLastName").val(),
-                  gender:$("#editgender").val(),
-                  userName:$("#edituserName").val(),
-                  password:$("#editpassword").val(),
-                  department:$("#editDept").val(),
-                  yearofStudy:$("#edityearofStudy").val(),
-
-                };
-                $("#detail").html("UPDATING...");
-                $( this ).dialog( "close" );
-                $.ajax({
-                  url:server +"students/"+student.id,
-                  method:"PUT",
-                  data:JSON.stringify(editStudent),
-                  contentType: 'application/json',
-                  }).done(function(data){
-                    alert(data)
-                      $("#detail").hide();
-                    loadStudents();
-                });
-              },
-              Cancel: function() {
-                $(this).dialog( "close" );
-              }
-            }
+          element.find(".deleteButton").on("click", function(){
+              $('<div></div>').dialog({
+                  modal: true,
+                  title: "Confirm Delete",
+                  open: function() {
+                      var markup = 'Are you sure you want to delete '+student.firstName+' ' + student.lastName +"?";
+                      $(this).html(markup);
+                  },
+                  buttons: {
+                      Ok: function() {
+                          $("#detail").html("DELETING...");
+                          $( this ).dialog( "close" );
+                          $.ajax({
+                              url:server +"students/"+student.id,
+                              method:"DELETE"
+                          }).done(function(data){
+                              $("#detail").hide();
+                              loadStudents();
+                          });
+                      },
+                      Cancel: function(){
+                          $( this ).dialog( "close" );
+                      }
+                  }
+              });
           });
-        });
+          element.find(".editButton").on("click",function(){
+              $("#editFirstName").val(student.firstName);
+              $("#editLastName").val(student.lastName);
+              $("#editgender").val(student.gender);
+              $("#edituserName").val(student.userName);
+              $("#editpassword").val(student.password);
+              $("#editDept").val(student.department);
+              $("#edityearofStudy").val(student.yearofStudy);
+
+
+              $('#editDialog').dialog({
+                  modal:true,
+                  title: student.firstName+' ' + student.lastName,
+                  buttons: {
+                      "Update": function(){
+                          var editStudent={
+                              firstName:$("#editFirstName").val(),
+                              lastName:$("#editLastName").val(),
+                              gender:$("#editgender").val(),
+                              userName:$("#edituserName").val(),
+                              password:$("#editpassword").val(),
+                              department:$("#editDept").val(),
+                              yearofStudy:$("#edityearofStudy").val(),
+
+                          };
+                          $("#detail").html("UPDATING...");
+                          $( this ).dialog( "close" );
+                          $.ajax({
+                              url:server +"students/"+student.id,
+                              method:"PUT",
+                              data:JSON.stringify(editStudent),
+                              contentType: 'application/json',
+                          }).done(function(data){
+                              $("#detail").hide();
+                              loadStudents();
+                          });
+                      },
+                      Cancel: function() {
+                          $(this).dialog( "close" );
+                      }
+                  }
+              });
+          });
       }
 
+    $(function(){
       $("#addButton").button().on("click", function(){
 
           $("#addFirstName").val("");
