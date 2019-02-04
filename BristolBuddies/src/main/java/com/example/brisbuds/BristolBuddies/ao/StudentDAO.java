@@ -1,4 +1,6 @@
-package com.example.brisbuds.BristolBuddies;
+package com.example.brisbuds.BristolBuddies.ao;
+
+import com.example.brisbuds.BristolBuddies.Student;
 
 import java.util.List;
 

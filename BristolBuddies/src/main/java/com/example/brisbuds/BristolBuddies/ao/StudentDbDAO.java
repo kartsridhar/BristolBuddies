@@ -1,4 +1,7 @@
-package com.example.brisbuds.BristolBuddies;
+package com.example.brisbuds.BristolBuddies.ao;
+import com.example.brisbuds.BristolBuddies.DBConnection;
+import com.example.brisbuds.BristolBuddies.Student;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public class StudentDbDAO implements StudentDAO{
+public class StudentDbDAO implements StudentDAO {
     List<Student> sList = null;
     private final Connection conn = DBConnection.getConnection();
 
