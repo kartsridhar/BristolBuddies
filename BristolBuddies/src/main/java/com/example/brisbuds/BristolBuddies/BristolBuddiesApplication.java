@@ -28,9 +28,9 @@ public class BristolBuddiesApplication {
 	public static void main(String[] args) {
 //		myProps.setProperty("server.address",host.orElse("localhost"));
 //		myProps.setProperty("server.port",port.orElse("8080"));
-		SpringApplication app = new SpringApplication(BristolBuddiesApplication.class);
+		SpringApplication.run(BristolBuddiesApplication.class,args);
 //		app.setDefaultProperties(myProps);
-		app.run(args);
+//		app.run(args);
 
 	}
 }
