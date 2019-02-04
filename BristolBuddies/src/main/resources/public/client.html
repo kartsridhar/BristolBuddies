@@ -9,7 +9,7 @@
 
   <script>
     var promptDialog=false;
-    var server="http://" + window.location.hostname;
+    var server="http://" + window.location.hostname + "/";
     $(function(){
       if(promptDialog){
         $("#connectDialog").dialog({ closeOnEscape: false, modal: true, width: "auto", resize: "auto", open: function (event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); } });
