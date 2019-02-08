@@ -38,29 +38,25 @@ public class Student {
 
 
 
-    public long getId() {return this.id;}
+    public long getId() {return id;}
 
     public String getFirstName(){
-        return this.firstName;
+        return firstName;
     }
 
     public String getLastName(){
-        return this.lastName;
+        return lastName;
     }
-    public String getGender(){
-        return this.gender;
-    }
-    public String getUserName(){
-        return this.userName;
-    }
+    public String getGender(){ return gender; }
+    public String getUserName(){ return userName; }
     public String getPassword(){
-        return this.password;
+        return password;
     }
     public String getDepartment(){
-        return this.department;
+        return department;
     }
     public String getYearofStudy(){
-        return this.yearofStudy;
+        return yearofStudy;
     }
 
     @Override
