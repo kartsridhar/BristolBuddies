@@ -12,35 +12,38 @@ import com.example.karthik.mvp.R;
 
 public class RegisterPage extends AppCompatActivity {
 
-    EditText studNum, firstName, lastName, studPass;
-    Button register, proceed;
+    EditText firstName, lastName, uName, uGender, uPass, uDept, uYos;
+    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos;
+    Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        studNum = findViewById(R.id.studID);
         firstName = findViewById(R.id.fName);
         lastName = findViewById(R.id.lName);
-        studPass = findViewById(R.id.studPass);
+        uName = findViewById(R.id.studID);
+        uGender = findViewById(R.id.gender);
+        uPass = findViewById(R.id.studPass);
+        uDept = findViewById(R.id.dept);
+        uYos = findViewById(R.id.yos);
         register = findViewById(R.id.regButton);
-        proceed = findViewById(R.id.procButton);
+    }
+    public void userReg(View view){
+        db_fname = firstName.getText().toString();
+        db_lname = lastName.getText().toString();
+        db_uname = uName.getText().toString();
+        db_ugender = uGender.getText().toString();
+        db_upass = uPass.getText().toString();
+        db_udept = uDept.getText().toString();
+        db_uyos = uYos.getText().toString();
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Registered Successfully!", Toast.LENGTH_LONG).show();      //to notify the user about successful registration
-                proceed.setEnabled(true);       //enabling the proceed button to true
-            }
-        });
-
-        proceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
-                startActivity(intent);
-            }
-        });
+        String method = "register";
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        backgroundTask.execute(method, db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos);
+        Intent i = new Intent(getApplicationContext(), LoginPage.class);
+        startActivity(i);
+        finish();
     }
 }

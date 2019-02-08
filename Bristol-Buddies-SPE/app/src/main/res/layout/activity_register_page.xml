@@ -8,86 +8,88 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    android:background="#529158"
+    android:background="#d4c8c8"
     tools:context=".Activity.RegisterPage">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="Student Registration"
         android:gravity="center_horizontal"
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/studID"
-        android:hint="Student Number"
-        android:layout_marginTop="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:id="@+id/fName"
         android:hint="First Name"
-        android:layout_marginTop="110dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_marginTop="45dp"
+        android:inputType="text" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:id="@+id/lName"
         android:hint="Last Name"
-        android:layout_marginTop="160dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_marginTop="90dp"
+        android:inputType="text" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:ems="10"
+        android:layout_height="45dp"
+        android:id="@+id/gender"
+        android:layout_marginTop="135dp"
+        android:hint="Gender (enter M, F or O)"
+        android:inputType="text"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/studID"
+        android:hint="Username (ed: ab12234)"
+        android:textSize="18sp"
+        android:layout_marginTop="180dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:id="@+id/studPass"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
+        android:hint="Password"
+        android:textSize="18sp"
+        android:layout_marginTop="225dp"
+        android:inputType="textPassword"
+        android:ems="10"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/dept"
+        android:hint="Department"
+        android:textSize="18sp"
+        android:layout_marginTop="270dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/yos"
+        android:hint="Year of Study"
+        android:textSize="18sp"
+        android:layout_marginTop="315dp"
+        android:inputType="number"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="register"
         android:id="@+id/regButton"
-        android:layout_marginTop="300dp"
-        android:layout_below="@+id/pass"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="proceed"
-        android:id="@+id/procButton"
-        android:layout_marginTop="350dp"
-        android:layout_below="@+id/pass"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_marginTop="370dp"
+        android:onClick="userReg"/>
 
 </RelativeLayout>
