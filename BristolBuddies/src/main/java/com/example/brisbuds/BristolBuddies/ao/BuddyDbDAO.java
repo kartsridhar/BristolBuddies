@@ -47,9 +47,33 @@ public class BuddyDbDAO implements BuddyDAO {
 
     @Override
     public boolean add(Buddy buddy) {
-        return false;
-        
+        String insertTableSQL = "INSERT INTO BUDDIES"
+                + "(FIRSTNAME, LASTNAME, USERNAME, COURSE, NATIONALITY," +
+                " INTERESTS, PERSONALITY, PREFERENCES, PASSWORD) "
+                + "VALUES(?,?,?,?,?,?,?,?,?);";
 
+        try (PreparedStatement preparedStatement = this.conn
+                .prepareStatement(insertTableSQL)) {
+
+            preparedStatement.setString(1, buddy.getFirstName());
+            preparedStatement.setString(2, buddy.getLastName());
+            preparedStatement.setString(3, buddy.getUsername());
+            preparedStatement.setString(4, buddy.getCourse());
+            preparedStatement.setString(5, buddy.getNationality());
+            preparedStatement.setString(6, buddy.getInterests());
+            preparedStatement.setString(7, buddy.getPersonality());
+            preparedStatement.setString(8, buddy.getPreferences());
+            preparedStatement.setString(9, buddy.getPassword());
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("SQL Add Error: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Add Error: " + e.getMessage());
+            return false;
+        }
     }
 }
 

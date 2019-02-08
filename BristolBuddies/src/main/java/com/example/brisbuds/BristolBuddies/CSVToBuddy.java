@@ -1,6 +1,7 @@
 package com.example.brisbuds.BristolBuddies;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.example.brisbuds.BristolBuddies.ao.BuddyDbDAO;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ public class CSVToBuddy {
         String line = "";
         String cvsSplitBy = ",";
         List<String[]> buddies = new ArrayList<>();
+        BuddyDbDAO dao = new BuddyDbDAO();
         int i=0;
 
         try {
@@ -28,11 +30,16 @@ public class CSVToBuddy {
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
                 i++;
-                if(i>1) {
+                if(i>=1) {
                     // use comma as separator
                     String[] answers = line.split(cvsSplitBy);
                     buddies.add(answers);
                 }
+            }
+            
+            List<Buddy> b = stringListToBuddyList(buddies);
+            for (Buddy bud : b) {
+                dao.add(bud);
             }
 
         } catch (FileNotFoundException e) {
@@ -52,7 +59,7 @@ public class CSVToBuddy {
     }
 
 
-    private List<Buddy> stringListToBuddyList(List<String[]> buddies){
+    static private List<Buddy> stringListToBuddyList(List<String[]> buddies){
         List<Buddy> buddyList = new ArrayList<>();
         for(int i = 1 ; i < buddies.size() ; i++){
             String firstName = buddies.get(i)[2];
@@ -74,7 +81,7 @@ public class CSVToBuddy {
     return buddyList;
     }
 
-    private String getInterestString(List<String[]> buddies, int i) {
+    static private String getInterestString(List<String[]> buddies, int i) {
         String raw = buddies.get(i)[7];
         if(raw.contains("None")) {
             return "0000000";
@@ -99,7 +106,7 @@ public class CSVToBuddy {
     }
 
 
-    private String getPersonalityString(List<String[]> buddies, int i) {
+    static private String getPersonalityString(List<String[]> buddies, int i) {
         String raw = buddies.get(i)[8];
         if(raw.contains("None")) {
             return "0000";
@@ -117,7 +124,7 @@ public class CSVToBuddy {
         return interests.toString();
     }
 
-    private String getPreferencesString(List<String[]> buddies, int i) {
+    static private String getPreferencesString(List<String[]> buddies, int i) {
         StringBuilder preferences = new StringBuilder();
         for(int j = 9 ; j <=12 ; j++) {
             String raw = buddies.get(i)[j];
