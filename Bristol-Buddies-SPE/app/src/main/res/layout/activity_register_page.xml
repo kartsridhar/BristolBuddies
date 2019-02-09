@@ -92,4 +92,11 @@
         android:layout_marginTop="370dp"
         android:onClick="userReg"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="go to questionnaire"
+        android:id="@+id/googButton"
+        android:layout_marginTop="420dp"/>
+
 </RelativeLayout>

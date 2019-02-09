@@ -14,7 +14,7 @@ public class RegisterPage extends AppCompatActivity {
 
     EditText firstName, lastName, uName, uGender, uPass, uDept, uYos;
     String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos;
-    Button register;
+    Button register, googForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,15 @@ public class RegisterPage extends AppCompatActivity {
         uDept = findViewById(R.id.dept);
         uYos = findViewById(R.id.yos);
         register = findViewById(R.id.regButton);
+        googForm = findViewById(R.id.googButton);
+
+        googForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GForm.class);
+                startActivity(intent);
+            }
+        });
     }
     public void userReg(View view){
         db_fname = firstName.getText().toString();
