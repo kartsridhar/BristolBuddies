@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--For BootStrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--    For jQuery-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
+            crossorigin="anonymous"></script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css" rel="stylesheet">
+
+    <script>
+      var promptDialog = false;
+      var server = "http://" + window.location.hostname + ":" + window.location.port + "/";
+
+      $(function() {
+        if(promptDialog) {
+          $("#connnectDialog").dialog({ closeOnEscape: false, modal: true, width: "auto", resize: "auto", open: function (event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); }});
+          $('#connect').button().on("click", function (){
+            $(".ui-dialog-titlebar-close").click();
+            server = $('#servUrl').val();
+            user = $("#userName").val();
+            loadEvents();
+          });
+        }
+        else {
+          loadEvents();
+        }
+      });
+    </script>
+
+    <style>
+      html body {
+        font-family: Arial, Helvetica, sans-serif
+      }
+
+      label,
+      input {
+        display: block;
+        font-size: 80%;
+      }
+
+      input.text {
+        margin-bottom: 12px;
+        width: 95%;
+        padding: .4em;
+      }
+
+      fieldset {
+        padding: 0;
+        border: 0;
+        margin-top: 25px;
+        font-size: 75%;
+      }
+
+      .container {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .eventContent {
+        flex-grow: 1;
+      }
+
+      .portrait {
+        width: 120px;
+      }
+
+      .eventItem {
+        width: 350px;
+        border: 1px solid #777777;
+        background: #FAFAFA;
+        margin: 3px;
+        padding: 2px;
+        display: flex;
+      }
+
+      .eventTitle {
+        width: 100%;
+        background: #FAFAFA;
+        margin: 3px;
+        padding: 2px;
+        display: flex;
+      }
+
+      #editDialog {
+        display: none;
+      }
+
+      #addDialog {
+        display: none;
+      }
+    </style>
+
+    <script id="eventTemplate">
+      var eventTemplate = {};
+      eventTemplate.render = function(obj){
+      return ""+
+      "    <div class=\"eventItem\">"+
+      "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"100px\"></div>"+
+      "    <div class=\"eventContent\">"+
+      "      <h4>"+obj.title+"</h4>"+
+      "      <small>"+obj.date+"</small>"+
+      "    </div>"+
+      "  </div>"+
+      "";
+      }
+    </script>
+
+    <script id="detailTemplate">
+        var detailTemplate = {};
+        detailTemplate.render = function(obj){
+        return "" +
+            "  <div class=\"eventTitle\">"+
+            "    <div class=\"portrait\"><a href=\"#\" class=\"backButton\"><img src=\"back.png\" height=\"75px\" width=\"100px\"></a></div>"+
+            "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"100px\"></div>"+
+            "    <div class=\"eventContent\">"+
+            "      <h3>"+obj.title+"</h3>"+
+            "      <small>"+obj.date+"</small>"+
+            "    </div>"+
+            "  </div>"+
+            "  <div style=\"padding-left:35px;\">"+
+            "    <img src=\"description.png\" height=\"32px\" width=\"32px\">"+ obj.description+""+
+            "  </div>"+
+            "  <div style=\"padding-left:35px;\">"+
+            "    <img src=\"venue.png\" height=\"32px\" width=\"32px\">"+obj.venue+""+
+            "    <div style=\"padding-left:35px;\">"+
+            "    </div>"+
+            "    <img src=\"time.png\" height=\"32px\" width=\"32px\"> "+obj.time+""+
+            "  </div>"+
+            "  <div style=\"padding-left:35px;\">"+
+            "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit Event</a>"+
+            "    <div style=\"padding-left:35px;\">"+
+            "    </div>"+
+            "    <a href=\"#\" class=\"deleteButton\"><img src=\"delete.png\">Delete Event</a>"+
+            "  </div>"+
+            "";
+        }
+    </script>
+
+    <script>
+      function bindDetail(element, event){
+          element.find(".backButton").on("click", function(){
+              $("#detail").hide(400, "swing", function(){ $("#events").show(400, "swing")});
+          });
+          element.find(".deleteButton").on("click", function(){
+              $('<div></div>').dialog({
+                  modal: true,
+                  title: "Confirm Delete",
+                  open: function() {
+                      var markup = 'Are you sure you want to delete '+even.title+' ' +"?";
+                      $(this).html(markup);
+                  },
+                  buttons: {
+                      Ok: function() {
+                          $("#detail").html("DELETING EVENT...");
+                          $( this ).dialog( "close" );
+                          $.ajax({
+                              url:server +"events/"+event.id,
+                              method:"DELETE"
+                          }).done(function(data){
+                              $("#detail").hide();
+                              loadEvents();
+                          });
+                      },
+                      Cancel: function(){
+                          $( this ).dialog( "close" );
+                      }
+                  }
+              });
+          });
+          element.find(".editButton").on("click",function(){
+              $("#editdate").val(event.date);
+              $("#edittitle").val(event.title);
+              $("#editdescription").val(event.description);
+              $("#editvenue").val(event.venue);
+              $("#edittime").val(event.time);
+
+              $('#editDialog').dialog({
+                  modal:true,
+                  title: event.title,
+                  buttons: {
+                      "Update": function(){
+                          var editEvent = {
+                              date:$("#editdate").val(),
+                              title:$("#edittitle").val(),
+                              description:$("#editdescription").val(),
+                              venue:$("#editvenue").val(),
+                              time:$("#edittime").val(),
+                          };
+                          $("#detail").html("UPDATING EVENT...");
+                          $( this ).dialog( "close" );
+                          $.ajax({
+                              url:server +"events/"+event.id,
+                              method:"PUT",
+                              data:JSON.stringify(editEvent),
+                              contentType: 'application/json',
+                          }).done(function(data){
+                              $("#detail").hide();
+                              loadEvents();
+                          });
+                      },
+                      Cancel: function() {
+                          $(this).dialog( "close" );
+                      }
+                  }
+              });
+          });
+      }
+
+    $(function(){
+      $("#addButton").button().on("click", function(){
+
+          $("#adddate").val("");
+          $("#addtitle").val("");
+          $("#adddescription").val("");
+          $("#addvenue").val("");
+          $("#addtime").val("");
+
+        $("#addDialog").dialog({
+            modal:true,
+            title: "Add new event",
+            buttons:{
+              "Add":function(){
+                var addEvent = {
+                  date:$("#adddate").val(),
+                  title:$("#addtitle").val(),
+                  description:$("#adddescription").val(),
+                  venue:$("#addvenue").val(),
+                  time:$("#addtime").val(),
+                };
+                $("#detail").html("ADDING EVENT...");
+                $( this ).dialog( "close" );
+                $.ajax({
+                  url:server +"events",
+                  method:"POST",
+                  data:JSON.stringify(addEvent),
+                  contentType: 'application/json',
+                  }).done(function(data){
+                    $("#detail").hide();
+                    loadEvents();
+                });
+              },
+              "Cancel":function(){
+                $(this).dialog( "close" );
+              }
+            }
+        });
+      });
+
+      $("#searchButton").button().on("click", function(){
+        var searchTerm =$("#searchText").val().trim();
+        if(searchTerm!=""){
+          $("#events").show();
+          $("#events").html("SEARCHING FOR EVENT...");
+          $.ajax({
+            url:server+"events/"+ $("#searchType").val()+"/"+encodeURIComponent(searchTerm),
+            method:"GET"
+          }).done(function(data){
+            $("#events").empty();
+            $("#events").hide();
+            if(data.length==0){
+              $("#events").html("No results found...");
+            }else{
+              data.forEach(function(event){
+                var item = $(eventTemplate.render(event));
+                item.on("click", function(){
+                  var detailItem = $(detailTemplate.render(event));
+                  $("#detail").empty();
+                  $("#detail").append(detailItem);
+                  bindDetail(detailItem, event);
+                  $("#events").hide(400, "swing", function(){ $("#detail").show(400, "swing")});
+                });
+                $("#events").append(item);
+              });
+            }
+            $("#events").show(400, "swing");
+          });
+        }else{
+          loadEvents();
+        }
+      });
+      $("#searchText").on("keyup", function(e){
+        if(e.getKeyCode() == 13){
+          $("#searchButton").trigger("click");
+        }
+      });
+    });
+</script>
+
+    <script>
+   function loadEvents(){
+        $("#events").show();
+        $("#events").html("LOADING EVENTS...");
+        $.ajax({
+          url:server +"events",
+          method:"GET"
+        }).done(function(data){
+          $("#events").hide();
+          $("#events").empty();
+          data.forEach(function(event){
+            var item = $(eventTemplate.render(event));
+            item.on("click", function(){
+              var detailItem = $(detailTemplate.render(event));
+              $("#detail").empty();
+              $("#detail").append(detailItem);
+              bindDetail(detailItem, event);
+              $("#events").hide(400, "swing", function(){ $("#detail").show(400, "swing")});
+            });
+            $("#events").append(item);
+          })
+          $("#events").show(400, "swing");
+        });
+      }
+  </script>
+</head>
+
+<body>
+<h1 style="margin-left:720px;">EVENTS' DATABASE</h1>
+<br>
+<br>
+<br>
+<nav>
+    <table width = "100%">
+        <tr>
+            <td>
+                <div class="input-group" style="margin-left:780px;">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <br>
+                <p>
+                <h4 style="margin-left:835px;"> Filter by: </h4>
+                <select id="searchType" class="custom-select" style="margin-left:835px;">
+                    <option value="date">By Date</option>
+                    <option value="title">By Title</option>
+                </select>
+                </p>
+                <br>
+                <p style="margin-left:760px;">
+                    <input id="searchButton" value="SEARCH" type="button" class="btn btn-primary btn-md">
+                    <input id="addButton" value="ADD EVENT" type="button" class="btn btn-primary btn-md" style="margin-left:40px;">
+                </p>
+            </td>
+        </tr>
+    </table>
+</nav>
+<br>
+<div id = "events" class = "container" style="margin-left:780px;">
+    LOADING EVENTS...
+</div>
+<div id = "detail"></div>
+
+<div id = "editDialog">
+    <p class = "validateTips"> All form fields are required. </p>
+    <form>
+        <fieldset>
+            <label for = "editdate"> Date </label> <input type="date" id = "editdate" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "edittitle"> Title </label> <input type="text" id = "edittitle" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "editdescription"> Description </label> <input type="text" id = "editdescription" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "editvenue"> Venue </label> <input type="text" id = "editvenue" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "edittime"> Time </label> <input type="text" id = "edittime" value = "" class = "text ui-widget-content ui-corner-all">
+            <input type = "submit" tabindex = "-1" style = "position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+<div id = "addDialog">
+    <p class = "validateTips"> All form fields are required. </p>
+    <form>
+        <fieldset>
+            <label for = "adddate">Date</label><input type="date" id = "adddate" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "addtitle">Title</label> <input type="text" id = "addtitle" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "adddescription">Description</label> <input type="text" id = "adddescription" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "addvenue">Venue</label> <input type="text" id = "addvenue" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "addtime">Time</label> <input type="text" id = "addtime" value = "" class = "text ui-widget-content ui-corner-all">
+            <input type = "submit" tabindex = "-1" style = "position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+</body>
+</html>
