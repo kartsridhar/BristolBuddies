@@ -66,7 +66,7 @@ public class GoogleLogin extends AppCompatActivity {
           GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
           //Successful sign in
-            startActivity(new Intent(GoogleLogin.this, HomePage.class));
+            startActivity(new Intent(GoogleLogin.this, MainPage.class));
         } catch (ApiException e) {
             Log.w("Google Sign In Error", "signInResult:failed code = " + e.getStatusCode());
             Toast.makeText(GoogleLogin.this, "Failed", Toast.LENGTH_LONG).show();
@@ -78,7 +78,7 @@ public class GoogleLogin extends AppCompatActivity {
         //To check if the user has signed in in the previous session
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
-            startActivity(new Intent(GoogleLogin.this, HomePage.class));
+            startActivity(new Intent(GoogleLogin.this, MainPage.class));
         }
         super.onStart();
     }

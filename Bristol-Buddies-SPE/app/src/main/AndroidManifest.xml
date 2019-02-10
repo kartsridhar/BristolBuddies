@@ -25,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginPage" />
-        <activity android:name=".Activity.RegisterPage" />
-        <activity android:name=".Activity.JSONActivity" />
-        <activity android:name=".Activity.HomePage" />
-        <activity android:name=".Activity.GForm" />
-        <activity android:name=".Activity.GoogleLogin"></activity>
+        <activity android:name=".Activity.GoogleLogin" />
+        <activity
+            android:name=".Activity.MainPage"
+            android:label="@string/title_activity_main_page" />
+        <activity android:name=".Activity.MyProfile" />
+        <activity android:name=".Activity.Messaging"></activity>
     </application>
 
 </manifest>
