@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.karthik.mvp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,11 +22,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MyProfile extends AppCompatActivity {
 
     GoogleSignInClient googleSignInClient;
-    Button sign_out, form;
+    Button sign_out, form, post;
     TextView fullName, email, id;
+    ImageView pic;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,8 +51,6 @@ public class MyProfile extends AppCompatActivity {
                     startActivity(i);
                     break;
                 case R.id.myProfile:
-                    Intent j = new Intent(getApplicationContext(), MyProfile.class);
-                    startActivity(j);
                     break;
             }
             return false;
@@ -57,9 +64,11 @@ public class MyProfile extends AppCompatActivity {
 
         sign_out = findViewById(R.id.signOutBtn);
         form = findViewById(R.id.form);
+        pic = findViewById(R.id.photo);
         fullName = findViewById(R.id.fullname);
         email = findViewById(R.id.email);
         id = findViewById(R.id.userID);
+        post = findViewById(R.id.postData);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -73,6 +82,9 @@ public class MyProfile extends AppCompatActivity {
             String name = deets.getDisplayName();
             String idd = deets.getId();
             String mail = deets.getEmail();
+            Uri dp = deets.getPhotoUrl();
+
+            Glide.with(this).load(dp).into(pic);
             fullName.setText("Name: " + name);
             email.setText("Email: " + mail);
             id.setText("User ID: " + idd);
@@ -82,6 +94,33 @@ public class MyProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signOut();
+            }
+        });
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send();
+            }
+        });
+    }
+
+    public void send() {
+        retrofit2.Call<ResponseBody> call = RetroClient.getInstance().getAPI()
+                .createStudent("Ronald", "Costa", "Male", "rc17067", "overwatch", "ENG", "2");
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String s = response.body().string();
+                    Toast.makeText(MyProfile.this, s, Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MyProfile.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MVP</string>
+    <string name="app_name">Bristol Buddies</string>
     <string name="title_activity_login_page">Single Sign-on</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -17,4 +17,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="facebook_app_id">317735402200331</string>
+    <string name="fb_login_protocol_scheme">fb317735402200331</string>
 </resources>
