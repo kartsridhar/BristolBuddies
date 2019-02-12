@@ -32,7 +32,7 @@ import retrofit2.Response;
 public class MyProfile extends AppCompatActivity {
 
     GoogleSignInClient googleSignInClient;
-    Button sign_out, form, post;
+    Button sign_out, form, post, getBuddy;
     TextView fullName, email, id;
     ImageView pic;
 
@@ -69,6 +69,7 @@ public class MyProfile extends AppCompatActivity {
         email = findViewById(R.id.email);
         id = findViewById(R.id.userID);
         post = findViewById(R.id.postData);
+        getBuddy = findViewById(R.id.getBuddy);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -100,6 +101,13 @@ public class MyProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 send();
+            }
+        });
+        getBuddy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Messaging.class);
+                startActivity(i);
             }
         });
     }
