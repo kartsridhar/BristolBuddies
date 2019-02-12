@@ -54,7 +54,7 @@ public class EventDbDAO implements EventDAO {
 
     @Override
     public boolean add(Event event) {
-        String insertTableSQL = "INSERT INTO EVENTS VALUES " + "(DATE, TITLE, DESCRIPTION, VENUE, TIME) " + "VALUES(?, ?, ?, ?, ?);";
+        String insertTableSQL = "INSERT INTO EVENTS" + "(DATE, TITLE, DESCRIPTION, VENUE, TIME) " + "VALUES(?, ?, ?, ?, ?);";
 
         try (PreparedStatement preparedStatement = this.connection.prepareStatement(insertTableSQL)) {
 
@@ -63,6 +63,7 @@ public class EventDbDAO implements EventDAO {
             preparedStatement.setString(3, event.getDescription());
             preparedStatement.setString(4, event.getVenue());
             preparedStatement.setString(5, event.getTime());
+            preparedStatement.executeUpdate();
             return true;
 
         } catch (SQLException e) {

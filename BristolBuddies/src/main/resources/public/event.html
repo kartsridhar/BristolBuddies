@@ -105,7 +105,7 @@
       eventTemplate.render = function(obj){
       return ""+
       "    <div class=\"eventItem\">"+
-      "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"100px\"></div>"+
+      "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"90px\"></div>"+
       "    <div class=\"eventContent\">"+
       "      <h4>"+obj.title+"</h4>"+
       "      <small>"+obj.date+"</small>"+
@@ -121,7 +121,7 @@
         return "" +
             "  <div class=\"eventTitle\">"+
             "    <div class=\"portrait\"><a href=\"#\" class=\"backButton\"><img src=\"back.png\" height=\"75px\" width=\"100px\"></a></div>"+
-            "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"100px\"></div>"+
+            "    <div class=\"portrait\"><img src=\"event-ic.png\" height=\"75px\" width=\"90px\"></div>"+
             "    <div class=\"eventContent\">"+
             "      <h3>"+obj.title+"</h3>"+
             "      <small>"+obj.date+"</small>"+
@@ -156,7 +156,7 @@
                   modal: true,
                   title: "Confirm Delete",
                   open: function() {
-                      var markup = 'Are you sure you want to delete '+even.title+' ' +"?";
+                      var markup = 'Are you sure you want to delete '+event.title + ' ' +"?";
                       $(this).html(markup);
                   },
                   buttons: {
@@ -324,7 +324,7 @@
 </head>
 
 <body>
-<h1 style="margin-left:720px;">EVENTS' DATABASE</h1>
+<h1 align = "center">EVENTS' DATABASE</h1>
 <br>
 <br>
 <br>
@@ -332,28 +332,28 @@
     <table width = "100%">
         <tr>
             <td>
-                <div class="input-group" style="margin-left:780px;">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
                 <br>
                 <p>
-                <h4 style="margin-left:835px;"> Filter by: </h4>
-                <select id="searchType" class="custom-select" style="margin-left:835px;">
+                <h4> Filter by: </h4>
+                <select id="searchType" class="custom-select">
                     <option value="date">By Date</option>
                     <option value="title">By Title</option>
                 </select>
                 </p>
                 <br>
-                <p style="margin-left:760px;">
+                <p>
                     <input id="searchButton" value="SEARCH" type="button" class="btn btn-primary btn-md">
-                    <input id="addButton" value="ADD EVENT" type="button" class="btn btn-primary btn-md" style="margin-left:40px;">
+                    <input id="addButton" value="ADD EVENT" type="button" class="btn btn-primary btn-md" >
                 </p>
             </td>
         </tr>
     </table>
 </nav>
 <br>
-<div id = "events" class = "container" style="margin-left:780px;">
+<div id = "events" class = "container">
     LOADING EVENTS...
 </div>
 <div id = "detail"></div>
@@ -362,7 +362,7 @@
     <p class = "validateTips"> All form fields are required. </p>
     <form>
         <fieldset>
-            <label for = "editdate"> Date </label> <input type="date" id = "editdate" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "editdate"> Date </label> <input type="text" id = "editdate" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "edittitle"> Title </label> <input type="text" id = "edittitle" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "editdescription"> Description </label> <input type="text" id = "editdescription" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "editvenue"> Venue </label> <input type="text" id = "editvenue" value = "" class = "text ui-widget-content ui-corner-all">
@@ -376,7 +376,7 @@
     <p class = "validateTips"> All form fields are required. </p>
     <form>
         <fieldset>
-            <label for = "adddate">Date</label><input type="date" id = "adddate" value = "" class = "text ui-widget-content ui-corner-all">
+            <label for = "adddate">Date</label><input type="text" id = "adddate" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "addtitle">Title</label> <input type="text" id = "addtitle" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "adddescription">Description</label> <input type="text" id = "adddescription" value = "" class = "text ui-widget-content ui-corner-all">
             <label for = "addvenue">Venue</label> <input type="text" id = "addvenue" value = "" class = "text ui-widget-content ui-corner-all">
