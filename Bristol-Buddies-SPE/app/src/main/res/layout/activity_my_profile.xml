@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b12727"
     tools:context=".Activity.MyProfile">
 
     <Button
@@ -11,8 +12,18 @@
         android:layout_height="40dp"
         android:id="@+id/form"
         android:onClick="openForm"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#e1c9a6"
         android:text="Fill Questionnaire"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_person_black_24dp"
+        android:layout_gravity="center"
+        android:id="@+id/photo"/>
 
     <TextView
         android:id="@+id/fullname"
@@ -20,9 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:text="Name: NAME HERE"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#efebeb"
         android:textSize="18sp" />
 
     <TextView
@@ -31,9 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="200dp"
         android:text="EMAIL: EMAIL HERE"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#efebeb"
         android:textSize="18sp" />
 
     <TextView
@@ -42,9 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="230dp"
         android:text="ID: ID HERE"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#efebeb"
         android:textSize="18sp" />
 
     <Button
@@ -55,6 +66,16 @@
         android:layout_marginTop="290dp"
         android:background="@color/colorPrimary"
         android:text="Sign out"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/postData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:background="@color/colorPrimary"
+        android:text="Send data"
         android:textColor="#fff" />
 
     <android.support.design.widget.BottomNavigationView

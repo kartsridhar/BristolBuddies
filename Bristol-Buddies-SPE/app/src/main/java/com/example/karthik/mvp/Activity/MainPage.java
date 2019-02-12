@@ -14,7 +14,6 @@ import com.example.karthik.mvp.R;
 
 public class MainPage extends AppCompatActivity {
 
-    private TextView mTextMessage;
     Button b;
     public static TextView details;
 
@@ -25,10 +24,8 @@ public class MainPage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.events:
-                    mTextMessage.setText(R.string.title_home);
                     break;
                 case R.id.messaging:
-                    mTextMessage.setText(R.string.title_dashboard);
                     Intent i = new Intent(getApplicationContext(), Messaging.class);
                     startActivity(i);
                     break;
@@ -46,7 +43,6 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

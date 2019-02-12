@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="#b12727"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainPage">
@@ -12,23 +13,30 @@
         android:layout_height="40dp"
         android:text="Click to see events"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
+        android:background="#e1c9a6"
         android:id="@+id/button"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button">
+        android:layout_below="@+id/button"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="40dp"
+        tools:ignore="MissingConstraints">
+
         <TextView
+            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/button"
             android:layout_marginTop="100dp"
+            android:hint="No current events"
             android:padding="5dp"
             android:textSize="24sp"
-            android:id="@+id/details"
-            android:hint="No current events"/>
+            android:textColor="#e1dbdb"/>
     </ScrollView>
 
     <android.support.design.widget.BottomNavigationView

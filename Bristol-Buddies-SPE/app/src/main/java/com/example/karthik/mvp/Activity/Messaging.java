@@ -25,8 +25,6 @@ public class Messaging extends AppCompatActivity {
                     startActivity(h);
                     break;
                 case R.id.messaging:
-                    Intent i = new Intent(getApplicationContext(), Messaging.class);
-                    startActivity(i);
                     break;
                 case R.id.myProfile:
                     Intent j = new Intent(getApplicationContext(), MyProfile.class);
