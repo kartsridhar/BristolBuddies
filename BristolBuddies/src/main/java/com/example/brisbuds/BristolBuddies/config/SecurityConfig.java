@@ -13,8 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import java.io.Console;
-
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -36,13 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        log.info("Setting in-memory security using the user input...");
-
         String username = "username";
         String password = "password";
 
-        System.out.println("\nPlease set the admin credentials for this web application (will be required when browsing to the web application)");
-        Console console = System.console();
+//        System.out.println("\nPlease set the admin credentials for this web application (will be required when browsing to the web application)");
+//        Console console = System.console();
 
         // Read the credentials from the user console:
         // Note:
