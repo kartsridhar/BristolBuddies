@@ -21,13 +21,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -35,6 +41,7 @@ public class MyProfile extends AppCompatActivity {
     Button sign_out, form, post, getBuddy;
     TextView fullName, email, id;
     ImageView pic;
+    private RetroAPI retroAPI;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,6 +80,16 @@ public class MyProfile extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //----------------------------------------------------------
+        //TESTING PUTTING DATA
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://132.145.45.239:8080/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        retroAPI = retrofit.create(RetroAPI.class);
+        //----------------------------------------------------------
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -100,7 +117,8 @@ public class MyProfile extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send();
+//                send();
+                createPost();
             }
         });
         getBuddy.setOnClickListener(new View.OnClickListener() {
@@ -112,26 +130,54 @@ public class MyProfile extends AppCompatActivity {
         });
     }
 
-    public void send() {
-        retrofit2.Call<ResponseBody> call = RetroClient.getInstance().getAPI()
-                .createStudent("Ronald", "Costa", "Male", "rc17067", "overwatch", "ENG", "2");
-        call.enqueue(new Callback<ResponseBody>() {
+    //----------------------------------------------------
+    //TO POST THE DATA TEST
+    public void createPost() {
+        Post post = new Post("Ronald", "Costa", "Male", "rc17067", "overwatch", "ENG", "2");
+
+        Call<Post> call = retroAPI.createPost(post);
+
+        call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String s = response.body().string();
-                    Toast.makeText(MyProfile.this, s, Toast.LENGTH_LONG).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(!response.isSuccessful()) {
+                    Toast.makeText(MyProfile.this, response.code(), Toast.LENGTH_LONG).show();
                 }
+                Post postResponse = response.body();
+
+                fullName.setText(postResponse.getFname() + " " + postResponse.getLname());
+                email.setText(postResponse.getUname() + "@my.bristol.ac.uk");
+                id.setText(postResponse.getPwd());
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<Post> call, Throwable t) {
                 Toast.makeText(MyProfile.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
+    //----------------------------------------------------
+
+//    public void send() {
+//        retrofit2.Call<ResponseBody> call = RetroClient.getInstance().getAPI()
+//                .createStudent("Ronald", "Costa", "Male", "rc17067", "overwatch", "ENG", "2");
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    String s = response.body().string();
+//                    Toast.makeText(MyProfile.this, s, Toast.LENGTH_LONG).show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Toast.makeText(MyProfile.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     public void openForm(View view) {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSfUHn6_GoD39DKDGn_uqjoEUvoLTB4wM3Eiv1uIPN5oAIfnwQ/viewform?usp=sf_link"));

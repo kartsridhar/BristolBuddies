@@ -36,11 +36,11 @@ public class GetJSON extends AsyncTask<Void, Void, Void> {
             JSONArray JA = new JSONArray(data);
             for(int i = 0; i < JA.length(); i++) {
                 JSONObject JO = (JSONObject) JA.get(i);
-                singleParsed = "Date: " + JO.get("date") + "\n" +
-                               "Event Title: " + JO.get("title") + "\n" +
-                               "Description: " + JO.get("description") + "\n" +
-                               "Venue: " + JO.get("venue") + "\n" +
-                               "Time: " + JO.get("time") + "\n";
+                singleParsed = "Date:     " + JO.get("date") + "\n" +
+                               "Event Title:     " + JO.get("title") + "\n" +
+                               "Description:     " + JO.get("description") + "\n" +
+                               "Venue:     " + JO.get("venue") + "\n" +
+                               "Time:     " + JO.get("time") + "\n";
 
                 dataParsed = dataParsed + singleParsed + "\n";
             }
