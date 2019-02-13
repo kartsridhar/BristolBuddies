@@ -27,6 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         log.info("Disabling CSRF, enabling basic authentication...");
         http
                 .authorizeRequests()
+                .antMatchers("/students**")
+                .permitAll()
+                .and()
+                .authorizeRequests()
                 .antMatchers("/events**")
                 .permitAll()
                 .and()
@@ -64,4 +68,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
