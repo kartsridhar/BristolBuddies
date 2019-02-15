@@ -1,3 +1,0 @@
-#!/bin/bash
-export TESTHOSTNAME=http://localhost:8080
-echo Exporting $TESTHOSTNAME

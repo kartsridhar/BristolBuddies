@@ -1,5 +1,0 @@
-#!/bin/bash
-COM="curl -X DELETE -i http://localhost:8080/employees/104"
-echo Executing: $COM
-$COM
-echo
