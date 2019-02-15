@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - checkout
-          path: ~/BristolBuddies
+          path: ~/BristolBuddies/BristolBuddies
 
       # Download and cache dependencies
       - restore_cache:
