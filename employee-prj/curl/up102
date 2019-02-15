@@ -1,3 +1,0 @@
-#!/bin/bash
-echo Executing: curl -X PUT -i -H "Content-Type: application/json" -d $TESTHOSTNAME/employees/102
-curl -X PUT -i -H "Content-Type: application/json" -d '{"id":102,"firstName":"Tweed","lastName":"Hahn","email":"Tweed.Hahn@example.com","phone":"429-071-2018","birthDate":"1977-02-05T19:18:57.407Z","title":"Future Directives Facilitator","department":"Quality"}' $TESTHOSTNAME/employees/102
