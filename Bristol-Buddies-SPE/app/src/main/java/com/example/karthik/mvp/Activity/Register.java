@@ -43,7 +43,7 @@ public class Register extends AppCompatActivity {
         //TESTING PUTTING DATA
         Gson gson = new GsonBuilder().serializeNulls().create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://132.145.45.239:8080/")
+                .baseUrl("http://132.145.45.239/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         retroAPI = retrofit.create(RetroAPI.class);
@@ -75,8 +75,7 @@ public class Register extends AppCompatActivity {
         call.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
-                Toast.makeText(Register.this, "Registered Successfully!", Toast.LENGTH_LONG).show();
-                MainPage.details.setText("Student Registered");
+                Toast.makeText(Register.this, response.message(), Toast.LENGTH_LONG).show();
             }
 
             @Override
