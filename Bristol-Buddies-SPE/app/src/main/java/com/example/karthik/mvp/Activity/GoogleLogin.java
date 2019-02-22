@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.karthik.mvp.R;
@@ -35,7 +36,7 @@ public class GoogleLogin extends AppCompatActivity {
     int sign_in = 0;
     SignInButton signInButton;                  //for google
     GoogleSignInClient googleSignInClient;
-
+    Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class GoogleLogin extends AppCompatActivity {
 
         //Initialising the view
         signInButton = findViewById(R.id.signInBtn);        //google
-
+        register = findViewById(R.id.regButton);
         //Sign in to request userID, email and basic profile
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
 
@@ -56,7 +57,13 @@ public class GoogleLogin extends AppCompatActivity {
                 signIn();
             }
         });
-
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Register.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void signIn() {

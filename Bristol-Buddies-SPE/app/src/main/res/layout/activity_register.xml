@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:background="#b12727"
+    tools:context=".Activity.Register">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Registration"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:textColor="#f9f4f4"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        />
+
+    <EditText
+        android:id="@+id/fName"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="45dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="First Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/lName"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="90dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Last Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="135dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Gender (enter M, F or O)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/studID"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="180dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Username (ed: ab12234)"
+        android:inputType="text"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/studPass"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="225dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/dept"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="270dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Department"
+        android:inputType="text"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/yos"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="315dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Year of Study"
+        android:inputType="number"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="register"
+        android:id="@+id/regButton"
+        android:layout_marginTop="370dp"/>
+
+</RelativeLayout>
