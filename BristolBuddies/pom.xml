@@ -53,6 +53,13 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core -->
 		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>9.0.16</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
@@ -98,43 +105,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
-		<!--		<plugins>-->
-		<!--			<plugin>-->
-		<!--				<groupId>org.springframework.boot</groupId>-->
-		<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-		<!--			</plugin>-->
-		<!--			<plugin>-->
-		<!--				<groupId>org.apache.maven.plugins</groupId>-->
-		<!--				<artifactId>maven-jar-plugin</artifactId>-->
-		<!--				<configuration>-->
-		<!--					<archive>-->
-		<!--						<manifest>-->
-		<!--							<addClasspath>true</addClasspath>-->
-		<!--							<classpathPrefix>lib/</classpathPrefix>-->
-		<!--							<mainClass>BristolBuddiesApplication</mainClass>-->
-		<!--						</manifest>-->
-		<!--					</archive>-->
-		<!--				</configuration>-->
-		<!--			</plugin>-->
-		<!--			<plugin>-->
-		<!--				<groupId>org.codehaus.mojo</groupId>-->
-		<!--				<artifactId>exec-maven-plugin</artifactId>-->
-		<!--				<version>1.5.0</version>-->
-		<!--				<executions>-->
-		<!--					<execution>-->
-		<!--						<goals>-->
-		<!--							<goal>java</goal>-->
-		<!--						</goals>-->
-		<!--					</execution>-->
-		<!--				</executions>-->
-		<!--				<configuration>-->
-		<!--					<mainClass>com.example.brisbuds.BristolBuddies.BristolBuddiesApplication</mainClass>-->
-		<!--				</configuration>-->
-		<!--			</plugin>-->
-		<!--		</plugins>-->
 
 		<plugins>
 			<plugin>
