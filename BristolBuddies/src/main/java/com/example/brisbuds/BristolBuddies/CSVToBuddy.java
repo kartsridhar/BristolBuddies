@@ -1,8 +1,6 @@
 package com.example.brisbuds.BristolBuddies;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.brisbuds.BristolBuddies.ao.BuddyDbDAO;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -126,7 +124,7 @@ public class CSVToBuddy {
 
     static private String getPreferencesString(List<String[]> buddies, int i) {
         StringBuilder preferences = new StringBuilder();
-        for(int j = 9 ; j <=12 ; j++) {
+        for(int j = 9 ; j < NUMBEROFARGS ; j++) {
             String raw = buddies.get(i)[j];
             if (raw.contains("Least")) { preferences.append('0'); }
             else if (raw.contains("Not really")) { preferences.append('1'); }
