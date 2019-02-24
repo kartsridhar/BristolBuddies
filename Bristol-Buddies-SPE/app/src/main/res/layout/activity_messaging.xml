@@ -7,18 +7,6 @@
     android:background="#b12727"
     tools:context=".Activity.Messaging">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Not implemented yet, coming soon!"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:textColor="#e6e3e3"
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
