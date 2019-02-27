@@ -26,7 +26,6 @@ public class LoginPage extends AppCompatActivity {
     EditText username, password;
     String u, p;
     Button login;
-    private RetroAPI retroAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,47 +36,33 @@ public class LoginPage extends AppCompatActivity {
         password = findViewById(R.id.studPass);
         login = findViewById(R.id.loginButton);
 
+        u = username.getText().toString();
+        p = password.getText().toString();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://132.145.45.239/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        retroAPI = retrofit.create(RetroAPI.class);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                check();
-            }
-        });
-    }
-    private void check(){
-
-        u = username.getText().toString();
-        p = password.getText().toString();
-
-        if(u.isEmpty() || p.isEmpty()) {
-            Toast.makeText(LoginPage.this, "Please enter login details!", Toast.LENGTH_LONG).show();
-        }
-
+        RetroAPI retroAPI = retrofit.create(RetroAPI.class);
         Call<List<Student>> call = retroAPI.getStudents();
 
         call.enqueue(new Callback<List<Student>>() {
+
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 if(!response.isSuccessful()) {
                     Toast.makeText(LoginPage.this, response.code(), Toast.LENGTH_LONG).show();
+                    return;
                 }
                 List<Student> students = response.body();
 
                 for(Student student : students) {
-                    if(!u.equalsIgnoreCase(student.getUserName()) || !p.equals(student.getPassword())) {
-                        Toast.makeText(LoginPage.this, "Invalid Credentials! Please check again", Toast.LENGTH_LONG).show();
+                    if(u.isEmpty() || p.isEmpty()) {
+                        Toast.makeText(LoginPage.this, "Please enter login details!", Toast.LENGTH_LONG).show();
                     }
                     else if(u.equalsIgnoreCase(student.getUserName()) && p.equals(student.getPassword())) {
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(getApplicationContext(), MainPage.class);
-                        startActivity(i);
                     }
                 }
             }
@@ -89,3 +74,4 @@ public class LoginPage extends AppCompatActivity {
         });
     }
 }
+

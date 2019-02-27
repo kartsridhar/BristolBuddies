@@ -1,5 +1,6 @@
 package com.example.karthik.mvp.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,14 +9,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.karthik.mvp.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPage extends AppCompatActivity {
 
-    Button b;
-    public static TextView details;
+    private static final String TAG = "MainPage";
+    private static final String url = "http://132.145.45.239/events";
+    private ProgressDialog dialog;
+    private List<Item> array = new ArrayList<Item>();
+    private ListView listView;
+    private ItemAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,16 +61,58 @@ public class MainPage extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        listView = findViewById(R.id.list_item);
+        adapter = new ItemAdapter(this, array);
+        listView.setAdapter(adapter);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading Events...");
+        dialog.show();
 
-        b = findViewById(R.id.button);
-        details = findViewById(R.id.details);
-
-        b.setOnClickListener(new View.OnClickListener() {
+        //Creating a volley request object
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
-            public void onClick(View v) {
-                GetJSON process = new GetJSON();
-                process.execute();
+            public void onResponse(JSONArray response) {
+                hideDialog();
+
+                //Pasing the JSON
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+                        Item item = new Item();
+                        item.setTitle(obj.getString("title"));
+                        item.setDate(obj.getString("date"));
+                        item.setDescription(obj.getString("description"));
+                        item.setVenue(obj.getString("venue"));
+                        item.setTime(obj.getString("time"));
+
+                        array.add(item);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
+        EventController.getmInstance().addToRequestQueue(jsonArrayRequest);
     }
+
+    public void hideDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
+
+//    public void customDialog(String description, String venue, String time, final String okMethod) {
+//        final android.support.v7.app.A
+//    }
+//
+//    public void checkDetails(View view) {
+//
+//    }
 }

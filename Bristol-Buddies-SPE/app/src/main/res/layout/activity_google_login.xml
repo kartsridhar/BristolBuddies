@@ -40,18 +40,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="400dp"
         android:layout_centerHorizontal="true"
-        android:text="register"
+        android:text="login"
         android:id="@+id/loginButton"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="450dp"
+        android:layout_margin="470dp"
         android:layout_centerHorizontal="true"
         android:text="New Student? Click here to register!"
         android:textColor="#3da5ce"
         android:id="@+id/regButton"/>
-        <!--android:onClick="openRegistration"-->
-
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         public void run() {
             try {
-                sleep(2500);            //sleep after 3 seconds
+                sleep(1000);            //sleep after 1000 ms
                 Intent intent = new Intent(getApplicationContext(), GoogleLogin.class);
                 startActivity(intent);        //starting the next activity
                 finish();

@@ -8,36 +8,17 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainPage">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Click to see events"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:background="#e1c9a6"
-        android:id="@+id/button"/>
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="40dp"
-        tools:ignore="MissingConstraints">
+        android:id="@+id/list_item"
+        android:dividerHeight="5dp"
+        android:listSelector="@drawable/list_row_select">
+        <!--android:onClick="checkDetails">-->
+    </ListView>
 
-        <TextView
-            android:id="@+id/details"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/button"
-            android:layout_marginTop="100dp"
-            android:hint="No current events"
-            android:padding="5dp"
-            android:textSize="24sp"
-            android:textColor="#e1dbdb"/>
-    </ScrollView>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

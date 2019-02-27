@@ -47,9 +47,10 @@ tools:context=".Activity.LoginPage">
 
 <Button
     android:layout_width="wrap_content"
-    android:layout_height="70dp"
-    android:text="Login!"
+    android:layout_height="50dp"
+    android:text="Login"
     android:id="@+id/loginButton"
-    android:layout_marginTop="370dp"/>
+    android:layout_marginTop="370dp"
+    android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
