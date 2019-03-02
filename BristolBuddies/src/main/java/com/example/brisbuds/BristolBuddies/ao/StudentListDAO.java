@@ -110,7 +110,7 @@ public class StudentListDAO implements StudentDAO {
         Student nextStudent =
                 new Student( next, student.getFirstName(), student.getLastName(),
                         student.getGender(), student.getUserName(),
-                        student.getPassword(), student.getDepartment(), student.getYearofStudy());
+                        student.getPassword(), student.getDepartment(), student.getYearofStudy(),null,null,null,null);
 
         eList.add(nextStudent);
         return true;

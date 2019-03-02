@@ -23,7 +23,7 @@ public class StudentDbDAO implements StudentDAO {
                 resultList.add(
                         new Student(rs.getLong("ID"), rs.getString("FIRSTNAME"),
                                 rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getString("USERNAME"),
-                                rs.getString("PASSWORD"), rs.getString("DEPARTMENT"), rs.getString("YEAROFSTUDY"))
+                                rs.getString("PASSWORD"), rs.getString("DEPARTMENT"), rs.getString("YEAROFSTUDY"), rs.getString("NATIONALITY"), rs.getString("INTERESTS"),rs.getString("PERSONALITY"),rs.getString("PREFERENCES"))
                 );
             }
         } catch (SQLException e) {
