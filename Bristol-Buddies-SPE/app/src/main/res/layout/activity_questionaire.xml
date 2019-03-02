@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b12727"
+    tools:context=".Activity.Questionaire">
+
+    <TextView
+        android:id="@+id/qanswered_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Quick Questionaire"
+        android:textSize="25sp"
+        android:textColor="#ffffff"
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@id/qanswered_text"
+        android:layout_alignParentRight= "true"
+        android:text="1/2"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Faculty (e.g Engineering)"
+        android:id="@+id/faculty"
+        android:inputType="text"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="120dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Graduation Year (e.g 2021)"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="190dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:hint="Nationality"
+        android:inputType="text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="275dp"
+        android:layout_centerHorizontal="true"
+        android:text="     Interests(Please select all that apply)"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+    <CheckBox
+        android:id="@+id/artmus"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="320dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="Art and Museums"
+        />
+    <CheckBox
+        android:id="@+id/tele"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="350dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="Television"
+        />
+    <CheckBox
+        android:id="@+id/games"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="380dp"
+        android:textColor="#ffffff"
+        android:text="Video Games"
+        android:textSize="10dp"
+
+        />
+    <CheckBox
+        android:id="@+id/gigs"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="410dp"
+        android:textColor="#ffffff"
+        android:text="Gigs and other live music"
+        android:textSize="10dp"
+
+        />
+    <CheckBox
+        android:id="@+id/clubs"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="440dp"
+        android:textColor="#ffffff"
+        android:text="club nights"
+        android:textSize="10dp"
+
+        />
+    <CheckBox
+        android:id="@+id/none"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="470dp"
+        android:textColor="#ffffff"
+        android:text="None of the above"
+        android:textSize="10dp"
+
+        />
+    <CheckBox
+        android:id="@+id/creative"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="320dp"
+        android:textColor="#ffffff"
+        android:text="Creative hobbies such as painting or writing"
+        android:textSize="10dp"
+
+        />
+
+    <CheckBox
+        android:id="@+id/Sport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignStart="@+id/creative"
+        android:layout_alignLeft="@+id/creative"
+        android:layout_marginTop="350dp"
+        android:text="Sport"
+        android:textColor="#ffffff"
+        android:textSize="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="300dp"
+        android:text="Next"
+        android:textSize="9sp"
+        android:layout_marginTop="480dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:id="@+id/question1"
+        />
+
+
+
+
+
+</RelativeLayout>

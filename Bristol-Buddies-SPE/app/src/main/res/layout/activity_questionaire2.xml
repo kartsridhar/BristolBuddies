@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b12727"
+    tools:context=".Activity.questionaire2">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Quick Questionaire"
+        android:textSize="25sp"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight= "true"
+        android:text="2/2"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="     Personality Reflections(Please select all that apply)"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+    <CheckBox
+        android:id="@+id/outgoing"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="80dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="I consider myself to be outgoing and sociable"
+        />
+    <CheckBox
+        android:id="@+id/nervous"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="110dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="I get nervous easily"
+        />
+    <CheckBox
+        android:id="@+id/curious"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="140dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="I am a curious person who is interested in many different things"
+        />
+    <CheckBox
+        android:id="@+id/original"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="170dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="I'm often coming up with new and original ideas"
+        />
+    <CheckBox
+        android:id="@+id/none2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="200dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+
+        android:text="None of the above"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="230dp"
+        android:layout_centerHorizontal="true"
+        android:text="What factors do you think matters more when it comes to your matching ?"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignStart="@id/outgoing"
+        android:layout_alignLeft="@id/outgoing"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="300dp"
+        android:text="Interests"
+
+        android:textColor="#ffffff"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="350dp"
+        android:textColor="#ffffff"
+        android:layout_alignStart="@id/outgoing"
+        android:layout_alignLeft="@id/outgoing"
+        android:id="@+id/person"
+        android:text="Personality"
+        android:textSize="10dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="400dp"
+        android:textColor="#ffffff"
+        android:layout_alignStart="@id/outgoing"
+        android:layout_alignLeft="@id/outgoing"
+        android:text="Course"
+        android:id="@+id/course"
+        android:textSize="10dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="450dp"
+        android:textColor="#ffffff"
+        android:layout_alignStart="@id/outgoing"
+        android:layout_alignLeft="@id/outgoing"
+        android:text="Nationality"
+        android:id="@+id/nation"
+        android:textSize="10dp"
+
+        />
+    <CheckBox
+        android:id="@+id/Interestsfairimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        />
+    <CheckBox
+        android:id="@+id/Interestsmostimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+/>
+
+    <CheckBox
+        android:id="@+id/Interestsnrimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="300dp" />
+    <CheckBox
+        android:id="@+id/Interestslimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="300dp" />
+    <CheckBox
+        android:id="@+id/Personalityfairimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        />
+    <CheckBox
+        android:id="@+id/Personalitymostimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        />
+
+    <CheckBox
+        android:id="@+id/Personalitynrimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="350dp" />
+    <CheckBox
+        android:id="@+id/Personalitylimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="350dp" />
+    <CheckBox
+        android:id="@+id/Coursefairimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="400dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        />
+    <CheckBox
+        android:id="@+id/Coursemostimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="400dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        />
+
+    <CheckBox
+        android:id="@+id/Coursenrimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="400dp" />
+    <CheckBox
+        android:id="@+id/Courselimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="400dp" />
+    <CheckBox
+        android:id="@+id/Nationalityfairimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="450dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        />
+    <CheckBox
+        android:id="@+id/Nationalitymostimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="450dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        />
+
+    <CheckBox
+        android:id="@+id/Nationalitynrimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="450dp" />
+    <CheckBox
+        android:id="@+id/Nationalitylimport"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="450dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="275dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:textColor="#ffffff"
+        android:text="Least Important"
+        android:textSize="8sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="275dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="130dp"
+        android:textColor="#ffffff"
+        android:text="Not really important"
+        android:textSize="8sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="275dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="225dp"
+        android:textColor="#ffffff"
+        android:text="Fairly Important"
+        android:textSize="8sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="275dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="310dp"
+        android:textColor="#ffffff"
+        android:text="Most Important"
+        android:textSize="8sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="300dp"
+        android:text="Next"
+        android:textSize="9sp"
+        android:layout_marginTop="480dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:id="@+id/question2"
+        />
+</RelativeLayout>
