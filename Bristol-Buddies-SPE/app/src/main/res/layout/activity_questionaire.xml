@@ -36,19 +36,22 @@
         android:inputType="text"/>
 
     <EditText
+        android:id="@+id/gradyear"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="120dp"
         android:background="@color/browser_actions_bg_grey"
         android:hint="Graduation Year (e.g 2021)"
-        android:inputType="text"/>
+        android:inputType="text" />
+
     <EditText
+        android:id="@+id/nat"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="190dp"
         android:background="@color/browser_actions_bg_grey"
         android:hint="Nationality"
-        android:inputType="text"/>
+        android:inputType="text" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -107,13 +110,14 @@
         android:textSize="10dp"
 
         />
+
     <CheckBox
-        android:id="@+id/none"
+        android:id="@+id/none1"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginTop="470dp"
-        android:textColor="#ffffff"
         android:text="None of the above"
+        android:textColor="#ffffff"
         android:textSize="10dp"
 
         />

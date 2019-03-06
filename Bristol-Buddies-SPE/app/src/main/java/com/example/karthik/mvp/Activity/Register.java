@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Register extends AppCompatActivity {
 
     EditText firstName, lastName, uName, uGender, uPass, uDept, uYos;
-    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos;
+    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos, db_unat, db_uint,db_upers,db_upref;
     Button register;
     private RetroAPI retroAPI;
 
@@ -39,6 +39,10 @@ public class Register extends AppCompatActivity {
         uYos = findViewById(R.id.yos);
         register = findViewById(R.id.regButton);
 
+
+
+
+
         //----------------------------------------------------------
         //TESTING PUTTING DATA
         Gson gson = new GsonBuilder().serializeNulls().create();
@@ -52,37 +56,50 @@ public class Register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPost();
-                Intent j = new Intent(getApplicationContext(), MainPage.class);
+                db_fname = firstName.getText().toString();
+                db_lname = lastName.getText().toString();
+                db_uname = uName.getText().toString();
+                db_ugender = uGender.getText().toString();
+                db_upass = uPass.getText().toString();
+                db_udept = uDept.getText().toString();
+                db_uyos = uYos.getText().toString();
+                db_unat = "";
+                db_uint = "";
+                db_upers="";
+                db_upref="";
+                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref);
+                Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                j.putExtra("serialize_data1",student);
                 startActivity(j);
+                finish();
             }
         });
     }
 
     //----------------------------------------------------
     //TO POST THE DATA TEST
-    private void createPost() {
-        db_fname = firstName.getText().toString();
-        db_lname = lastName.getText().toString();
-        db_uname = uName.getText().toString();
-        db_ugender = uGender.getText().toString();
-        db_upass = uPass.getText().toString();
-        db_udept = uDept.getText().toString();
-        db_uyos = uYos.getText().toString();
-
-        Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos);
-        Call<Student> call = retroAPI.createStudent(student);
-        call.enqueue(new Callback<Student>() {
-            @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
-                Toast.makeText(Register.this, response.message(), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<Student> call, Throwable t) {
-
-            }
-        });
-    }
+//    private void createPost() {
+//        db_fname = firstName.getText().toString();
+//        db_lname = lastName.getText().toString();
+//        db_uname = uName.getText().toString();
+//        db_ugender = uGender.getText().toString();
+//        db_upass = uPass.getText().toString();
+//        db_udept = uDept.getText().toString();
+//        db_uyos = uYos.getText().toString();
+//
+//        Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos);
+//        Call<Student> call = retroAPI.createStudent(student);
+//        call.enqueue(new Callback<Student>() {
+//            @Override
+//            public void onResponse(Call<Student> call, Response<Student> response) {
+//                Toast.makeText(Register.this, response.message(), Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Student> call, Throwable t) {
+//
+//            }
+//        });
+//    }
     //----------------------------------------------------
 }

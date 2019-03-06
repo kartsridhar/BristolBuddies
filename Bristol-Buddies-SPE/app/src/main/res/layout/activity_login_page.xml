@@ -11,7 +11,7 @@ android:paddingBottom="16dp"
 android:background="#b12727"
 tools:context=".Activity.LoginPage">
 
-<TextView
+    <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Student Log-in"
@@ -24,17 +24,17 @@ tools:context=".Activity.LoginPage">
     android:layout_marginTop="100dp"
     />
 
-<EditText
+    <EditText
     android:id="@+id/studID"
     android:layout_width="match_parent"
     android:layout_height="45dp"
     android:layout_marginTop="180dp"
     android:background="@color/browser_actions_bg_grey"
-    android:hint="Username (ed: ab12234)"
+    android:hint="Username (eg: ab12234)"
     android:inputType="text"
     android:textSize="18sp" />
 
-<EditText
+    <EditText
     android:id="@+id/studPass"
     android:layout_width="match_parent"
     android:layout_height="45dp"
@@ -45,12 +45,13 @@ tools:context=".Activity.LoginPage">
     android:inputType="textPassword"
     android:textSize="18sp" />
 
-<Button
+    <Button
     android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:text="Login"
     android:id="@+id/loginButton"
     android:layout_marginTop="370dp"
     android:layout_centerHorizontal="true"/>
+
 
 </RelativeLayout>

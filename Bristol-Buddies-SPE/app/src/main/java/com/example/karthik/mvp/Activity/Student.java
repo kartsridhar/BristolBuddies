@@ -1,6 +1,8 @@
 package com.example.karthik.mvp.Activity;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     private long id;
     private final String firstName;
     private final String lastName;
@@ -9,6 +11,11 @@ public class Student {
     private final String password;
     private final String department;
     private final String yearofStudy;
+    private final String nationality;
+    private final String interests;
+    private final String personality;
+    private final String preferences;
+
 
 
 
@@ -22,10 +29,14 @@ public class Student {
         password = "";
         department = "";
         yearofStudy = "";
+        nationality = "";
+        interests = "";
+        personality = "";
+        preferences = "";
 
     }
 
-    public Student(String firstName,String lastName, String gender, String userName, String password, String department, String yearofStudy ){
+    public Student(String firstName,String lastName, String gender, String userName, String password, String department, String yearofStudy,String nationality,String interests,String personality,String preferences ){
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,6 +45,10 @@ public class Student {
         this.password = password;
         this.department = department;
         this.yearofStudy = yearofStudy;
+        this.nationality = nationality;
+        this.interests = interests;
+        this.personality = personality;
+        this.preferences = preferences;
     }
 
 
@@ -58,6 +73,21 @@ public class Student {
     public String getYearofStudy(){
         return yearofStudy;
     }
+    public String getNationality() {
+        return nationality;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public String getPersonality() {
+        return personality;
+    }
+
+    public String getPreferences() {
+        return preferences;
+    }
 
 
 
@@ -70,7 +100,11 @@ public class Student {
                 + " Username: " + userName
                 + " Password: " + password
                 + " Department: " + department
-                + " Year of Study: " + yearofStudy;
+                + " Year of Study: " + yearofStudy
+                + " Nationality: " + nationality
+                + " Interests: " + interests
+                + " personality: "+ personality
+                + " preferences: " + preferences;
     }
 
 

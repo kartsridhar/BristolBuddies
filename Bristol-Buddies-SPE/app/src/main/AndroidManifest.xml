@@ -55,7 +55,9 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".Activity.Register" />
-        <activity android:name=".Activity.LoginPage"></activity>
+        <activity android:name=".Activity.LoginPage" />
+        <activity android:name=".Activity.Questionaire" />
+        <activity android:name=".Activity.questionaire2"></activity>
     </application>
 
 </manifest>
