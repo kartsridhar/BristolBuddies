@@ -101,6 +101,46 @@ public class StudentListDAO implements StudentDAO {
         return matchList;
     }
 
+    @Override
+    public List<Student> getByNationality (String nat){
+        List<Student> matchList =
+                eList.stream()
+                        .filter((e) -> (e.getNationality().contains(nat)))
+                        .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Student> getByInterests (String inte){
+        List<Student> matchList =
+                eList.stream()
+                        .filter((e) -> (e.getInterests().contains(inte)))
+                        .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Student> getByPersonality (String pers){
+        List<Student> matchList =
+                eList.stream()
+                        .filter((e) -> (e.getPersonality().contains(pers)))
+                        .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Student> getByPreferences (String prefe){
+        List<Student> matchList =
+                eList.stream()
+                        .filter((e) -> (e.getPreferences().contains(prefe)))
+                        .collect(Collectors.toList());
+
+        return matchList;
+    }
+
 
 
     @Override
@@ -110,7 +150,7 @@ public class StudentListDAO implements StudentDAO {
         Student nextStudent =
                 new Student( next, student.getFirstName(), student.getLastName(),
                         student.getGender(), student.getUserName(),
-                        student.getPassword(), student.getDepartment(), student.getYearofStudy(),null,null,null,null);
+                        student.getPassword(), student.getDepartment(), student.getYearofStudy(),student.getNationality(),student.getInterests(),student.getPersonality(),student.getPreferences());
 
         eList.add(nextStudent);
         return true;

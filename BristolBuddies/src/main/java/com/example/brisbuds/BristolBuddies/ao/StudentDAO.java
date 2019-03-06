@@ -14,6 +14,12 @@ public interface StudentDAO {
      List <Student> getByPassword (String password);
      List <Student> getByDepartment (String department);
      List <Student> getByYearofStudy (String yearOfStudy);
+     List <Student> getByNationality (String nationality);
+     List <Student> getByInterests (String interests);
+     List <Student> getByPersonality (String personality);
+     List <Student> getByPreferences (String preferences);
+
+
      boolean add(Student student);
      boolean update(long id, Student student);
      boolean delete(long id);

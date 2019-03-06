@@ -106,6 +106,30 @@ public class StudentDbDAO implements StudentDAO {
 
         return resultList;
     }
+    public List<Student> getByNationality (String nat){
+        String queryStr = "SELECT * FROM BRISBUDS WHERE NATIONALITY LIKE'" + nat + "%'";
+        List<Student> resultList = this.query(queryStr);
+
+        return resultList;
+    }
+    public List<Student> getByInterests (String inte){
+        String queryStr = "SELECT * FROM BRISBUDS WHERE INTERESTS LIKE'" + inte + "%'";
+        List<Student> resultList = this.query(queryStr);
+
+        return resultList;
+    }
+    public List<Student> getByPersonality  (String pers){
+        String queryStr = "SELECT * FROM BRISBUDS WHERE NATIONALITY LIKE'" + pers + "%'";
+        List<Student> resultList = this.query(queryStr);
+
+        return resultList;
+    }
+    public List<Student> getByPreferences  (String pref){
+        String queryStr = "SELECT * FROM BRISBUDS WHERE PREFERENCES LIKE'" + pref + "%'";
+        List<Student> resultList = this.query(queryStr);
+
+        return resultList;
+    }
 
 
 
@@ -114,8 +138,8 @@ public class StudentDbDAO implements StudentDAO {
     @Override
     public boolean add(Student student){
         String insertTableSQL = "INSERT INTO BRISBUDS"
-            + "(FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DEPARTMENT, YEAROFSTUDY) "
-                + "VALUES(?,?,?,?,?,?,?);";
+            + "(FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DEPARTMENT, YEAROFSTUDY, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES ) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(insertTableSQL)) {
@@ -127,6 +151,11 @@ public class StudentDbDAO implements StudentDAO {
             preparedStatement.setString(5, student.getPassword());
             preparedStatement.setString(6, student.getDepartment());
             preparedStatement.setString(7, student.getYearofStudy());
+            preparedStatement.setString(8,student.getNationality());
+            preparedStatement.setString(9,student.getInterests());
+            preparedStatement.setString(10,student.getPersonality());
+            preparedStatement.setString(11,student.getPreferences());
+
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -142,7 +171,7 @@ public class StudentDbDAO implements StudentDAO {
 
     @Override
     public boolean update(long id, Student student){
-        String updateTableSQL = "UPDATE BRISBUDS SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?  WHERE ID=?";
+        String updateTableSQL = "UPDATE BRISBUDS SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?, NATIONALITY=?, INTERESTS=?, PERSONALITY=?, PREFERENCES=?  WHERE ID=?";
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(updateTableSQL);) {
             preparedStatement.setString(1, student.getFirstName());
@@ -152,7 +181,11 @@ public class StudentDbDAO implements StudentDAO {
             preparedStatement.setString(5, student.getPassword());
             preparedStatement.setString(6, student.getDepartment());
             preparedStatement.setString(7, student.getYearofStudy());
-            preparedStatement.setString(8, Long.toString(id));
+            preparedStatement.setString(8,student.getNationality());
+            preparedStatement.setString(9,student.getInterests());
+            preparedStatement.setString(10,student.getPersonality());
+            preparedStatement.setString(11,student.getPreferences());
+            preparedStatement.setString(12, Long.toString(id));
 
             preparedStatement.executeUpdate();
             return true;
