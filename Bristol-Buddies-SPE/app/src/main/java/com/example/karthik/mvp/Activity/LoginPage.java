@@ -127,9 +127,13 @@ public class LoginPage extends AppCompatActivity {
                         Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
                         matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
-                        Intent k = new Intent(getApplicationContext(),MainPage.class);
-                        k.putExtra("serialize_data3",matchstudent);
+                        Intent m = new Intent(getApplicationContext(),MyProfile.class);
+                        m.putExtra("serialize_data3",matchstudent);
+                        m.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(m);
+                        Log.d("SENTSTUDENT",matchstudent.getFirstName());
                         found = 1;
+                        Intent k = new Intent(getApplicationContext(),MainPage.class);
                         startActivity(k);
                     }
                 }

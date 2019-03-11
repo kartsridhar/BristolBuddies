@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -84,7 +85,9 @@ public class MyProfile extends AppCompatActivity {
         }
 
         else{
-            final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
+            Student student = new Student("","","","","","","","","","","");
+             student = (Student)getIntent().getSerializableExtra("serialize_data3");
+            Log.d("RECIEVEDSTUDENT",student.getFirstName());
             String idd = String.valueOf(5000);
             String name = student.getFirstName()+" "+ student.getLastName();
             String username = student.getUserName();
