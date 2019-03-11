@@ -114,22 +114,29 @@ public class LoginPage extends AppCompatActivity {
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> students = response.body();
                 Student tony = students.get(0);
+                int found = 0;
                 Log.d("STUDENTLISTSS",tony.getUserName().toString());
                 Student matchstudent = new Student("", "","","","","","","","","","");
                 for (Student a :students){
-                    Log.d("CURRENTUSERNAMEVAL",u);
-                    Log.d("EVERYUSERNAME",a.getUserName());
-                    Log.d("CURRENTPASSWORDVAL",p);
-                    Log.d("EVERYPASSWORD",a.getPassword());
-                    Log.d("CHECKINGTRUTHVALUES",Boolean.toString((u.equals(a.getUserName())) && (p.equals(a.getPassword()))));
+//                    Log.d("CURRENTUSERNAMEVAL",u);
+//                    Log.d("EVERYUSERNAME",a.getUserName());
+//                    Log.d("CURRENTPASSWORDVAL",p);
+//                    Log.d("EVERYPASSWORD",a.getPassword());
+//                    Log.d("CHECKINGTRUTHVALUES",Boolean.toString((u.equals(a.getUserName())) && (p.equals(a.getPassword()))));
                     if ((u.equals(a.getUserName().trim())) && (p.equals(a.getPassword().trim()))){
                         Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
                         matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
                         Intent k = new Intent(getApplicationContext(),MainPage.class);
                         k.putExtra("serialize_data3",matchstudent);
+                        found = 1;
                         startActivity(k);
                     }
+                }
+                if (found == 0) {
+                    password.setError("Incorrect username or password");
+                    password.requestFocus();
+                    username.requestFocus();
                 }
                 Log.d("MATCHSTUDENT",matchstudent.getFirstName());
 
