@@ -83,6 +83,17 @@ public class MyProfile extends AppCompatActivity {
             id.setText("User ID: " + idd);
         }
 
+        else{
+            final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
+            String idd = String.valueOf(5000);
+            String name = student.getFirstName()+" "+ student.getLastName();
+            String username = student.getUserName();
+            fullName.setText("Name: " + name);
+            email.setText("Email: " + username);
+            id.setText("User ID: " + idd);
+
+        }
+
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

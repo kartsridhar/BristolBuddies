@@ -35,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
         username = findViewById(R.id.studID);
         password = findViewById(R.id.studPass);
         login = findViewById(R.id.loginButton);
+        p = password.getText().toString();
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-                         }
+    }
 
     private void userLogin(){
         u = username.getText().toString();
@@ -114,11 +115,23 @@ public class LoginPage extends AppCompatActivity {
                 List<Student> students = response.body();
                 Student tony = students.get(0);
                 Log.d("STUDENTLISTSS",tony.getUserName().toString());
+                Student matchstudent = new Student("", "","","","","","","","","","");
                 for (Student a :students){
-                    if (u.equalsIgnoreCase(a.getUserName()) && p.equalsIgnoreCase(a.getPassword())){
+                    Log.d("CURRENTUSERNAMEVAL",u);
+                    Log.d("EVERYUSERNAME",a.getUserName());
+                    Log.d("CURRENTPASSWORDVAL",p);
+                    Log.d("EVERYPASSWORD",a.getPassword());
+                    Log.d("CHECKINGTRUTHVALUES",Boolean.toString((u.equals(a.getUserName())) && (p.equals(a.getPassword()))));
+                    if ((u.equals(a.getUserName())) && (p.equals(a.getPassword()))){
+                        Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
+                        matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
+                        Intent k = new Intent(getApplicationContext(),MainPage.class);
+                        k.putExtra("serialize_data3",matchstudent);
+                        startActivity(k);
                     }
                 }
+                Log.d("MATCHSTUDENT",matchstudent.getFirstName());
 
 
 //                for(Student student : students) {
@@ -154,4 +167,3 @@ public class LoginPage extends AppCompatActivity {
 
     }
 }
-
