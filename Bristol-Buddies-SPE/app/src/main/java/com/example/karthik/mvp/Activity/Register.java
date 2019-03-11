@@ -76,30 +76,5 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    //----------------------------------------------------
-    //TO POST THE DATA TEST
-//    private void createPost() {
-//        db_fname = firstName.getText().toString();
-//        db_lname = lastName.getText().toString();
-//        db_uname = uName.getText().toString();
-//        db_ugender = uGender.getText().toString();
-//        db_upass = uPass.getText().toString();
-//        db_udept = uDept.getText().toString();
-//        db_uyos = uYos.getText().toString();
-//
-//        Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos);
-//        Call<Student> call = retroAPI.createStudent(student);
-//        call.enqueue(new Callback<Student>() {
-//            @Override
-//            public void onResponse(Call<Student> call, Response<Student> response) {
-//                Toast.makeText(Register.this, response.message(), Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Student> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-    //----------------------------------------------------
+
 }

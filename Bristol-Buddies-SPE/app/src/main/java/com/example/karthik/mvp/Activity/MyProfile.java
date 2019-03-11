@@ -85,8 +85,7 @@ public class MyProfile extends AppCompatActivity {
         }
 
         else{
-            Student student = new Student("","","","","","","","","","","");
-             student = (Student)getIntent().getSerializableExtra("serialize_data3");
+             final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
             Log.d("RECIEVEDSTUDENT",student.getFirstName());
             String idd = String.valueOf(5000);
             String name = student.getFirstName()+" "+ student.getLastName();
