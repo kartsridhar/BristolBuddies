@@ -86,8 +86,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void userLogin(){
-        u = username.getText().toString();
-        p = password.getText().toString();
+        u = username.getText().toString().trim();
+        p = password.getText().toString().trim();
 
         if (u.isEmpty()){
             username.setError("Username is required");
@@ -122,7 +122,7 @@ public class LoginPage extends AppCompatActivity {
                     Log.d("CURRENTPASSWORDVAL",p);
                     Log.d("EVERYPASSWORD",a.getPassword());
                     Log.d("CHECKINGTRUTHVALUES",Boolean.toString((u.equals(a.getUserName())) && (p.equals(a.getPassword()))));
-                    if ((u.equals(a.getUserName())) && (p.equals(a.getPassword()))){
+                    if ((u.equals(a.getUserName().trim())) && (p.equals(a.getPassword().trim()))){
                         Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
                         matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
