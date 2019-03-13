@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh ubuntu@132.145.45.239 "cd BristolBuddies/BristolBuddies && git pull && mvn clean package -DskipTests=True && cd target && sudo chown brisbuds:brisbuds BristolBuddies-0.0.1-SNAPSHOT.jar && sudo chmod 500 BristolBuddies-0.0.1-SNAPSHOT.jar && sudo service brisbuds restart"
+            ssh ubuntu@132.145.45.239 "cd BristolBuddies/BristolBuddies && git pull && cd ~/BristolBuddies/BristolBuddies && mvn clean package -DskipTests=True && cd target && sudo chown brisbuds:brisbuds BristolBuddies-0.0.1-SNAPSHOT.jar && sudo chmod 500 BristolBuddies-0.0.1-SNAPSHOT.jar && sudo service brisbuds restart"
 
 workflows:
   version: 2
