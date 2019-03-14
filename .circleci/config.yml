@@ -36,8 +36,8 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "BristolBuddies/pom.xml" }}
 
-      - run_tests:
-          run: cd BristolBuddies && SPRING_PROFILES_ACTIVE=test mvn test '-Dtest=ac.uk.bristol.cs.santa.grotto.GrottoTest'
+      #- run_tests:
+      - run: cd BristolBuddies && SPRING_PROFILES_ACTIVE=test mvn test '-Dtest=ac.uk.bristol.cs.santa.grotto.GrottoTest'
 
 
   deploy:
