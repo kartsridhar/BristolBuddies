@@ -1,5 +1,6 @@
-package com.example.brisbuds.BristolBuddies;
+package com.example.brisbuds.BristolBuddies.GetSetTests;
 
+import com.example.brisbuds.BristolBuddies.Student;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

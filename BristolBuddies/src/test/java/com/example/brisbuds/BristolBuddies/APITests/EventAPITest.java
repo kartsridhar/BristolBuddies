@@ -1,11 +1,11 @@
-//import com.example.brisbuds.BristolBuddies.BristolBuddiesApplicationTests;
-import com.example.brisbuds.BristolBuddies.BristolBuddiesApplicationTests;
+package com.example.brisbuds.BristolBuddies.APITests;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.brisbuds.BristolBuddies.BristolBuddiesApplicationTests;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
