@@ -17,6 +17,9 @@ public interface RetroAPI {
     @GET("students")
     Call<List<Student>> getStudents();
 
+    @GET("events")
+    Call<List<Event>> getEvents();
+
     @FormUrlEncoded
     @POST("students")
     Call<Student> userlogin(
