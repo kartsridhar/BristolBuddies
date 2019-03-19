@@ -1,6 +1,8 @@
 package com.example.karthik.mvp.Activity;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
     private final long id;
     private final String date;
     private final String title;

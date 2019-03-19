@@ -1,5 +1,6 @@
 package com.example.karthik.mvp.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.karthik.mvp.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -41,6 +43,9 @@ public class CustomDialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CustomDialog.this, "Should close!", Toast.LENGTH_LONG).show();
+                Intent o = new Intent(getApplicationContext(),MainPage.class);
+                startActivity(o);
+                finish();
             }
         });
 
@@ -51,31 +56,14 @@ public class CustomDialog extends AppCompatActivity {
             }
         });
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://132.145.45.239/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RetroAPI retroAPI = retrofit.create(RetroAPI.class);
-
-        Call<List<Event>> call = retroAPI.getEvents();
-        call.enqueue(new Callback<List<Event>>() {
-            @Override
-            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(CustomDialog.this, response.code(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                List<Event> events = response.body();
-                for (Event e : events) {
-                    //TODO: match the event ID and display the required details in the custom dialog.
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Event>> call, Throwable t) {
-                Toast.makeText(CustomDialog.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        String e="";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            e = extras.getString("cevent");
+        }
+        Event events = new Gson().fromJson(e,Event.class);
+        desc.setText(events.getDescription());
+        venue.setText(events.getVenue());
+        tiem.setText(events.getTime());
     }
 }

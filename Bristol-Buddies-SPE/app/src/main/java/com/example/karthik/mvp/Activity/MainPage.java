@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.karthik.mvp.R;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,6 +101,20 @@ public class MainPage extends AppCompatActivity {
             }
         });
         EventController.getmInstance().addToRequestQueue(jsonArrayRequest);
+
+listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Item clickeditem = array.get(position);
+        Intent j = new Intent(getApplicationContext(),CustomDialog.class);
+        Event event = new Event(clickeditem.getId(),clickeditem.getDate(),clickeditem.getTitle(),clickeditem.getDescription(),clickeditem.getVenue(),clickeditem.getTime());
+        j.putExtra("cevent",new Gson().toJson(event));
+        startActivity(j);
+        finish();
+    }
+});
+
+
     }
 
     public void hideDialog() {

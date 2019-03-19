@@ -57,6 +57,7 @@
         <activity android:name=".Activity.Register" />
         <activity android:name=".Activity.LoginPage" />
         <activity android:name=".Activity.Questionaire" />
+        <activity android:name=".Activity.CustomDialog"/>
         <activity android:name=".Activity.questionaire2"></activity>
     </application>
 
