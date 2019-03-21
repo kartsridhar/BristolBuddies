@@ -97,6 +97,7 @@ public class LoginPage extends AppCompatActivity {
                         found = 1;
                         Intent k = new Intent(getApplicationContext(),MainPage.class);
                         startActivity(k);
+                        finish();
                     }
                 }
                 if (found == 0) {

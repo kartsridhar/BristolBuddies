@@ -110,7 +110,6 @@ listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         Event event = new Event(clickeditem.getId(),clickeditem.getDate(),clickeditem.getTitle(),clickeditem.getDescription(),clickeditem.getVenue(),clickeditem.getTime());
         j.putExtra("cevent",new Gson().toJson(event));
         startActivity(j);
-        finish();
     }
 });
 

@@ -41,8 +41,6 @@ public class MyProfile extends AppCompatActivity {
                     startActivity(h);
                     break;
                 case R.id.messaging:
-                    Intent i = new Intent(getApplicationContext(), Messaging.class);
-                    startActivity(i);
                     break;
                 case R.id.myProfile:
                     break;
@@ -86,13 +84,17 @@ public class MyProfile extends AppCompatActivity {
 
         else{
              final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
-            Log.d("RECIEVEDSTUDENT",student.getFirstName());
-            String idd = String.valueOf(5000);
-            String name = student.getFirstName()+" "+ student.getLastName();
-            String username = student.getUserName();
-            fullName.setText("Name: " + name);
-            email.setText("Email: " + username);
-            id.setText("User ID: " + idd);
+             if (student != null) {
+                 Log.d("RECIEVEDSTUDENT", student.getFirstName());
+                 String idd = String.valueOf(5000);
+                 String name = student.getFirstName() + " " + student.getLastName();
+                 String username = student.getUserName();
+                 fullName.setText("Name: " + name);
+                 email.setText("Email: " + username);
+                 id.setText("User ID: " + idd);
+             }
+
+
 
         }
 

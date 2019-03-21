@@ -31,7 +31,8 @@
         <activity
             android:name=".Activity.MainPage"
             android:label="@string/title_activity_main_page" />
-        <activity android:name=".Activity.MyProfile" />
+        <activity android:name=".Activity.MyProfile"
+            android:launchMode="singleTask"/>
         <activity android:name=".Activity.Messaging" />
         <activity
             android:name="com.facebook.FacebookActivity"
