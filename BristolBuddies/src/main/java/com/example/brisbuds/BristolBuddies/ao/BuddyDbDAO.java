@@ -2,7 +2,6 @@ package com.example.brisbuds.BristolBuddies.ao;
 
 import com.example.brisbuds.BristolBuddies.Buddy;
 import com.example.brisbuds.BristolBuddies.DBConnection;
-import com.example.brisbuds.BristolBuddies.Match;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

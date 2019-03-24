@@ -1,7 +1,6 @@
 package com.example.brisbuds.BristolBuddies.ao;
 
 import com.example.brisbuds.BristolBuddies.Buddy;
-import com.example.brisbuds.BristolBuddies.Match;
 
 import java.util.List;
 
