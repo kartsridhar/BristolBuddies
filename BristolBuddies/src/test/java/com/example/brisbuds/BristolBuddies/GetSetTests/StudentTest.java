@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class StudentTest {
 
-    private Student s = new Student(100, "Frank", "Castle", "Male", "fc17231", "quardive", "PE", "3", "American", "1001", "1100", "0001");
+    private Student s = new Student(100, "Frank", "Castle", "Male", "fc17231", "quardive", "PE", "3", "American", "1001", "1100", "0001", null);
 
     @Test
     public void getId() {
