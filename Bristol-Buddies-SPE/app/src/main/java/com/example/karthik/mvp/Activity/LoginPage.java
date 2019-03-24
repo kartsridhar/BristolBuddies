@@ -83,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
                 Student tony = students.get(0);
                 int found = 0;
                 Log.d("STUDENTLISTSS",tony.getUserName().toString());
-                Student matchstudent = new Student("", "","","","","","","","","","");
+                Student matchstudent = new Student("", "","","","","","","","","","","");
                 for (Student a :students){
                     if ((u.equals(a.getUserName().trim())) && (p.equals(a.getPassword().trim()))){
                         Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");

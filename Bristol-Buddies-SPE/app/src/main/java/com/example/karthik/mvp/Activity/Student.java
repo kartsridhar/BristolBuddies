@@ -15,7 +15,7 @@ public class Student implements Serializable {
     private final String interests;
     private final String personality;
     private final String preferences;
-
+    private final String buddy;
 
 
 
@@ -33,10 +33,11 @@ public class Student implements Serializable {
         interests = "";
         personality = "";
         preferences = "";
-
+        buddy = "";
     }
 
-    public Student(String firstName,String lastName, String gender, String userName, String password, String department, String yearofStudy,String nationality,String interests,String personality,String preferences ){
+    public Student(String firstName,String lastName, String gender, String userName, String password, String department,
+                   String yearofStudy,String nationality,String interests,String personality,String preferences, String buddy ){
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,6 +50,7 @@ public class Student implements Serializable {
         this.interests = interests;
         this.personality = personality;
         this.preferences = preferences;
+        this.buddy = buddy;
     }
 
 
@@ -88,7 +90,9 @@ public class Student implements Serializable {
     public String getPreferences() {
         return preferences;
     }
-
+    public String getBuddy() {
+        return buddy;
+    }
 
 
     @Override
@@ -104,7 +108,8 @@ public class Student implements Serializable {
                 + " Nationality: " + nationality
                 + " Interests: " + interests
                 + " personality: "+ personality
-                + " preferences: " + preferences;
+                + " preferences: " + preferences
+                + " buddy: " + buddy;
     }
 
 

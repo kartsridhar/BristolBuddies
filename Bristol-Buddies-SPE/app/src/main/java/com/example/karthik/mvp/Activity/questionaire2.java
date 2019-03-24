@@ -318,16 +318,11 @@ public class questionaire2 extends AppCompatActivity {
             public void onClick(View v) {
                 createPost();
                 Intent l = new Intent(getApplicationContext(),MainPage.class);
-                startActivity(l);
-                finish();
             }
         });
 
-
-
-
-
     }
+
     private void createPost() {
         final Student student = (Student)getIntent().getSerializableExtra("serialize_data2");
 
@@ -410,19 +405,14 @@ public class questionaire2 extends AppCompatActivity {
 
 
 
-        Student student2 = new Student(student.getFirstName(),student.getLastName(),student.getGender(),student.getUserName(),student.getPassword(),student.getDepartment(),student.getYearofStudy(),student.getNationality(),student.getInterests(),personality,pref);
-        Call<Student> call = retroAPI.createStudent(student2);
-        call.enqueue(new Callback<Student>() {
-            @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
-                Toast.makeText(questionaire2.this, response.message(), Toast.LENGTH_LONG).show();
-            }
+        Student student2 = new Student(student.getFirstName(),student.getLastName(),student.getGender(),
+                student.getUserName(),student.getPassword(),student.getDepartment(),student.getYearofStudy(),
+                student.getNationality(),student.getInterests(),personality,pref, "");
+        Intent k = new Intent(getApplicationContext(),Matching.class);
+        k.putExtra("serialize_data3",student2);
+        startActivity(k);
+        finish();
 
-            @Override
-            public void onFailure(Call<Student> call, Throwable t) {
-
-            }
-        });
     }
 
 }

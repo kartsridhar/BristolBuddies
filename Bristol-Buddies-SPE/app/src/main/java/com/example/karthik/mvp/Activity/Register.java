@@ -67,7 +67,7 @@ public class Register extends AppCompatActivity {
                 db_uint = "";
                 db_upers="";
                 db_upref="";
-                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref);
+                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref,"");
                 Intent j = new Intent(getApplicationContext(), Questionaire.class);
                 j.putExtra("serialize_data1",student);
                 startActivity(j);
