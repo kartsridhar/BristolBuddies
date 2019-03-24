@@ -11,13 +11,10 @@ public interface StudentDAO {
      List <Student> getByLastName(String name2);
      List <Student> getByGender (String gender);
      List <Student> getByUsername (String username);
-     List <Student> getByPassword (String password);
      List <Student> getByDepartment (String department);
      List <Student> getByYearofStudy (String yearOfStudy);
      List <Student> getByNationality (String nationality);
-     List <Student> getByInterests (String interests);
-     List <Student> getByPersonality (String personality);
-     List <Student> getByPreferences (String preferences);
+
 
 
      boolean add(Student student);

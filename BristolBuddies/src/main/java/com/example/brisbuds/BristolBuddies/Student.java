@@ -13,6 +13,7 @@ public class Student {
     private final String interests;
     private final String personality;
     private final String preferences;
+    private final String buddy;
 
 
 
@@ -30,10 +31,13 @@ public class Student {
         interests = "";
         personality = "";
         preferences = "";
-
+        buddy = "";
     }
 
-    public Student(long id, String firstName,String lastName, String gender, String userName, String password, String department, String yearofStudy,String nationality,String interests,String personality,String preferences ){
+    public Student(long id, String firstName,String lastName, String gender,
+                   String userName, String password, String department, String yearofStudy,
+                   String nationality,String interests,String personality,String preferences, String buddy){
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +50,7 @@ public class Student {
         this.interests = interests;
         this.personality = personality;
         this.preferences = preferences;
+        this.buddy = buddy;
     }
 
 
@@ -77,14 +82,13 @@ public class Student {
     public String getInterests() {
         return interests;
     }
-
     public String getPersonality() {
         return personality;
     }
-
     public String getPreferences() {
         return preferences;
     }
+    public String getBuddy() { return buddy;}
 
 
     @Override
@@ -100,7 +104,8 @@ public class Student {
                 + " Nationality: " + nationality
                 + " Interests: " + interests
                 + " personality: "+ personality
-                + " preferences: " + preferences;
+                + " preferences: " + preferences
+                + " buddy: " + buddy ;
     }
 
 

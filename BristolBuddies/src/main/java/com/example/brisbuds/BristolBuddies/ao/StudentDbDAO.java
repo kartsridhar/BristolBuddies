@@ -23,7 +23,9 @@ public class StudentDbDAO implements StudentDAO {
                 resultList.add(
                         new Student(rs.getLong("ID"), rs.getString("FIRSTNAME"),
                                 rs.getString("LASTNAME"), rs.getString("GENDER"), rs.getString("USERNAME"),
-                                rs.getString("PASSWORD"), rs.getString("DEPARTMENT"), rs.getString("YEAROFSTUDY"), rs.getString("NATIONALITY"), rs.getString("INTERESTS"),rs.getString("PERSONALITY"),rs.getString("PREFERENCES"))
+                                rs.getString("PASSWORD"), rs.getString("DEPARTMENT"), rs.getString("YEAROFSTUDY"),
+                                rs.getString("NATIONALITY"), rs.getString("INTERESTS"),rs.getString("PERSONALITY"),
+                                rs.getString("PREFERENCES"), rs.getString("BUDDY"))
                 );
             }
         } catch (SQLException e) {
@@ -78,7 +80,6 @@ public class StudentDbDAO implements StudentDAO {
         return resultList;
     }
 
-
     @Override
     public List<Student> getByUsername (String username){
         String queryStr = "SELECT * FROM BRISBUDS WHERE USERNAME LIKE'" + username + "%'";
@@ -87,13 +88,6 @@ public class StudentDbDAO implements StudentDAO {
         return resultList;
     }
 
-    @Override
-    public List<Student> getByPassword (String password){
-        String queryStr = "SELECT * FROM BRISBUDS WHERE PASSWORD LIKE'" + password + "%'";
-        List<Student> resultList = this.query(queryStr);
-
-        return resultList;
-    }
     public List<Student> getByDepartment (String department){
         String queryStr = "SELECT * FROM BRISBUDS WHERE DEPARTMENT LIKE'" + department + "%'";
         List<Student> resultList = this.query(queryStr);
@@ -112,24 +106,6 @@ public class StudentDbDAO implements StudentDAO {
 
         return resultList;
     }
-    public List<Student> getByInterests (String inte){
-        String queryStr = "SELECT * FROM BRISBUDS WHERE INTERESTS LIKE'" + inte + "%'";
-        List<Student> resultList = this.query(queryStr);
-
-        return resultList;
-    }
-    public List<Student> getByPersonality  (String pers){
-        String queryStr = "SELECT * FROM BRISBUDS WHERE NATIONALITY LIKE'" + pers + "%'";
-        List<Student> resultList = this.query(queryStr);
-
-        return resultList;
-    }
-    public List<Student> getByPreferences  (String pref){
-        String queryStr = "SELECT * FROM BRISBUDS WHERE PREFERENCES LIKE'" + pref + "%'";
-        List<Student> resultList = this.query(queryStr);
-
-        return resultList;
-    }
 
 
 
@@ -138,8 +114,8 @@ public class StudentDbDAO implements StudentDAO {
     @Override
     public boolean add(Student student){
         String insertTableSQL = "INSERT INTO BRISBUDS"
-            + "(FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DEPARTMENT, YEAROFSTUDY, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES ) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?);";
+            + "(FIRSTNAME, LASTNAME, GENDER, USERNAME, PASSWORD, DEPARTMENT, YEAROFSTUDY, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES, BUDDY) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(insertTableSQL)) {
@@ -155,6 +131,7 @@ public class StudentDbDAO implements StudentDAO {
             preparedStatement.setString(9,student.getInterests());
             preparedStatement.setString(10,student.getPersonality());
             preparedStatement.setString(11,student.getPreferences());
+            preparedStatement.setString(12,student.getBuddy());
 
             preparedStatement.executeUpdate();
             return true;
@@ -171,7 +148,7 @@ public class StudentDbDAO implements StudentDAO {
 
     @Override
     public boolean update(long id, Student student){
-        String updateTableSQL = "UPDATE BRISBUDS SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?, NATIONALITY=?, INTERESTS=?, PERSONALITY=?, PREFERENCES=?  WHERE ID=?";
+        String updateTableSQL = "UPDATE BRISBUDS SET FIRSTNAME=?, LASTNAME=?, GENDER=?, USERNAME=?, PASSWORD=?, DEPARTMENT=?, YEAROFSTUDY=?, NATIONALITY=?, INTERESTS=?, PERSONALITY=?, PREFERENCES=?, BUDDY=? WHERE ID=?";
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(updateTableSQL);) {
             preparedStatement.setString(1, student.getFirstName());
@@ -185,7 +162,8 @@ public class StudentDbDAO implements StudentDAO {
             preparedStatement.setString(9,student.getInterests());
             preparedStatement.setString(10,student.getPersonality());
             preparedStatement.setString(11,student.getPreferences());
-            preparedStatement.setString(12, Long.toString(id));
+            preparedStatement.setString(12,student.getBuddy());
+            preparedStatement.setString(13, Long.toString(id));
 
             preparedStatement.executeUpdate();
             return true;

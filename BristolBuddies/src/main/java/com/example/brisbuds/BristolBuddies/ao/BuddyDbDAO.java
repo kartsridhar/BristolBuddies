@@ -25,7 +25,8 @@ public class BuddyDbDAO implements BuddyDAO {
                         new Buddy(rs.getString("FIRSTNAME"),
                                 rs.getString("LASTNAME"), rs.getString("USERNAME"), rs.getString("COURSE"),
                                 rs.getString("NATIONALITY"), rs.getString("INTERESTS"), rs.getString("PERSONALITY"),
-                                rs.getString("PREFERENCES"), rs.getString("PASSWORD"))
+                                rs.getString("PREFERENCES"), rs.getString("PASSWORD"), rs.getInt("NUMBEROFMATCHES"),
+                                rs.getString("STUDENT1ID"), rs.getString("STUDENT2ID"), rs.getString("STUDENT3ID"))
                 );
             }
         } catch (SQLException e) {
@@ -49,8 +50,8 @@ public class BuddyDbDAO implements BuddyDAO {
     public boolean add(Buddy buddy) {
         String insertTableSQL = "INSERT INTO BUDDIES"
                 + "(FIRSTNAME, LASTNAME, USERNAME, COURSE, NATIONALITY," +
-                " INTERESTS, PERSONALITY, PREFERENCES, PASSWORD) "
-                + "VALUES(?,?,?,?,?,?,?,?,?);";
+                " INTERESTS, PERSONALITY, PREFERENCES, PASSWORD, NUMBEROFMATCHES, STUDENT1ID, STUDENT2ID, STUDENT3ID) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(insertTableSQL)) {
@@ -64,6 +65,11 @@ public class BuddyDbDAO implements BuddyDAO {
             preparedStatement.setString(7, buddy.getPersonality());
             preparedStatement.setString(8, buddy.getPreferences());
             preparedStatement.setString(9, buddy.getPassword());
+            preparedStatement.setString(10, Integer.toString(buddy.getNumberOfMatches()));
+            preparedStatement.setString(11, buddy.getStudent1ID());
+            preparedStatement.setString(12, buddy.getStudent2ID());
+            preparedStatement.setString(13, buddy.getStudent3ID());
+
 
             preparedStatement.executeUpdate();
             return true;

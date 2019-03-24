@@ -35,11 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/buddies**")
+                .permitAll()
+                .and()
+                .authorizeRequests()
                 .antMatchers("/**").authenticated()// These urls are allowed by any authenticated user
                 .and()
                 .httpBasic();
         http.csrf().disable();
     }
+
 
     @Bean
     public UserDetailsService userDetailsService() {
