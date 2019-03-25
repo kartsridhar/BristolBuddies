@@ -14,6 +14,7 @@ public class Buddy {
     private final String student1ID;
     private final String student2ID;
     private final String student3ID;
+    private long id;
 
 
     public Buddy(String firstName, String lastName, String userName, String course, String nationality,
@@ -32,9 +33,9 @@ public class Buddy {
         this.student1ID = student1ID;
         this.student2ID = student2ID;
         this.student3ID = student3ID;
-
     }
 
+    public long getId() {return id;}
     public String getFirstName() {
         return firstName;
     }
@@ -77,7 +78,7 @@ public class Buddy {
 
     @Override
     public String toString() {
-        return "Buddy{" +
+        return "Buddy{" + id + + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + username + '\'' +

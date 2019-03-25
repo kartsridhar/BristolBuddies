@@ -29,7 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Matching extends AppCompatActivity {
     private RetroAPI retroAPI;
-
+    private Buddy bestBud;
+    private Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,13 @@ public class Matching extends AppCompatActivity {
         retroAPI = retrofit.create(RetroAPI.class);
 
 
-        final Student student = (Student) getIntent().getSerializableExtra("serialize_data3");
+        student = (Student) getIntent().getSerializableExtra("serialize_data3");
         Call<List<Buddy>> call = retroAPI.getBuddies();
         call.enqueue(new Callback<List<Buddy>>() {
             @Override
             public void onResponse(Call<List<Buddy>> call, Response<List<Buddy>> response) {
                 List<Buddy> buddies = response.body();
-                Buddy bestBud = bestMatch(buddies,student);
+                bestBud = bestMatch(buddies,student);
 
                 Student student2 = new Student(student.getFirstName(),student.getLastName(),
                         student.getGender(),student.getUserName(),student.getPassword(),student.getDepartment(),
@@ -58,14 +59,16 @@ public class Matching extends AppCompatActivity {
                 Call<Student> call2 = retroAPI.createStudent(student2);
                 call2.enqueue(new Callback<Student>() {
                     @Override
-                    public void onResponse(Call<Student> call2, Response<Student> response) {}
+                    public void onResponse(Call<Student> call2, Response<Student> response) {
+
+                    }
 
                     @Override
                     public void onFailure(Call<Student> call2, Throwable t) {}
                 });
 
-                //createStudent(bestBuddy,student);
-                Log.d("zer", Integer.toString(buddies.size()));
+                Log.d("zer", Long.toString(bestBud.getId()));
+                updateBuddy();
             }
 
             @Override
@@ -128,7 +131,7 @@ public class Matching extends AppCompatActivity {
         return bestBuddy;
     }
 
-    private static void createStudent(Buddy best, Student student){
+    private void updateBuddy(){
 
 
     }
