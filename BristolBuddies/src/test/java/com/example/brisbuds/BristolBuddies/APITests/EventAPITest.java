@@ -9,10 +9,7 @@ import com.example.brisbuds.BristolBuddies.BristolBuddiesApplicationTests;
 import com.example.brisbuds.BristolBuddies.controllers.EventController;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -37,25 +34,17 @@ public class EventAPITest extends BristolBuddiesApplicationTests {
         assertThat(eventController).isNotNull();
     }
 
-//    //Application starts and then the test call will be made
-//    @Test
-//    public void testEvent() throws Exception {
-//        mockMvc.perform(get("/events")).andExpect(status().isOk())
-//                .andExpect(content().contentType("application/json;charset=UTF-8"))
-//                .andExpect(jsonPath("$.id").value("2"))
-//                .andExpect(jsonPath("$.date").value("2019-06-15"))
-//                .andExpect(jsonPath("$.title").value("Table Tennis Socials"))
-//                .andExpect(jsonPath("$.description").value("Love ping ping? test your reaction time and show your experience to win exciting prizes!"))
-//                .andExpect(jsonPath("$.venue").value("The Courtrooms, BS1 2AF"))
-//                .andExpect(jsonPath("$.time").value("10am onwards"));
-//
-//        mockMvc.perform(get("/events")).andExpect(status().isOk())
-//                .andExpect(content().contentType("application/json;charset=UTF-8"))
-//                .andExpect(jsonPath("$.id").value("2"))
-//                .andExpect(jsonPath("$.date").value("2019-06-15"))
-//                .andExpect(jsonPath("$.title").value("Table Tennis Socials"))
-//                .andExpect(jsonPath("$.description").value("Love ping ping? test your reaction time and show your experience to win exciting prizes!"))
-//                .andExpect(jsonPath("$.venue").value("The Courtrooms, BS1 2AF"))
-//                .andExpect(jsonPath("$.time").value("10am onwards"));
-//    }
+    //Application starts and then the test call will be made
+    @Test
+    public void testEvent() throws Exception {
+        mockMvc.perform(get("/events")).andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$[0].id").value("2"))
+                .andExpect(jsonPath("$[0].date").value("2019-06-15"))
+                .andExpect(jsonPath("$[0].title").value("Table Tennis Socials"))
+                .andExpect(jsonPath("$[0].description").value("Love ping ping? test your reaction time and show your experience to win exciting prizes!"))
+                .andExpect(jsonPath("$[0].venue").value("The Courtrooms, BS1 2AF"))
+                .andExpect(jsonPath("$[0].time").value("10am onwards"));
+
+    }
 }
