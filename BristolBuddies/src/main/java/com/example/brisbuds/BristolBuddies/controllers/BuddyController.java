@@ -25,7 +25,7 @@ public class BuddyController {
     }
 
     // Update a buddy
-    @RequestMapping(method = RequestMethod.PUT, value = "{username}")
+    @RequestMapping(method = RequestMethod.POST, value = "{username}")
     public ResponseEntity update(@PathVariable String username, @RequestBody Buddy student) {
 
         if (edao.update(username, student)) {
