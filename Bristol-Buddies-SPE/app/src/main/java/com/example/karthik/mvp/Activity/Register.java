@@ -1,6 +1,7 @@
 package com.example.karthik.mvp.Activity;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
-    EditText firstName, lastName, uName, uGender, uPass, uDept, uYos;
+    TextInputLayout firstName, lastName, uName, uGender, uPass, uDept, uYos;
     String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos, db_unat, db_uint,db_upers,db_upref;
     Button register;
     private RetroAPI retroAPI;
@@ -39,10 +40,6 @@ public class Register extends AppCompatActivity {
         uYos = findViewById(R.id.yos);
         register = findViewById(R.id.regButton);
 
-
-
-
-
         //----------------------------------------------------------
         //TESTING PUTTING DATA
         Gson gson = new GsonBuilder().serializeNulls().create();
@@ -56,17 +53,66 @@ public class Register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db_fname = firstName.getText().toString();
-                db_lname = lastName.getText().toString();
-                db_uname = uName.getText().toString();
-                db_ugender = uGender.getText().toString();
-                db_upass = uPass.getText().toString();
-                db_udept = uDept.getText().toString();
-                db_uyos = uYos.getText().toString();
+                db_fname = firstName.getEditText().getText().toString().trim();
+                db_lname = lastName.getEditText().getText().toString().trim();
+                db_uname = uName.getEditText().getText().toString().trim();
+                db_ugender = uGender.getEditText().getText().toString().trim();
+                db_upass = uPass.getEditText().getText().toString().trim();
+                db_udept = uDept.getEditText().getText().toString().trim();
+                db_uyos = uYos.getEditText().getText().toString().trim();
                 db_unat = "";
                 db_uint = "";
                 db_upers="";
                 db_upref="";
+
+//                if (db_fname.isEmpty()) {
+//                    firstName.setError("Field can't be empty");
+//                } else {
+//                    firstName.setError(null);
+//                }
+//
+//                if (db_lname.isEmpty()) {
+//                    lastName.setError("Field can't be empty");
+//                } else {
+//                    lastName.setError(null);
+//                }
+//
+//                if (db_uname.isEmpty()) {
+//                    uName.setError("Field can't be empty");
+//                } else if (db_uname.length() > 7) {
+//                    uName.setError("Username too long");
+//                }
+//                else {
+//                    uName.setError(null);
+//                }
+//
+//                if (db_ugender.isEmpty()) {
+//                    uGender.setError("Field can't be empty");
+//                } else if (db_ugender.length() > 1) {
+//                    uName.setError("Please enter M, F, O only!");
+//                }
+//                else {
+//                    uGender.setError(null);
+//                }
+//
+//                if (db_upass.isEmpty()) {
+//                    uPass.setError("Field can't be empty");
+//                } else {
+//                    uPass.setError(null);
+//                }
+//
+//                if (db_udept.isEmpty()) {
+//                    uDept.setError("Field can't be empty");
+//                } else {
+//                    uDept.setError(null);
+//                }
+//
+//                if (db_uyos.isEmpty()) {
+//                    uYos.setError("Field can't be empty");
+//                } else {
+//                    uYos.setError(null);
+//                }
+
                 final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref,"");
                 Intent j = new Intent(getApplicationContext(), Questionaire.class);
                 j.putExtra("serialize_data1",student);
@@ -75,6 +121,5 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-
 
 }

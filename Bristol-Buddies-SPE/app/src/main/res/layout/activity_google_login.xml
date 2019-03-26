@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:text="Please sign in with your UoB email for life ID"
         android:textColor="#e6e3e3"
-        android:gravity="center_horizontal"
         android:textSize="30sp"
         android:id="@+id/textView"
+        android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         />
 
     <com.google.android.gms.common.SignInButton
@@ -30,24 +29,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OR"
+        android:id="@+id/ortv"
+        android:layout_below="@+id/signInBtn"
         android:textColor="#e6e3e3"
-        android:layout_marginTop="350dp"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="400dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ortv"
         android:text="login"
         android:id="@+id/loginButton"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="470dp"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/loginButton"
         android:text="New Student? Click here to register!"
         android:textColor="#3da5ce"
         android:id="@+id/regButton"/>
