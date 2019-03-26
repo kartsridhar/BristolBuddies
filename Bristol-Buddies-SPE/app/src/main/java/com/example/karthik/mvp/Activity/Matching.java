@@ -26,6 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 public class Matching extends AppCompatActivity {
     private RetroAPI retroAPI;
@@ -56,7 +57,7 @@ public class Matching extends AppCompatActivity {
                         student.getGender(),student.getUserName(),student.getPassword(),student.getDepartment(),
                         student.getYearofStudy(),student.getNationality(),student.getInterests(),
                         student.getPersonality(), student.getPreferences(), bestBud.getUsername());
-                Call<Student> call2 = retroAPI.createStudent(student2);
+                /*Call<Student> call2 = retroAPI.createStudent(student2);
                 call2.enqueue(new Callback<Student>() {
                     @Override
                     public void onResponse(Call<Student> call2, Response<Student> response) {
@@ -65,10 +66,10 @@ public class Matching extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Student> call2, Throwable t) {}
-                });
+                });*/
 
-                Log.d("zer", Long.toString(bestBud.getId()));
-                updateBuddy();
+
+                matchingBuddy();
             }
 
             @Override
@@ -131,9 +132,38 @@ public class Matching extends AppCompatActivity {
         return bestBuddy;
     }
 
-    private void updateBuddy(){
+    private void matchingBuddy(){
+        int newMatches = bestBud.getNumberOfMatches() + 1;
+        String firstMatch = bestBud.getStudent1ID();
+        String secondMatch = bestBud.getStudent2ID();
+        String thirdMatch = bestBud.getStudent3ID();
+        switch (bestBud.getNumberOfMatches()) {
+            case 0 :
+                firstMatch = student.getUserName();
+                break;
+            case 1 :
+                secondMatch = student.getUserName();
+                break;
+            case 2 :
+                thirdMatch = student.getUserName();
+                break;
+        }
+        Buddy newBuddy = new Buddy(bestBud.getFirstName(), bestBud.getLastName(), bestBud.getUsername(), bestBud.getCourse(),
+                bestBud.getNationality(), bestBud.getInterests(), bestBud.getPersonality(), bestBud.getPreferences(),
+                bestBud.getPassword(), newMatches, firstMatch, secondMatch, thirdMatch);
+        Log.d("debug", newBuddy.getStudent1ID());
+        String strippedUsername = bestBud.getUsername().replace("\"","");
+        Log.d("debug", strippedUsername);
+        Call<Buddy> call3 = retroAPI.updateBuddy(strippedUsername, newBuddy);
+        call3.enqueue(new Callback<Buddy>() {
+            @Override
+            public void onResponse(Call<Buddy> call3, Response<Buddy> response) {
 
+            }
 
+            @Override
+            public void onFailure(Call<Buddy> call3, Throwable t) {}
+        });
     }
 
 }
