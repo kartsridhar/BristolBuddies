@@ -23,13 +23,13 @@ public class StudentController {
 
     StudentDAO edao = new StudentDbDAO();
 
-    // Get all employees
+    // Get all students
     @RequestMapping(method = RequestMethod.GET)
     public Student[] getAll() {
         return edao.getAllStudents().toArray(new Student[0]);
     }
 
-    // Get an employee
+    // Get a student
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
     public ResponseEntity get(@PathVariable long id) {
 
@@ -43,7 +43,7 @@ public class StudentController {
         }
     }
 
-    // Get employees by lastName
+    // Get students by lastName
     @RequestMapping(method = RequestMethod.GET, value = "/firstname/{name}")
     public ResponseEntity getByFirstName(@PathVariable String name) {
 
@@ -70,7 +70,7 @@ public class StudentController {
 
     }
 
-    // Get employee by title
+
     @RequestMapping(method = RequestMethod.GET, value = "/department/{name}")
     public ResponseEntity getByGender(@PathVariable String name) {
 
@@ -83,7 +83,7 @@ public class StudentController {
         }
     }
 
-    // Get employee by dept
+
     @RequestMapping(method = RequestMethod.GET, value = "/username/{name}")
     public ResponseEntity getByDept(@PathVariable String name) {
 
@@ -96,7 +96,7 @@ public class StudentController {
         }
     }
 
-    // Add an employee
+    // Add a student
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody Student student) {
         if (edao.add(student)) {
@@ -106,7 +106,7 @@ public class StudentController {
         }
     }
 
-    // Update an employee
+    // Update a student
     @RequestMapping(method = RequestMethod.PUT, value = "{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody Student student) {
 
@@ -117,7 +117,7 @@ public class StudentController {
         }
     }
 
-    // Delete a employee
+    // Delete a student
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
     public ResponseEntity delete(@PathVariable long id) {
 
