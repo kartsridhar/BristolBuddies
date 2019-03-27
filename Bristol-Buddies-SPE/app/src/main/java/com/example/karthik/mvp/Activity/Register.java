@@ -65,61 +65,88 @@ public class Register extends AppCompatActivity {
                 db_upers="";
                 db_upref="";
 
-//                if (db_fname.isEmpty()) {
-//                    firstName.setError("Field can't be empty");
-//                } else {
-//                    firstName.setError(null);
-//                }
-//
-//                if (db_lname.isEmpty()) {
-//                    lastName.setError("Field can't be empty");
-//                } else {
-//                    lastName.setError(null);
-//                }
-//
-//                if (db_uname.isEmpty()) {
-//                    uName.setError("Field can't be empty");
-//                } else if (db_uname.length() > 7) {
-//                    uName.setError("Username too long");
-//                }
-//                else {
-//                    uName.setError(null);
-//                }
-//
-//                if (db_ugender.isEmpty()) {
-//                    uGender.setError("Field can't be empty");
-//                } else if (db_ugender.length() > 1) {
-//                    uName.setError("Please enter M, F, O only!");
-//                }
-//                else {
-//                    uGender.setError(null);
-//                }
-//
-//                if (db_upass.isEmpty()) {
-//                    uPass.setError("Field can't be empty");
-//                } else {
-//                    uPass.setError(null);
-//                }
-//
-//                if (db_udept.isEmpty()) {
-//                    uDept.setError("Field can't be empty");
-//                } else {
-//                    uDept.setError(null);
-//                }
-//
-//                if (db_uyos.isEmpty()) {
-//                    uYos.setError("Field can't be empty");
-//                } else {
-//                    uYos.setError(null);
-//                }
+                int errorCount = 0;
+
+                if (db_fname.isEmpty()) {
+                    firstName.setError("Field can't be empty");
+                    errorCount += 1;
+                } else {
+                    firstName.setError(null);
+                }
+
+                if (db_lname.isEmpty()) {
+                    lastName.setError("Field can't be empty");
+                    errorCount += 1;
+                } else {
+                    lastName.setError(null);
+                }
+
+                if (db_uname.isEmpty()) {
+                    uName.setError("Field can't be empty");
+                    errorCount += 1;
+                } else if (!checkUsername(db_uname)) {
+                    uName.setError("Enter right format");
+                    errorCount += 1;
+
+                } else if (db_uname.length() > 7) {
+                    uName.setError("Username too long");
+                    errorCount += 1;
+                }
+                else {
+                    uName.setError(null);
+                }
+
+                if (db_ugender.isEmpty()) {
+                    uGender.setError("Field can't be empty");
+                    errorCount += 1;
+                } else if (db_ugender.length() > 1) {
+                    uName.setError("Please enter M, F, O only!");
+                    errorCount += 1;
+                }
+                else {
+                    uGender.setError(null);
+                }
+
+                if (db_upass.isEmpty()) {
+                    uPass.setError("Field can't be empty");
+                    errorCount += 1;
+                } else {
+                    uPass.setError(null);
+                }
+
+                if (db_udept.isEmpty()) {
+                    uDept.setError("Field can't be empty");
+                    errorCount += 1;
+                } else {
+                    uDept.setError(null);
+                }
+
+                if (db_uyos.isEmpty()) {
+                    uYos.setError("Field can't be empty");
+                    errorCount += 1;
+                } else {
+                    uYos.setError(null);
+                }
 
                 final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref,"");
-                Intent j = new Intent(getApplicationContext(), Questionaire.class);
-                j.putExtra("serialize_data1",student);
-                startActivity(j);
-                finish();
+                if (errorCount > 1 && errorCount < 9) {
+                    Toast.makeText(getApplicationContext(), "Check Fields!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                    j.putExtra("serialize_data1",student);
+                    startActivity(j);
+                    finish();
+                }
             }
         });
+    }
+    public boolean checkUsername(String str) {
+        if(Character.isLetter(str.charAt(0)) && Character.isLetter(str.charAt(1))
+                && Character.isDigit(str.charAt(2)) && Character.isDigit(str.charAt(3))
+                && Character.isDigit(str.charAt(4)))
+            return true;
+        else return false;
     }
 
 }

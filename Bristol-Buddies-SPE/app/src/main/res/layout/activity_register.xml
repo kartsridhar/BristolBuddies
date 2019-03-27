@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fName"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
@@ -43,6 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lName"
         android:paddingTop="1dp"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
@@ -62,6 +64,7 @@
         android:paddingTop="1dp"
         app:counterEnabled="true"
         app:counterMaxLength="1"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
@@ -80,6 +83,7 @@
         android:id="@+id/studID"
         android:paddingTop="1dp"
         app:counterEnabled="true"
+        android:textColorHint="#ffffff"
         app:counterMaxLength="7"
         app:errorEnabled="true">
 
@@ -98,6 +102,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/studPass"
         android:paddingTop="1dp"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true">
 
@@ -116,6 +121,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/dept"
         android:paddingTop="1dp"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
@@ -132,6 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/yos"
+        android:textColorHint="#ffffff"
         android:paddingTop="1dp"
         app:errorEnabled="true">
 
