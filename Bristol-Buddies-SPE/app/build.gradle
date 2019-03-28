@@ -17,6 +17,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ECLIPSE_.SF'
+        exclude 'META-INF/ECLIPSE_.RSA'
+    }
 }
 
 dependencies {
@@ -48,4 +57,15 @@ dependencies {
     implementation 'com.mesibo.api:mesibo:1.0.59'
 
     implementation 'com.mcxiaoke.volley:library:1.0.+'
+
+    //Messaging
+    implementation 'com.applozic.communication.uiwidget:mobicomkitui:5.34'
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0' //for circular images
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'//for image cropping
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'//constraint layout
+    api 'com.google.code.gson:gson:2.8.5' //JSON parsing library
+    api 'com.google.firebase:firebase-messaging:17.1.0'//for FCM notification
+    api 'com.google.android.gms:play-services-maps:15.0.1'//for google maps
+    api 'com.google.android.gms:play-services-location:15.0.1'//for location services
 }
