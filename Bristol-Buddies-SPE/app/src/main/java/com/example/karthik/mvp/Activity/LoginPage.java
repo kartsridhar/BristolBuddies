@@ -89,9 +89,15 @@ public class LoginPage extends AppCompatActivity {
                         Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
                         matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
+
                         Intent m = new Intent(getApplicationContext(),MyProfile.class);
                         m.putExtra("serialize_data3",matchstudent);
                         m.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                        Intent mess = new Intent(getApplicationContext(),Messaging.class);
+                        mess.putExtra("messagingData", matchstudent);
+                        mess.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                         startActivity(m);
                         Log.d("SENTSTUDENT",matchstudent.getFirstName());
                         found = 1;

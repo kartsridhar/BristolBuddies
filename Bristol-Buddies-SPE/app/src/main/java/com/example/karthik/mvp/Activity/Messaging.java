@@ -1,93 +1,67 @@
 package com.example.karthik.mvp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import com.mesibo.api.Mesibo;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.applozic.mobicomkit.Applozic;
+import com.applozic.mobicomkit.ApplozicClient;
+import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
+import com.applozic.mobicomkit.api.account.user.User;
+import com.applozic.mobicomkit.listners.AlLoginHandler;
+import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.example.karthik.mvp.R;
 
-public class Messaging extends AppCompatActivity implements Mesibo.MessageListener, Mesibo.ConnectionListener {
-
-    private static final String TAG = "Messaging";
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.events:
-                    Intent h = new Intent(getApplicationContext(), MainPage.class);
-                    startActivity(h);
-                    break;
-                case R.id.messaging:
-                    break;
-                case R.id.myProfile:
-                    Intent j = new Intent(getApplicationContext(), MyProfile.class);
-                    startActivity(j);
-                    break;
-            }
-            return false;
-        }
-    };
+public class Messaging extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
 
-        Mesibo api = Mesibo.getInstance();
-        api.init(this);
+      Applozic.init(getApplicationContext(), "bristol1531aa8e1d36eade3217f60d8c8b6cbc");
 
-        api.addListener(this);
+          User user = new User();
+        //  final Student student = (Student)getIntent().getSerializableExtra("messagingData");
+        //     user.setUserId(student.getUserName());
+        //     user.setDisplayName(student.getFirstName() + " " + student.getLastName());
+        user.setUserId("ks17226");
+        user.setDisplayName("KARTHIK SRIDHAR");
+        user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());
 
-        // set user authentication token obtained by creating user
-        api.setAccessToken("17mbrheqhuugfbgo8n50dqye6ioom5p8zzkzqr2oihyw4vbi7uvhza0d7ridkas1");
-        api.start();
+        Applozic.connectUser(getApplicationContext(), user, new AlLoginHandler() {
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
+            @Override
+            public void onSuccess(RegistrationResponse registrationResponse, Context context) {
+                ApplozicClient.getInstance(context).setContextBasedChat(true);
+            }
 
-    @Override
-    public void Mesibo_onConnectionStatus(int status) {
-        // You will receive the connection status here
-        Log.d(TAG, "on Mesibo Connection: " + status);
-    }
+             @Override
+             public void onFailure(RegistrationResponse registrationResponse, Exception exception) {
+                 // If any failure in registration the callback  will come here
+             }
+         });
 
-    @Override
-    public boolean Mesibo_onMessage(Mesibo.MessageParams messageParams, byte[] data) {
-        return true;
-    }
+           if (Applozic.isConnected(getApplicationContext())) {
+               Toast.makeText(getApplicationContext(), "User logged in", Toast.LENGTH_LONG).show();
+         }
 
-    @Override
-    public void Mesibo_onMessageStatus(Mesibo.MessageParams messageParams) {
+           Intent i = new Intent(getApplicationContext(), ConversationActivity.class);
+        //              i.putExtra(ConversationUIService.USER_ID, student.getUserName());
+        //              i.putExtra(ConversationUIService.DISPLAY_NAME, student.getFirstName());
+         i.putExtra(ConversationUIService.USER_ID, "ks17226");
+         i.putExtra(ConversationUIService.DISPLAY_NAME, "KARTHIK");
+         i.putExtra(ConversationUIService.TAKE_ORDER, true);
+        startActivity(i);
 
-    }
 
-    @Override
-    public void Mesibo_onActivity(Mesibo.MessageParams messageParams, int i) {
-
-    }
-
-    @Override
-    public void Mesibo_onLocation(Mesibo.MessageParams messageParams, Mesibo.Location location) {
-
-    }
-
-    @Override
-    public void Mesibo_onFile(Mesibo.MessageParams messageParams, Mesibo.FileInfo fileInfo) {
-
-    }
-
-    void sendTextMessage(String to, String message) {
-        Mesibo.MessageParams p = new Mesibo.MessageParams();
-        p.peer = to;
-        p.flag = Mesibo.FLAG_READRECEIPT | Mesibo.FLAG_DELIVERYRECEIPT;
-
-        Mesibo.sendMessage(p, Mesibo.random(), message);
     }
 }
