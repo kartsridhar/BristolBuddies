@@ -111,7 +111,17 @@ public class BuddyDbDAO implements BuddyDAO {
             System.out.println("Update Error: "	+ e.getMessage());
             return false;
         }
-
     }
+
+    @Override
+    public List<Buddy> getByUsername(String name){
+        String queryStr = "SELECT * FROM BUDDIES WHERE USERNAME LIKE '" + name + "%'";
+        List<Buddy> resultList = this.query(queryStr);
+
+        return resultList;
+    }
+
+
+
 }
 

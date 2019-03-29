@@ -35,4 +35,17 @@ public class BuddyController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "{username}")
+    public ResponseEntity getByUsername(@PathVariable String username){
+
+        List<Buddy> buddyList = edao.getByUsername(username);
+
+        if (buddyList.size() > 0) {
+            return new ResponseEntity<>(buddyList.toArray(new Buddy[0]), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 }
