@@ -403,8 +403,6 @@ public class questionaire2 extends AppCompatActivity {
         }
 
 
-
-
         Student student2 = new Student(student.getFirstName(),student.getLastName(),student.getGender(),
                 student.getUserName(),student.getPassword(),student.getDepartment(),student.getYearofStudy(),
                 student.getNationality(),student.getInterests(),personality,pref, "");
