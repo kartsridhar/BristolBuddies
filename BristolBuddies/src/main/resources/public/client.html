@@ -127,7 +127,7 @@
                 "    <img src=\"gender-symbol.png\">"+obj.gender+""+
                 "    <div style=\"padding-left:35px;\">"+
                 "    </div>"+
-                "    <img src=\"safe.png\"> "+obj.password+""+
+                "    <img src=\"safe.png\"> "+obj.buddy+""+
                 "  </div>"+
                 "  <div style=\"padding-left:35px;\">"+
                 "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
@@ -176,6 +176,7 @@
               $("#editFirstName").val(student.firstName);
               $("#editLastName").val(student.lastName);
               $("#editgender").val(student.gender);
+              $("#editBuddy").val(student.buddy);
               $("#edituserName").val(student.userName);
               $("#editpassword").val(student.password);
               $("#editDept").val(student.department);
@@ -195,6 +196,7 @@
                               password:$("#editpassword").val(),
                               department:$("#editDept").val(),
                               yearofStudy:$("#edityearofStudy").val(),
+                              buddy:$("editBuddy").val(),
 
                           };
                           $("#detail").html("UPDATING...");
