@@ -68,7 +68,6 @@ public class Matching extends AppCompatActivity {
                     public void onFailure(Call<Student> call2, Throwable t) {}
                 });*/
 
-
                 matchingBuddy();
             }
 
