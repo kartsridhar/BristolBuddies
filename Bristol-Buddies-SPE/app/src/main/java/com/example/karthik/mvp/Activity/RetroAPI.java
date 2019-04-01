@@ -10,7 +10,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RetroAPI {
@@ -24,8 +23,8 @@ public interface RetroAPI {
     @GET("buddies")
     Call<List<Buddy>> getBuddies();
 
-    @POST("buddies/{username}")
-    Call<Buddy> updateBuddy(@Path("username") String username, @Body Buddy buddy);
+    @POST("buddies2")
+    Call<Buddy> updateBuddy(@Body Buddy buddy);
 
     @GET("events")
     Call<List<Event>> getEvents();
