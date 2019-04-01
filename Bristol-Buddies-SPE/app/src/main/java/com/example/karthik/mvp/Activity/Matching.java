@@ -153,7 +153,7 @@ public class Matching extends AppCompatActivity {
         Log.d("debug", newBuddy.getStudent1ID());
         String strippedUsername = bestBud.getUsername().replace("\"","");
         Log.d("debug", strippedUsername);
-        Call<Buddy> call3 = retroAPI.updateBuddy(strippedUsername, newBuddy);
+        Call<Buddy> call3 = retroAPI.updateBuddy(newBuddy);
         call3.enqueue(new Callback<Buddy>() {
             @Override
             public void onResponse(Call<Buddy> call3, Response<Buddy> response) {
