@@ -27,7 +27,8 @@ public class MyProfile extends AppCompatActivity {
 
     GoogleSignInClient googleSignInClient;
     Button sign_out, form, getBuddy;
-    TextView fullName, email, id;
+    TextView fullName, email, id,BudName,BudMail;
+
     ImageView pic;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -61,6 +62,8 @@ public class MyProfile extends AppCompatActivity {
         email = findViewById(R.id.email);
         id = findViewById(R.id.userID);
         getBuddy = findViewById(R.id.getBuddy);
+        BudName = findViewById(R.id.buddyName);
+        BudMail = findViewById(R.id.buddyMail);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -84,6 +87,10 @@ public class MyProfile extends AppCompatActivity {
 
         else{
              final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
+             final Student regstudent = (Student)getIntent().getSerializableExtra("student");
+             final Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
+            Log.d("ZZZZ", regBuddy.getFirstName());
+            Log.d("MMMM", regstudent.getFirstName());
              if (student != null) {
                  Log.d("RECIEVEDSTUDENT", student.getFirstName());
                  String idd = String.valueOf(5000);
@@ -92,6 +99,25 @@ public class MyProfile extends AppCompatActivity {
                  fullName.setText("Name: " + name);
                  email.setText("Email: " + username);
                  id.setText("User ID: " + idd);
+             }
+
+             else {
+                 if (regBuddy != null && regstudent !=null){
+                     Log.d("RECIEVEDBUDSTUDENT",regBuddy.getFirstName());
+                     String idd = String.valueOf(5000);
+                     String name = regstudent.getFirstName() + " " + regstudent.getLastName();
+                     String username = regstudent.getUserName();
+                     fullName.setText("Name: " + name);
+                     email.setText("Email: " + username);
+                     id.setText("User ID: " + idd);
+                     String budName = regBuddy.getFirstName() + " " + regBuddy.getLastName();
+                     String budEmail = regBuddy.getUsername();
+                     BudName.setText("Buddy Name: " + budName);
+                     BudMail.setText("Buddy Email " + budEmail);
+
+
+                 }
+
              }
 
 

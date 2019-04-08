@@ -1,6 +1,8 @@
 package com.example.karthik.mvp.Activity;
 
-public class Buddy {
+import java.io.Serializable;
+
+public class Buddy implements Serializable {
     private final String firstName;
     private final String lastName;
     private final String username;

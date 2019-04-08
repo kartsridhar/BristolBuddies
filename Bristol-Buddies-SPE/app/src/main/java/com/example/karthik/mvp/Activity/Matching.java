@@ -1,6 +1,7 @@
 package com.example.karthik.mvp.Activity;
 
 import android.content.Intent;
+import android.icu.util.LocaleData;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,9 +33,12 @@ public class Matching extends AppCompatActivity {
     private RetroAPI retroAPI;
     private Buddy bestBud;
     private Student student;
+    private Buddy tempbestBud;
+    List<Buddy> buddies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         Gson gson = new GsonBuilder().serializeNulls().create();
@@ -50,14 +54,36 @@ public class Matching extends AppCompatActivity {
         call.enqueue(new Callback<List<Buddy>>() {
             @Override
             public void onResponse(Call<List<Buddy>> call, Response<List<Buddy>> response) {
-                List<Buddy> buddies = response.body();
+                buddies = response.body();
                 bestBud = bestMatch(buddies,student);
+
+
+                Log.d("BUDDYEXISTS", bestBud.getFirstName());
 
                 Student student2 = new Student(student.getFirstName(),student.getLastName(),
                         student.getGender(),student.getUserName(),student.getPassword(),student.getDepartment(),
                         student.getYearofStudy(),student.getNationality(),student.getInterests(),
                         student.getPersonality(), student.getPreferences(), bestBud.getUsername());
-                /*Call<Student> call2 = retroAPI.createStudent(student2);
+                Call<Student> call2 = retroAPI.createStudent(student2);
+                    matchingBuddy();
+                    Intent m = new Intent(getApplicationContext(), MyProfile.class);
+                    Intent l = new Intent(getApplicationContext(),MainPage.class);
+                    l.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    m.putExtra("buddy", bestBud);
+                    m.putExtra("student", student);
+                    Log.d("XXXX", bestBud.getFirstName());
+                    Log.d("YYYY", student.getFirstName());
+                    startActivity(m);
+        startActivity(l);
+                    finish();
+//                else {
+//                for (Buddy b:buddies){
+//                    if (b.getNumberOfMatches() < 3){
+//                        bestBud = b;
+//                    }
+//                }
+//                }
+
                 call2.enqueue(new Callback<Student>() {
                     @Override
                     public void onResponse(Call<Student> call2, Response<Student> response) {
@@ -66,9 +92,8 @@ public class Matching extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Student> call2, Throwable t) {}
-                });*/
+                });
 
-                matchingBuddy();
             }
 
             @Override
@@ -77,9 +102,15 @@ public class Matching extends AppCompatActivity {
         });
 
 
-        Intent l = new Intent(getApplicationContext(),MainPage.class);
-        startActivity(l);
-        finish();
+
+
+
+        }
+
+    @Override
+    public void onBackPressed() {
+        Intent mainIntent = new Intent(getApplicationContext(), MainPage.class);
+        startActivity(mainIntent);
     }
 
     private static int hamming(String s1, String s2){
@@ -166,3 +197,6 @@ public class Matching extends AppCompatActivity {
     }
 
 }
+
+
+
