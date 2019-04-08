@@ -1,6 +1,7 @@
 package com.example.karthik.mvp.Activity;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,7 @@ import static android.widget.Toast.LENGTH_LONG;
 
 public class LoginPage extends AppCompatActivity {
 
-    EditText username, password;
+    TextInputLayout username, password;
     String u, p;
     Button login;
 
@@ -35,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
         username = findViewById(R.id.studID);
         password = findViewById(R.id.studPass);
         login = findViewById(R.id.loginButton);
-        p = password.getText().toString();
+        p = password.getEditText().getText().toString().trim();
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -46,15 +47,11 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
     private void userLogin(){
-        u = username.getText().toString().trim();
-        p = password.getText().toString().trim();
+        u = username.getEditText().getText().toString().trim();
+        p = password.getEditText().getText().toString().trim();
 
         if (u.isEmpty()){
             username.setError("Username is required");

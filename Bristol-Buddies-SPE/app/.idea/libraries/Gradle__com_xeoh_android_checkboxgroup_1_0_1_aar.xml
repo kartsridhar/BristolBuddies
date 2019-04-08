@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.xeoh.android:checkboxgroup:1.0.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/checkboxgroup-1.0.1.aar/88e41067c04af7a26f6ef69c215e42a9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/checkboxgroup-1.0.1.aar/88e41067c04af7a26f6ef69c215e42a9/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.xeoh.android/checkboxgroup/1.0.1/1ff0fb66f4fccaee5ffd2f17e8c8026619a45492/checkboxgroup-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
