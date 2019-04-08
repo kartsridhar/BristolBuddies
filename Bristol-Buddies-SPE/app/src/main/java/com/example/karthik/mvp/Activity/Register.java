@@ -141,12 +141,33 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-    public boolean checkUsername(String str) {
+
+    public static boolean checkUsername(String str) {
+
+        if(str.length() != 7) return false;
+
         if(Character.isLetter(str.charAt(0)) && Character.isLetter(str.charAt(1))
                 && Character.isDigit(str.charAt(2)) && Character.isDigit(str.charAt(3))
                 && Character.isDigit(str.charAt(4)))
             return true;
         else return false;
+    }
+
+    public static boolean checkName(String str) {
+
+        for(int i = 0; i < str.length(); i++) {
+            if(!Character.isLetter(str.charAt(i))) return false;
+            else return true;
+        }
+        return false;
+    }
+
+    public static boolean checkWhiteSpace(String str) {
+        for(int i = 0; i < str.length(); i++) {
+            if(Character.isWhitespace(str.charAt(i))) return false;
+            else return true;
+        }
+        return false;
     }
 
 }

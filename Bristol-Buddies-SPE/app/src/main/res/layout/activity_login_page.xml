@@ -4,54 +4,72 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:paddingLeft="16dp"
-android:paddingRight="16dp"
-android:paddingTop="16dp"
-android:paddingBottom="16dp"
 android:background="#b12727"
 tools:context=".Activity.LoginPage">
 
+
     <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Student Log-in"
-    android:gravity="center_horizontal"
-    android:textSize="25sp"
-    android:textColor="#f9f4f4"
-    android:id="@+id/textView"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="100dp"
-    />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Single Sign-on"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:textColor="#f9f4f4"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        />
 
-    <EditText
-    android:id="@+id/studID"
-    android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:layout_marginTop="180dp"
-    android:background="@color/browser_actions_bg_grey"
-    android:hint="Username (eg: ab12234)"
-    android:inputType="text"
-    android:textSize="18sp" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/studID"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="200dp"
+        app:counterEnabled="true"
+        android:textColorHint="#ffffff"
+        app:counterMaxLength="7"
+        app:errorEnabled="true">
 
-    <EditText
-    android:id="@+id/studPass"
-    android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:layout_marginTop="245dp"
-    android:background="@color/browser_actions_bg_grey"
-    android:ems="10"
-    android:hint="Password"
-    android:inputType="textPassword"
-    android:textSize="18sp" />
+        <android.support.design.widget.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username (ed: ab12234)"
+            android:layout_gravity="center_horizontal"
+            android:inputType="text"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/studPass"
+        android:layout_below="@+id/studID"
+        android:paddingTop="1dp"
+        android:textColorHint="#ffffff"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textPassword"/>
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
-    android:layout_width="wrap_content"
-    android:layout_height="50dp"
-    android:text="Login"
-    android:id="@+id/loginButton"
-    android:layout_marginTop="370dp"
-    android:layout_centerHorizontal="true"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/loginButton"
+        android:layout_below="@+id/studPass"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
