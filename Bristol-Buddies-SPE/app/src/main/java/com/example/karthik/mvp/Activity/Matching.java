@@ -30,10 +30,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 
 public class Matching extends AppCompatActivity {
-    private RetroAPI retroAPI;
     private Buddy bestBud;
     private Student student;
-    private Buddy tempbestBud;
+
+    private RetroAPI retroAPI;
+
     List<Buddy> buddies;
 
     @Override

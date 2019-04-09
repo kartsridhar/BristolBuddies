@@ -24,6 +24,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -32,6 +42,9 @@ public class MyProfile extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     Button sign_out, form, getBuddy;
     TextView fullName, email, id,BudName,BudMail;
+    private RetroAPI retroAPI;
+
+    List<Buddy> buddies;
 
     ImageView pic;
 
@@ -66,6 +79,13 @@ public class MyProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://132.145.45.239/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        retroAPI = retrofit.create(RetroAPI.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         SharedPreferences sp = getSharedPreferences("Buddy",MODE_PRIVATE);
@@ -129,6 +149,36 @@ public class MyProfile extends AppCompatActivity {
                  fullName.setText("Name: " + name);
                  email.setText("Email: " + username);
                  id.setText("User ID: " + idd);
+
+                 Call<List<Buddy>> call = retroAPI.getBuddies();
+                 call.enqueue(new Callback<List<Buddy>>() {
+                                  @Override
+                                  public void onResponse(Call<List<Buddy>> call, Response<List<Buddy>> response) {
+                                      buddies = response.body();
+                                      if (student.getBuddy() != null) {
+                                          String bName = "";
+                                          String bMail = "";
+                                          Log.d("KKKK",student.getBuddy().trim());
+                                          for (Buddy b : buddies) {
+                                              Log.d("BBBB",b.getUsername().trim());
+                                              Log.d("CHECK",String.valueOf(b.getUsername().trim() == student.getBuddy().trim()));
+                                              if (b.getUsername().trim().equals(student.getBuddy().trim())){
+                                                  bName = b.getFirstName() + " " + b.getLastName();
+                                                  bMail = b.getUsername();
+                                              }
+                                          }
+                                          BudName.setText("Buddy Name: " + bName);
+                                          BudMail.setText("Buddy Email " + bMail);
+                                      }
+
+                                  }
+
+
+                     @Override
+                     public void onFailure(Call<List<Buddy>> call, Throwable t) {
+                     }
+                 });
+
              }
 
              else {
