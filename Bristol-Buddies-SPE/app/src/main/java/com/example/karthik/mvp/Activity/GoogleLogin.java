@@ -112,6 +112,7 @@ public class GoogleLogin extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
             startActivity(new Intent(GoogleLogin.this, MainPage.class));
+            finish();
         }
         super.onStart();
     }

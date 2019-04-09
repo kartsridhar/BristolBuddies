@@ -48,8 +48,14 @@ public class MainPage extends AppCompatActivity {
                     startActivity(i);
                     break;
                 case R.id.myProfile:
-                    Intent j = new Intent(getApplicationContext(), MyProfile.class);
-                    startActivity(j);
+                        Intent j = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(j);
+//                    }
+//                    else {
+//                        Intent j = new Intent(getApplicationContext(), MyProfile.class);
+//                        j.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+//                        startActivity(j);
+//                    }
                     break;
             }
             return false;

@@ -1,7 +1,9 @@
 package com.example.karthik.mvp.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -25,11 +27,14 @@ import com.google.android.gms.tasks.Task;
 
 public class MyProfile extends AppCompatActivity {
 
+    static boolean active = false;
+
     GoogleSignInClient googleSignInClient;
     Button sign_out, form, getBuddy;
     TextView fullName, email, id,BudName,BudMail;
 
     ImageView pic;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,11 +54,27 @@ public class MyProfile extends AppCompatActivity {
             return false;
         }
     };
+//
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        final Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
+//        outState.putSerializable("buddy1",regBuddy);
+//        Toast.makeText(MyProfile.this,"DATA STORED",Toast.LENGTH_LONG);
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+        SharedPreferences sp = getSharedPreferences("Buddy",MODE_PRIVATE);
+
+//        Intent b = new Intent(getApplicationContext(),MainPage.class);
+//        b.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//        b.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+//        startActivity(b);
+
 
         sign_out = findViewById(R.id.signOutBtn);
         form = findViewById(R.id.form);
@@ -86,11 +107,20 @@ public class MyProfile extends AppCompatActivity {
         }
 
         else{
-             final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
+            final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
              final Student regstudent = (Student)getIntent().getSerializableExtra("student");
-             final Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
-            Log.d("ZZZZ", regBuddy.getFirstName());
-            Log.d("MMMM", regstudent.getFirstName());
+             Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
+             if (regBuddy != null && regstudent != null){
+                 SharedPreferences.Editor Ed = sp.edit();
+                 Ed.putString("BudName",regBuddy.getFirstName() + " " + regBuddy.getLastName());
+                 Ed.putString("BudMail",regBuddy.getUsername() );
+                 Ed.putString("StudentName",regstudent.getFirstName() + " " + regstudent.getLastName());
+                 Ed.putString("StudentMail",regstudent.getUserName());
+                 Ed.apply();
+                 Ed.commit();
+             }
+//            Log.d("ZZZZ", regBuddy.getFirstName());
+//            Log.d("MMMM", regstudent.getFirstName());
              if (student != null) {
                  Log.d("RECIEVEDSTUDENT", student.getFirstName());
                  String idd = String.valueOf(5000);
@@ -102,21 +132,25 @@ public class MyProfile extends AppCompatActivity {
              }
 
              else {
-                 if (regBuddy != null && regstudent !=null){
-                     Log.d("RECIEVEDBUDSTUDENT",regBuddy.getFirstName());
+                 String buddyname = sp.getString("BudName","");
+                 String buddymail = sp.getString("BudMail","");
+                 String studentname = sp.getString("StudentName","");
+                 String studentmail = sp.getString("StudentMail","");
+
+//                     Log.d("RECIEVEDBUDSTUDENT",regBuddy.getFirstName());
                      String idd = String.valueOf(5000);
-                     String name = regstudent.getFirstName() + " " + regstudent.getLastName();
-                     String username = regstudent.getUserName();
-                     fullName.setText("Name: " + name);
-                     email.setText("Email: " + username);
+//                     String name = regstudent.getFirstName() + " " + regstudent.getLastName();
+//                     String username = regstudent.getUserName();
+                     fullName.setText("Name: " + studentname );
+                     email.setText("Email: " + studentmail);
                      id.setText("User ID: " + idd);
-                     String budName = regBuddy.getFirstName() + " " + regBuddy.getLastName();
-                     String budEmail = regBuddy.getUsername();
-                     BudName.setText("Buddy Name: " + budName);
-                     BudMail.setText("Buddy Email " + budEmail);
+//                         String budName = buddyname;
+//
+//                         String budEmail = buddymail;
 
+                     BudName.setText("Buddy Name: " + buddyname);
+                     BudMail.setText("Buddy Email " + buddymail);
 
-                 }
 
              }
 
@@ -137,7 +171,18 @@ public class MyProfile extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(MyProfile.this, MainPage.class));
+    }
+
+
 
     public void openForm(View view) {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSfUHn6_GoD39DKDGn_uqjoEUvoLTB4wM3Eiv1uIPN5oAIfnwQ/viewform?usp=sf_link"));
