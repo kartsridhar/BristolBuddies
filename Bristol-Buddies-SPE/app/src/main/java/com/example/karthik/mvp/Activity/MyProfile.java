@@ -88,7 +88,8 @@ public class MyProfile extends AppCompatActivity {
         retroAPI = retrofit.create(RetroAPI.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-        SharedPreferences sp = getSharedPreferences("Buddy",MODE_PRIVATE);
+        final SharedPreferences sp = getSharedPreferences("Buddy",MODE_PRIVATE);
+        SharedPreferences.Editor Ed = sp.edit();
 
 //        Intent b = new Intent(getApplicationContext(),MainPage.class);
 //        b.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -131,7 +132,6 @@ public class MyProfile extends AppCompatActivity {
              final Student regstudent = (Student)getIntent().getSerializableExtra("student");
              Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
              if (regBuddy != null && regstudent != null){
-                 SharedPreferences.Editor Ed = sp.edit();
                  Ed.putString("BudName",regBuddy.getFirstName() + " " + regBuddy.getLastName());
                  Ed.putString("BudMail",regBuddy.getUsername() );
                  Ed.putString("StudentName",regstudent.getFirstName() + " " + regstudent.getLastName());
@@ -146,6 +146,10 @@ public class MyProfile extends AppCompatActivity {
                  String idd = String.valueOf(5000);
                  String name = student.getFirstName() + " " + student.getLastName();
                  String username = student.getUserName();
+                 Ed.putString("StudentName",student.getFirstName() + " " + student.getLastName());
+                 Ed.putString("StudentMail",student.getUserName());
+                 Ed.apply();
+                 Ed.commit();
                  fullName.setText("Name: " + name);
                  email.setText("Email: " + username);
                  id.setText("User ID: " + idd);
@@ -166,9 +170,28 @@ public class MyProfile extends AppCompatActivity {
                                                   bName = b.getFirstName() + " " + b.getLastName();
                                                   bMail = b.getUsername();
                                               }
+
                                           }
                                           BudName.setText("Buddy Name: " + bName);
                                           BudMail.setText("Buddy Email " + bMail);
+                                          SharedPreferences.Editor Lo = sp.edit();
+                                          Lo.putString("BudName",bName);
+                                          Lo.putString("BudMail",bMail);
+                                          Lo.apply();
+                                          Lo.commit();
+                                      }
+                                      else {
+                                          String buddyname = sp.getString("BudName","");
+                                          String buddymail = sp.getString("BudMail","");
+                                          String studentname = sp.getString("StudentName","");
+                                          String studentmail = sp.getString("StudentMail","");
+                                          email.setText("Email: " + studentmail);
+                                          id.setText("User ID: " + String.valueOf(5000));
+                                          fullName.setText("Name: " + studentname);
+                                          BudName.setText("Buddy Name: " + buddyname);
+                                          BudMail.setText("Buddy Email " + buddymail);
+
+
                                       }
 
                                   }
@@ -211,6 +234,15 @@ public class MyProfile extends AppCompatActivity {
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor Le = sp.edit();
+                Le.putString("BudName",null);
+                Le.putString("BudMail",null);
+                Le.putString("StudentName",null);
+                Le.putString("StudentMail",null);
+                Le.apply();
+                Le.commit();
+
+
                 signOut();
             }
         });
