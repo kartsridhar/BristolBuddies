@@ -1,20 +1,22 @@
 package com.example.karthik.mvp.Activity;
 
-import org.junit.Assert;
+import com.google.gson.Gson;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import okhttp3.HttpUrl;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import io.reactivex.subscribers.TestSubscriber;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static org.junit.Assert.*;
 
@@ -28,6 +30,46 @@ public class RegisterTest {
     private static final String TEST_PWD = "pr0mis1ng";
     private static final String TEST_DEPT = "Engg";
     private static final String TEST_YOS = "2";
+    private static final String TEST_NAT = "Indian";
+    private static final String TEST_PRE = "01011";
+    private static final String TEST_INT = "01110";
+    private static final String TEST_PER = "1011";
+    private static final String TEST_BUD = "Bruce";
+
+    List<Student> mockStudentList;
+    MockWebServer mockWebServer;
+    TestSubscriber<List<Student>> mockSubscriber;
+
+    @Before
+    public void setUp() {
+        Student student = new Student(TEST_FNAME, TEST_LNAME, TEST_GENDER, TEST_UNAME, TEST_PWD,
+                 TEST_DEPT, TEST_YOS, TEST_NAT, TEST_INT, TEST_PER, TEST_PRE, TEST_BUD);
+        mockStudentList = new ArrayList<>();
+        mockStudentList.add(student);
+
+        mockWebServer = new MockWebServer();
+        mockSubscriber = new TestSubscriber<>();
+    }
+
+    @Test
+    public void testServerCall() {
+        //Given
+        String url = "http://132.145.45.239/";
+        mockWebServer.enqueue(new MockResponse().setBody(new Gson().toJson(mockStudentList)));
+        Retrofit retrofit = new Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(mockWebServer.url(url))
+                .build();
+        RegisterDataSource remoteDataSource = new RegisterDataSource(retrofit);
+
+        //When
+//        remoteDataSource.getStudentsRx().subscribe(mockSubscriber);
+
+        //Then
+        mockSubscriber.assertNoErrors();
+//        mockSubscriber.assertComplete();
+    }
 
     @Test
     public void testUsernameValidity() {
@@ -49,28 +91,5 @@ public class RegisterTest {
         assertTrue(Register.checkName(TEST_FNAME));                  // correct
         assertTrue(Register.checkName(TEST_LNAME));
     }
-
-//    @Test
-//    public void testHttpRequest() throws IOException, InterruptedException {
-//        MockWebServer server = new MockWebServer();
-//        server.enqueue(new MockResponse().setBody("Found!"));
-//        server.start();
-//
-//        HttpUrl baseURL = server.url("/students");
-//        String bodyOfRequest = sendGetRequest(new OkHttpClient(), baseURL);
-//        Assert.assertEquals("Found", bodyOfRequest);
-//    }
-//
-//    private String getHttpRequest(OkHttpClient okHttpClient, HttpUrl base) throws IOException {
-//        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), "Test");
-//
-//        okhttp3.Request request = new okhttp3.Request.Builder()
-//                .post(body)
-//                .url(base)
-//                .build();
-//        Response response = okHttpClient.newCall(request).execute();
-//        return response.body().string();
-//    }
-
 
 }
