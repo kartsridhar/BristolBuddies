@@ -213,11 +213,17 @@ public class MyProfile extends AppCompatActivity {
                              }
                              BudName.setText("Student 1  Name: " + bName);
                              BudMail.setText("Student 1  Email " + bMail);
+
+                             if (!bName1.trim().equals("")) {
                                  BudName1.setText("Student 2  Name: " + bName1);
                                  BudMail1.setText("Student 2 Email " + bMail1);
+                             }
+
+                             if (!bName2.trim().equals("")) {
 
                                  BudName2.setText("Student 3  Name: " + bName2);
                                  BudMail2.setText("Student 3 Email " + bMail2);
+                             }
 
 
 
@@ -262,12 +268,19 @@ public class MyProfile extends AppCompatActivity {
                      fullName.setText("Name: " + Buddyname);
                      email.setText("Email: " + Buddymail);
                      id.setText("User ID: " + idd);
+
                      BudName.setText("Student 1 Name: " + Studentname);
                      BudMail.setText("Student 1 Email: " + Studentmail);
-                     BudName1.setText("Student 2 Name: " + Studentname1);
-                     BudMail1.setText("Student 2 Email: " + Studentmail1);
-                     BudName2.setText("Student 3 Name: " + Studentname2);
-                     BudMail2.setText("Student 3 Email: " + Studentmail2);
+
+                     if (!Studentname1.trim().equals("")) {
+                         BudName1.setText("Student 2 Name: " + Studentname1);
+                         BudMail1.setText("Student 2 Email: " + Studentmail1);
+                     }
+                     if (!Studentname2.trim().equals("")) {
+
+                         BudName2.setText("Student 3 Name: " + Studentname2);
+                         BudMail2.setText("Student 3 Email: " + Studentmail2);
+                     }
                  }
 
              }
