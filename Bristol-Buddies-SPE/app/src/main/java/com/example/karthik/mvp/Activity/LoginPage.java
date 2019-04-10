@@ -1,6 +1,9 @@
 package com.example.karthik.mvp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,11 +45,28 @@ public class LoginPage extends AppCompatActivity {
 
     RetroAPI retroAPI = retrofit.create(RetroAPI.class);
 
+//    public static void setDefaults(String key, String value, Context context) {
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString(key, value);
+//        editor.commit();
+//    }
+//
+//    public static String getDefaults(String key, Context context) {
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        return preferences.getString(key, null);
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+
+
+
+
 
         username = findViewById(R.id.studID);
         password = findViewById(R.id.studPass);
@@ -55,14 +75,22 @@ public class LoginPage extends AppCompatActivity {
         switchtext = findViewById(R.id.switchtext);
         p = password.getEditText().getText().toString().trim();
 
+        SharedPreferences mPrefs = getSharedPreferences("CHECK",0);
+        final SharedPreferences.Editor editor = mPrefs.edit();
+
+
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!switch1.isChecked()){
                     switchtext.setText(" Student ");
+
                 }
                 else {
                     switchtext.setText("   Buddy ");
+
+
+
                 }
 
             }
@@ -75,9 +103,13 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!switch1.isChecked()) {
+                    editor.putInt("ISBUDDY",-1);
+                    editor.commit();
                     studentLogin();
                 }
                 else {
+                    editor.putInt("ISBUDDY",1);
+                    editor.commit();
                     buddyLogin();
                 }
 
@@ -188,6 +220,7 @@ public class LoginPage extends AppCompatActivity {
 
                         Intent m = new Intent(getApplicationContext(),MyProfile.class);
                         m.putExtra("budlogin",matchbuddy);
+                        m.putExtra("CheckBud",1);
                         m.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                         Intent mess = new Intent(getApplicationContext(),Messaging.class);

@@ -37,6 +37,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyProfile extends AppCompatActivity {
 
+
+
     static boolean active = false;
 
     GoogleSignInClient googleSignInClient;
@@ -92,6 +94,9 @@ public class MyProfile extends AppCompatActivity {
         final SharedPreferences sp = getSharedPreferences("Buddy",MODE_PRIVATE);
         SharedPreferences.Editor Ed = sp.edit();
 
+        final SharedPreferences mPrefs = getSharedPreferences("CHECK",0);
+        int isbud = mPrefs.getInt("ISBUDDY",0);
+
 //        Intent b = new Intent(getApplicationContext(),MainPage.class);
 //        b.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 //        b.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
@@ -138,7 +143,16 @@ public class MyProfile extends AppCompatActivity {
              Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
              final Buddy budlogin = (Buddy) getIntent().getSerializableExtra("budlogin");
 
-             if (regBuddy != null && regstudent != null){
+
+//            int isBud1 = Integer.parseInt(CheckBuddy);
+
+//            Log.d("GGGG", String.valueOf(isBud1));
+
+            Log.d("RRRRR",String.valueOf(isbud));
+
+
+
+            if (regBuddy != null && regstudent != null && isbud == -1){
                  Ed.putString("BudName",regBuddy.getFirstName() + " " + regBuddy.getLastName());
                  Ed.putString("BudMail",regBuddy.getUsername() );
                  Ed.putString("StudentName",regstudent.getFirstName() + " " + regstudent.getLastName());
@@ -146,7 +160,11 @@ public class MyProfile extends AppCompatActivity {
                  Ed.apply();
                  Ed.commit();
              }
-             if (budlogin != null){
+
+
+
+
+            if (budlogin != null && isbud == 1){
                  String idd = String.valueOf(5000);
                  String name = budlogin.getFirstName() + " " + budlogin.getLastName();
                  String username = budlogin.getUsername();
@@ -195,10 +213,12 @@ public class MyProfile extends AppCompatActivity {
                              }
                              BudName.setText("Student 1  Name: " + bName);
                              BudMail.setText("Student 1  Email " + bMail);
-                             BudName1.setText("Student 2  Name: " + bName1);
-                             BudMail1.setText("Student 2 Email " + bMail1);
-                             BudName2.setText("Student 3  Name: " + bName2);
-                             BudMail2.setText("Student 3 Email " + bMail2);
+                                 BudName1.setText("Student 2  Name: " + bName1);
+                                 BudMail1.setText("Student 2 Email " + bMail1);
+
+                                 BudName2.setText("Student 3  Name: " + bName2);
+                                 BudMail2.setText("Student 3 Email " + bMail2);
+
 
 
 
@@ -209,7 +229,6 @@ public class MyProfile extends AppCompatActivity {
                              Lo.putString("StudentMail1",bMail1);
                              Lo.putString("StudentName2",bName2);
                              Lo.putString("StudentMail2",bMail2);
-                             Lo.putInt("IsBuddy",1);
                              Lo.apply();
                              Lo.commit();
 
@@ -227,34 +246,36 @@ public class MyProfile extends AppCompatActivity {
              }
 
              else {
-                 String Studentname = sp.getString("StudentName","");
-                 String Studentmail = sp.getString("StudentMail","");
-                 String Studentname1 = sp.getString("StudentName1","");
-                 String Studentmail1 = sp.getString("StudentMail1","");
-                 String Studentname2 = sp.getString("StudentName2","");
-                 String Studentmail2 = sp.getString("StudentMail2","");
+                 if (isbud == 1) {
+                     String Studentname = sp.getString("StudentName", "");
+                     String Studentmail = sp.getString("StudentMail", "");
+                     String Studentname1 = sp.getString("StudentName1", "");
+                     String Studentmail1 = sp.getString("StudentMail1", "");
+                     String Studentname2 = sp.getString("StudentName2", "");
+                     String Studentmail2 = sp.getString("StudentMail2", "");
 
-                 String Buddyname = sp.getString("BudName","");
-                 String Buddymail = sp.getString("BudMail","");
+                     String Buddyname = sp.getString("BudName", "");
+                     String Buddymail = sp.getString("BudMail", "");
 
-                 String idd = String.valueOf(5000);
+                     String idd = String.valueOf(5000);
 
-                 fullName.setText("Name: " + Buddyname );
-                 email.setText("Email: " + Buddymail);
-                 id.setText("User ID: " + idd);
-                 BudName.setText("Student 1 Name: " + Studentname);
-                 BudMail.setText("Student 1 Email: " + Studentmail);
-                 BudName1.setText("Student 2 Name: " + Studentname1);
-                 BudMail1.setText("Student 2 Email: " + Studentmail1);
-                 BudName2.setText("Student 3 Name: " + Studentname2);
-                 BudMail2.setText("Student 3 Email: " + Studentmail2);
+                     fullName.setText("Name: " + Buddyname);
+                     email.setText("Email: " + Buddymail);
+                     id.setText("User ID: " + idd);
+                     BudName.setText("Student 1 Name: " + Studentname);
+                     BudMail.setText("Student 1 Email: " + Studentmail);
+                     BudName1.setText("Student 2 Name: " + Studentname1);
+                     BudMail1.setText("Student 2 Email: " + Studentmail1);
+                     BudName2.setText("Student 3 Name: " + Studentname2);
+                     BudMail2.setText("Student 3 Email: " + Studentmail2);
+                 }
 
              }
 
 
 //            Log.d("ZZZZ", regBuddy.getFirstName());
 //            Log.d("MMMM", regstudent.getFirstName());
-             if (student != null) {
+             if (student != null && isbud == -1 ) {
                  Log.d("RECIEVEDSTUDENT", student.getFirstName());
                  String idd = String.valueOf(5000);
                  String name = student.getFirstName() + " " + student.getLastName();
@@ -286,7 +307,7 @@ public class MyProfile extends AppCompatActivity {
 
                                           }
                                           BudName.setText("Buddy Name: " + bName);
-                                          BudMail.setText("Buddy Email " + bMail);
+                                          BudMail.setText("Buddy Email: " + bMail);
                                           SharedPreferences.Editor Lo = sp.edit();
                                           Lo.putString("BudName",bName);
                                           Lo.putString("BudMail",bMail);
@@ -319,9 +340,8 @@ public class MyProfile extends AppCompatActivity {
 
 
              else {
-                 int isBud = sp.getInt("IsBuddy",-1);
-                 Log.d("UUUU",String.valueOf(isBud));
-                 if (isBud == -1) {
+
+                 if (isbud == -1) {
                      String buddyname = sp.getString("BudName", "");
                      String buddymail = sp.getString("BudMail", "");
                      String studentname = sp.getString("StudentName", "");
@@ -340,6 +360,10 @@ public class MyProfile extends AppCompatActivity {
 
                      BudName.setText("Buddy Name: " + buddyname);
                      BudMail.setText("Buddy Email " + buddymail);
+                     BudName1.setText("");
+                     BudMail1.setText("");
+                     BudName2.setText("");
+                     BudMail2.setText("");
                  }
 
 
@@ -352,6 +376,8 @@ public class MyProfile extends AppCompatActivity {
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences.Editor Me = mPrefs.edit();
                 SharedPreferences.Editor Le = sp.edit();
                 Le.putString("BudName",null);
                 Le.putString("BudMail",null);
@@ -361,9 +387,12 @@ public class MyProfile extends AppCompatActivity {
                 Le.putString("StudentMail1",null);
                 Le.putString("StudentName2",null);
                 Le.putString("StudentMail2",null);
-                Le.putInt("IsBuddy",0);
+                Me.putInt("ISBUDDY",0);
                 Le.apply();
                 Le.commit();
+                Me.commit();
+
+
 
 
                 signOut();

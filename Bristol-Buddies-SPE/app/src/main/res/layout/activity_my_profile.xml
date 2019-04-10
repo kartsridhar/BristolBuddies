@@ -96,7 +96,6 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
-        android:text="BUDDY NAME: HERE"
         android:textColor="#efebeb"
         android:textSize="18sp" />
 
@@ -108,7 +107,6 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"
-        android:text="BUDDY MAIL: HERE"
         android:textColor="#efebeb"
         android:textSize="18sp" />
 
@@ -119,7 +117,6 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="380dp"
-        android:text="BUDDY NAME: HERE"
         android:textColor="#efebeb"
         android:textSize="18sp" />
 
@@ -131,7 +128,6 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        android:text="BUDDY MAIL: HERE"
         android:textColor="#efebeb"
         android:textSize="18sp" />
 
