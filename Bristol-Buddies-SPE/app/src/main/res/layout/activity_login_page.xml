@@ -71,5 +71,28 @@ tools:context=".Activity.LoginPage">
         android:layout_below="@+id/studPass"
         android:layout_centerHorizontal="true"/>
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textOff = "Student "
+        android:textOn= "Buddy "
+    android:textColor="@color/white"
+        android:textSize="20dp"
+ />
+    <TextView
+        android:id="@+id/switchtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Student"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="496dp"
+        android:layout_marginLeft="190dp"/>
+
+
 
 </RelativeLayout>

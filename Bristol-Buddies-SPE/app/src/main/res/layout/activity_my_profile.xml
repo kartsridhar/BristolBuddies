@@ -89,13 +89,58 @@
         android:text="BUDDY MAIL: HERE"
         android:textColor="#efebeb"
         android:textSize="18sp" />
+    <TextView
+        android:id="@+id/buddyName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="330dp"
+        android:text="BUDDY NAME: HERE"
+        android:textColor="#efebeb"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/buddyMail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="BUDDY MAIL: HERE"
+        android:textColor="#efebeb"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/buddyName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="380dp"
+        android:text="BUDDY NAME: HERE"
+        android:textColor="#efebeb"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/buddyMail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:text="BUDDY MAIL: HERE"
+        android:textColor="#efebeb"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/signOutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="450dp"
         android:background="@color/colorPrimary"
         android:text="Sign out"
         android:textColor="#fff" />
@@ -105,7 +150,7 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="50dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"

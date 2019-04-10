@@ -21,8 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
-    TextInputLayout firstName, lastName, uName, uGender, uPass, uDept, uYos;
-    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_udept, db_uyos, db_unat, db_uint,db_upers,db_upref;
+    TextInputLayout firstName, lastName, uName, uGender, uPass;
+    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_unat, db_uint,db_upers,db_upref;
     Button register;
     private RetroAPI retroAPI;
 
@@ -36,8 +36,6 @@ public class Register extends AppCompatActivity {
         uName = findViewById(R.id.studID);
         uGender = findViewById(R.id.gender);
         uPass = findViewById(R.id.studPass);
-        uDept = findViewById(R.id.dept);
-        uYos = findViewById(R.id.yos);
         register = findViewById(R.id.regButton);
 
         //----------------------------------------------------------
@@ -58,8 +56,6 @@ public class Register extends AppCompatActivity {
                 db_uname = uName.getEditText().getText().toString().trim();
                 db_ugender = uGender.getEditText().getText().toString().trim();
                 db_upass = uPass.getEditText().getText().toString().trim();
-                db_udept = uDept.getEditText().getText().toString().trim();
-                db_uyos = uYos.getEditText().getText().toString().trim();
                 db_unat = "";
                 db_uint = "";
                 db_upers="";
@@ -114,21 +110,11 @@ public class Register extends AppCompatActivity {
                     uPass.setError(null);
                 }
 
-                if (db_udept.isEmpty()) {
-                    uDept.setError("Field can't be empty");
-                    errorCount += 1;
-                } else {
-                    uDept.setError(null);
-                }
 
-                if (db_uyos.isEmpty()) {
-                    uYos.setError("Field can't be empty");
-                    errorCount += 1;
-                } else {
-                    uYos.setError(null);
-                }
 
-                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, db_udept, db_uyos,db_unat,db_uint,db_upers,db_upref,"");
+
+
+                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, "","",db_unat,db_uint,db_upers,db_upref,"");
                 if (errorCount > 1 && errorCount < 9) {
                     Toast.makeText(getApplicationContext(), "Check Fields!", Toast.LENGTH_LONG).show();
                 }

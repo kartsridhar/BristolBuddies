@@ -122,17 +122,7 @@
         android:id="@+id/dept"
         android:paddingTop="1dp"
         android:textColorHint="#ffffff"
-        app:errorEnabled="true">
-
-        <android.support.design.widget.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Department"
-            android:layout_gravity="center_horizontal"
-            android:inputType="text"/>
-
-    </android.support.design.widget.TextInputLayout>
+        app:errorEnabled="true"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -140,17 +130,7 @@
         android:id="@+id/yos"
         android:textColorHint="#ffffff"
         android:paddingTop="1dp"
-        app:errorEnabled="true">
-
-        <android.support.design.widget.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Year of Study"
-            android:layout_gravity="center_horizontal"
-            android:inputType="text"/>
-
-    </android.support.design.widget.TextInputLayout>
+        app:errorEnabled="true"/>
 
     <Button
         android:layout_width="match_parent"

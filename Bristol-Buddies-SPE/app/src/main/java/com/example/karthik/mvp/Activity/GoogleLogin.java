@@ -101,7 +101,7 @@ public class GoogleLogin extends AppCompatActivity {
           //Successful sign in
             startActivity(new Intent(GoogleLogin.this, MainPage.class));
         } catch (ApiException e) {
-            Log.w("Google Sign In Error", "signInResult:failed code = " + e.getStatusCode());
+            Log.w("GGGG", "signInResult:failed code = " + e.getStatusCode());
             Toast.makeText(GoogleLogin.this, "Failed", Toast.LENGTH_LONG).show();
         }
     }

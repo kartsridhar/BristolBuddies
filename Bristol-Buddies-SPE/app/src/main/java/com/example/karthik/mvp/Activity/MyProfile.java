@@ -41,10 +41,11 @@ public class MyProfile extends AppCompatActivity {
 
     GoogleSignInClient googleSignInClient;
     Button sign_out, form, getBuddy;
-    TextView fullName, email, id,BudName,BudMail;
+    TextView fullName, email, id,BudName,BudMail,BudName1,BudMail1,BudName2,BudMail2;
     private RetroAPI retroAPI;
 
     List<Buddy> buddies;
+    List <Student> students;
 
     ImageView pic;
 
@@ -106,6 +107,10 @@ public class MyProfile extends AppCompatActivity {
         getBuddy = findViewById(R.id.getBuddy);
         BudName = findViewById(R.id.buddyName);
         BudMail = findViewById(R.id.buddyMail);
+        BudName1 = findViewById(R.id.buddyName1);
+        BudMail1 = findViewById(R.id.buddyMail1);
+        BudName2 = findViewById(R.id.buddyName2);
+        BudMail2 = findViewById(R.id.buddyMail2);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -131,6 +136,8 @@ public class MyProfile extends AppCompatActivity {
             final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
              final Student regstudent = (Student)getIntent().getSerializableExtra("student");
              Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
+             final Buddy budlogin = (Buddy) getIntent().getSerializableExtra("budlogin");
+
              if (regBuddy != null && regstudent != null){
                  Ed.putString("BudName",regBuddy.getFirstName() + " " + regBuddy.getLastName());
                  Ed.putString("BudMail",regBuddy.getUsername() );
@@ -139,6 +146,112 @@ public class MyProfile extends AppCompatActivity {
                  Ed.apply();
                  Ed.commit();
              }
+             if (budlogin != null){
+                 String idd = String.valueOf(5000);
+                 String name = budlogin.getFirstName() + " " + budlogin.getLastName();
+                 String username = budlogin.getUsername();
+                 Ed.putString("BudName",budlogin.getFirstName() + " " + budlogin.getLastName());
+                 Ed.putString("BudMail",budlogin.getUsername());
+                 Ed.apply();
+                 Ed.commit();
+                 fullName.setText("Name: " + name);
+                 email.setText("Email: " + username);
+                 id.setText("User ID: " + idd);
+                 Call<List<Student>> call = retroAPI.getStudents();
+                 call.enqueue(new Callback<List<Student>>() {
+                     @Override
+                     public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                         students = response.body();
+                         if (budlogin.getNumberOfMatches() != 0) {
+                             String bName = "";
+                             String bMail = "";
+                             String bName1 = "";
+                             String bMail1 = "";
+                             String bName2 = "";
+                             String bMail2 = "";
+
+                             for (Student b : students) {
+                                 if (b.getUserName().trim().equals(budlogin.getStudent1ID().trim())) {
+                                     bName = b.getFirstName() + " " + b.getLastName();
+                                     bMail = b.getUserName();
+                                 }
+                                 if (budlogin.getNumberOfMatches()>1){
+                                 if (b.getUserName().trim().equals(budlogin.getStudent2ID().trim())) {
+                                     bName1 = b.getFirstName() + " " + b.getLastName();
+                                     bMail1 = b.getUserName();
+                                 }
+                                 }
+
+                                 if (budlogin.getNumberOfMatches()>2){
+                                     if (b.getUserName().trim().equals(budlogin.getStudent3ID().trim())) {
+                                         bName2 = b.getFirstName() + " " + b.getLastName();
+                                         bMail2 = b.getUserName();
+                                     }
+
+                                 }
+
+
+
+                             }
+                             BudName.setText("Student 1  Name: " + bName);
+                             BudMail.setText("Student 1  Email " + bMail);
+                             BudName1.setText("Student 2  Name: " + bName1);
+                             BudMail1.setText("Student 2 Email " + bMail1);
+                             BudName2.setText("Student 3  Name: " + bName2);
+                             BudMail2.setText("Student 3 Email " + bMail2);
+
+
+
+                             SharedPreferences.Editor Lo = sp.edit();
+                             Lo.putString("StudentName", bName);
+                             Lo.putString("StudentMail", bMail);
+                             Lo.putString("StudentName1",bName1);
+                             Lo.putString("StudentMail1",bMail1);
+                             Lo.putString("StudentName2",bName2);
+                             Lo.putString("StudentMail2",bMail2);
+                             Lo.putInt("IsBuddy",1);
+                             Lo.apply();
+                             Lo.commit();
+
+                         }
+                     }
+
+                     @Override
+                     public void onFailure(Call<List<Student>> call, Throwable t) {
+
+                     }
+                 });
+
+
+
+             }
+
+             else {
+                 String Studentname = sp.getString("StudentName","");
+                 String Studentmail = sp.getString("StudentMail","");
+                 String Studentname1 = sp.getString("StudentName1","");
+                 String Studentmail1 = sp.getString("StudentMail1","");
+                 String Studentname2 = sp.getString("StudentName2","");
+                 String Studentmail2 = sp.getString("StudentMail2","");
+
+                 String Buddyname = sp.getString("BudName","");
+                 String Buddymail = sp.getString("BudMail","");
+
+                 String idd = String.valueOf(5000);
+
+                 fullName.setText("Name: " + Buddyname );
+                 email.setText("Email: " + Buddymail);
+                 id.setText("User ID: " + idd);
+                 BudName.setText("Student 1 Name: " + Studentname);
+                 BudMail.setText("Student 1 Email: " + Studentmail);
+                 BudName1.setText("Student 2 Name: " + Studentname1);
+                 BudMail1.setText("Student 2 Email: " + Studentmail1);
+                 BudName2.setText("Student 3 Name: " + Studentname2);
+                 BudMail2.setText("Student 3 Email: " + Studentmail2);
+
+             }
+
+
 //            Log.d("ZZZZ", regBuddy.getFirstName());
 //            Log.d("MMMM", regstudent.getFirstName());
              if (student != null) {
@@ -204,17 +317,21 @@ public class MyProfile extends AppCompatActivity {
 
              }
 
+
              else {
-                 String buddyname = sp.getString("BudName","");
-                 String buddymail = sp.getString("BudMail","");
-                 String studentname = sp.getString("StudentName","");
-                 String studentmail = sp.getString("StudentMail","");
+                 int isBud = sp.getInt("IsBuddy",-1);
+                 Log.d("UUUU",String.valueOf(isBud));
+                 if (isBud == -1) {
+                     String buddyname = sp.getString("BudName", "");
+                     String buddymail = sp.getString("BudMail", "");
+                     String studentname = sp.getString("StudentName", "");
+                     String studentmail = sp.getString("StudentMail", "");
 
 //                     Log.d("RECIEVEDBUDSTUDENT",regBuddy.getFirstName());
                      String idd = String.valueOf(5000);
 //                     String name = regstudent.getFirstName() + " " + regstudent.getLastName();
 //                     String username = regstudent.getUserName();
-                     fullName.setText("Name: " + studentname );
+                     fullName.setText("Name : " + studentname);
                      email.setText("Email: " + studentmail);
                      id.setText("User ID: " + idd);
 //                         String budName = buddyname;
@@ -223,6 +340,7 @@ public class MyProfile extends AppCompatActivity {
 
                      BudName.setText("Buddy Name: " + buddyname);
                      BudMail.setText("Buddy Email " + buddymail);
+                 }
 
 
              }
@@ -239,6 +357,11 @@ public class MyProfile extends AppCompatActivity {
                 Le.putString("BudMail",null);
                 Le.putString("StudentName",null);
                 Le.putString("StudentMail",null);
+                Le.putString("StudentName1",null);
+                Le.putString("StudentMail1",null);
+                Le.putString("StudentName2",null);
+                Le.putString("StudentMail2",null);
+                Le.putInt("IsBuddy",0);
                 Le.apply();
                 Le.commit();
 
