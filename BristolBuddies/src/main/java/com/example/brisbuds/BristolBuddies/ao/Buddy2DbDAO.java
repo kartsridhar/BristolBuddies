@@ -43,6 +43,7 @@ public class Buddy2DbDAO implements Buddy2DAO {
         }
     }
 
+    @Override
     public boolean add(Buddy buddy) {
         String insertTableSQL = "INSERT INTO BUDDIES"
                 + "(FIRSTNAME, LASTNAME, USERNAME, COURSE, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES, PASSWORD, NUMBEROFMATCHES, STUDENT1ID, STUDENT2ID, STUDENT3ID) "
