@@ -64,7 +64,7 @@ public class BuddyDbDAO implements BuddyDAO {
             preparedStatement.setString(7, buddy.getPersonality());
             preparedStatement.setString(8, buddy.getPreferences());
             preparedStatement.setString(9, buddy.getPassword());
-            preparedStatement.setString(10, Integer.toString(buddy.getNumberOfMatches()));
+            preparedStatement.setInt(10, buddy.getNumberOfMatches());
             preparedStatement.setString(11, buddy.getStudent1ID());
             preparedStatement.setString(12, buddy.getStudent2ID());
             preparedStatement.setString(13, buddy.getStudent3ID());
