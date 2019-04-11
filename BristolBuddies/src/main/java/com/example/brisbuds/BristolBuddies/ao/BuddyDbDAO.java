@@ -48,8 +48,7 @@ public class BuddyDbDAO implements BuddyDAO {
     @Override
     public boolean add(Buddy buddy) {
         String insertTableSQL = "INSERT INTO BUDDIES"
-                + "(FIRSTNAME, LASTNAME, USERNAME, COURSE, NATIONALITY," +
-                " INTERESTS, PERSONALITY, PREFERENCES, PASSWORD, NUMBEROFMATCHES, STUDENT1ID, STUDENT2ID, STUDENT3ID) "
+                + "(FIRSTNAME, LASTNAME, USERNAME, COURSE, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES, PASSWORD, NUMBEROFMATCHES, STUDENT1ID, STUDENT2ID, STUDENT3ID) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
