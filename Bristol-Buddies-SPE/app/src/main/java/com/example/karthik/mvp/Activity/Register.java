@@ -36,7 +36,6 @@ public class Register extends AppCompatActivity {
         firstName = findViewById(R.id.fName);
         lastName = findViewById(R.id.lName);
         uName = findViewById(R.id.studID);
-        uGender = findViewById(R.id.gender);
         uPass = findViewById(R.id.studPass);
         register = findViewById(R.id.regButton);
         IsBuddy = findViewById(R.id.switch3);
@@ -58,7 +57,7 @@ public class Register extends AppCompatActivity {
                 db_fname = firstName.getEditText().getText().toString().trim();
                 db_lname = lastName.getEditText().getText().toString().trim();
                 db_uname = uName.getEditText().getText().toString().trim();
-                db_ugender = uGender.getEditText().getText().toString().trim();
+                db_ugender = "";
                 db_upass = uPass.getEditText().getText().toString().trim();
                 db_unat = "";
                 db_uint = "";
@@ -95,15 +94,6 @@ public class Register extends AppCompatActivity {
                     uName.setError(null);
                 }
 
-                if (db_ugender.isEmpty()) {
-                    uGender.setError("Field can't be empty");
-                    errorCount += 1;
-                } else if (db_ugender.length() > 1) {
-                    uName.setError("Please enter M, F, O only!");
-                    errorCount += 1;
-                } else {
-                    uGender.setError(null);
-                }
 
                 if (db_upass.isEmpty()) {
                     uPass.setError("Field can't be empty");
