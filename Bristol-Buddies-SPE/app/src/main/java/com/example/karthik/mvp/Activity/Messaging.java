@@ -120,10 +120,6 @@ public class Messaging extends AppCompatActivity  {
         new ApplozicAddMemberToContactGroupTask(context,"ks17726","", groupMemberList,listener).execute();
         MobiComUserPreference.getInstance(context).setContactGroupIdList(groupMemberSet);
 
-
-
-
-
         Intent i = new Intent(getApplicationContext(), ConversationActivity.class);
         //              i.putExtra(ConversationUIService.USER_ID, student.getUserName());
         //              i.putExtra(ConversationUIService.DISPLAY_NAME, student.getFirstName());
@@ -132,7 +128,7 @@ public class Messaging extends AppCompatActivity  {
         i.putExtra(ConversationUIService.DISPLAY_NAME, "KARTHIK");
         i.putExtra(ConversationUIService.GROUP_NAME_LIST_CONTACTS,"ks17726");
         startActivity(i);
-
+        finish();
 
     }
 }

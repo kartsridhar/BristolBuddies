@@ -50,7 +50,9 @@ public class GoogleLogin extends AppCompatActivity {
         login = findViewById(R.id.loginButton);
 
         //Sign in to request userID, email and basic profile
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
         //Building a google sign in client with the options specified by you
         googleSignInClient = GoogleSignIn.getClient(this, gso);
