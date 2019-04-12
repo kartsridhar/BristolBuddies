@@ -24,11 +24,11 @@ public class BuddyController {
         return edao.getAllBuddies().toArray(new Buddy[0]);
     }
 
-    // Update a buddy
-    @RequestMapping(method = RequestMethod.POST, value = "{username}")
-    public ResponseEntity update(@PathVariable String username, @RequestBody Buddy student) {
+    // Add a buddy
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity update(@RequestBody Buddy student) {
 
-        if (edao.update(username, student)) {
+        if (edao.add(student)) {
             return new ResponseEntity<>(null, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
