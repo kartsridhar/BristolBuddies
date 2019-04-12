@@ -132,11 +132,25 @@
         android:paddingTop="1dp"
         app:errorEnabled="true"/>
 
+
     <Button
+        android:id="@+id/regButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="register"
-        android:id="@+id/regButton"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="register" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-110dp"
+        android:text=" Are you a Buddy?"
+        android:textColor="@color/white"
+        android:textOn="yes"
+        android:textOff="no"
+        android:textSize="16dp"/>
+
 
 </LinearLayout>

@@ -61,6 +61,7 @@ public class MyProfile extends AppCompatActivity {
                 case R.id.events:
                     Intent h = new Intent(getApplicationContext(), MainPage.class);
                     startActivity(h);
+                    finish();
                     break;
                 case R.id.messaging:
                     break;
@@ -141,6 +142,7 @@ public class MyProfile extends AppCompatActivity {
             final Student student = (Student)getIntent().getSerializableExtra("serialize_data3");
              final Student regstudent = (Student)getIntent().getSerializableExtra("student");
              Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
+             Buddy NEWBuddy = (Buddy) getIntent().getSerializableExtra("REGbuddy");
              final Buddy budlogin = (Buddy) getIntent().getSerializableExtra("budlogin");
 
 
@@ -148,24 +150,51 @@ public class MyProfile extends AppCompatActivity {
 
 //            Log.d("GGGG", String.valueOf(isBud1));
 
-            Log.d("RRRRR",String.valueOf(isbud));
+//            Log.d("RRRRR",String.valueOf(isbud));
 
 
 
-            if (regBuddy != null && regstudent != null && isbud == -1){
+            if (regBuddy != null && regstudent != null ){
+                form.setText("Your Student Account");
                  Ed.putString("BudName",regBuddy.getFirstName() + " " + regBuddy.getLastName());
                  Ed.putString("BudMail",regBuddy.getUsername() );
                  Ed.putString("StudentName",regstudent.getFirstName() + " " + regstudent.getLastName());
                  Ed.putString("StudentMail",regstudent.getUserName());
                  Ed.apply();
                  Ed.commit();
-             }
+                SharedPreferences.Editor Me = mPrefs.edit();
+                Me.putInt("ISBUDDY",-1);
+                Me.commit();
+            }
+
+
+            if (NEWBuddy != null){
+                Log.d("QQQQ",NEWBuddy.getUsername());
+                Toast.makeText(getApplicationContext(),"Buddy Account saved",Toast.LENGTH_LONG);
+                form.setText("Your Buddy Account");
+                Ed.putString("BudName",NEWBuddy.getFirstName() + " " + NEWBuddy.getLastName());
+                Ed.putString("BudMail",NEWBuddy.getUsername());
+                Ed.apply();
+                Ed.commit();
+                SharedPreferences.Editor Be = mPrefs.edit();
+                Be.putInt("ISBUDDY",1);
+                Be.commit();
+
+            }
+
+
+
+
+
+            int isbud1 = mPrefs.getInt("ISBUDDY",0);
+
 
 
 
 
             if (budlogin != null && isbud == 1){
-                 String idd = String.valueOf(5000);
+                form.setText("Your Buddy Account");
+                String idd = String.valueOf(5000);
                  String name = budlogin.getFirstName() + " " + budlogin.getLastName();
                  String username = budlogin.getUsername();
                  Ed.putString("BudName",budlogin.getFirstName() + " " + budlogin.getLastName());
@@ -187,9 +216,13 @@ public class MyProfile extends AppCompatActivity {
                              String bMail1 = "";
                              String bName2 = "";
                              String bMail2 = "";
+                             Log.d("CCCC",budlogin.getStudent1ID());
+
 
                              for (Student b : students) {
+                                 Log.d("RRRR",b.getUserName());
                                  if (b.getUserName().trim().equals(budlogin.getStudent1ID().trim())) {
+                                     Log.d("RRRR","FOUNDBUDDY");
                                      bName = b.getFirstName() + " " + b.getLastName();
                                      bMail = b.getUserName();
                                  }
@@ -212,17 +245,17 @@ public class MyProfile extends AppCompatActivity {
 
                              }
                              BudName.setText("Student 1  Name: " + bName);
-                             BudMail.setText("Student 1  Email " + bMail);
+                             BudMail.setText("Student 1  Email: " + bMail);
 
                              if (!bName1.trim().equals("")) {
                                  BudName1.setText("Student 2  Name: " + bName1);
-                                 BudMail1.setText("Student 2 Email " + bMail1);
+                                 BudMail1.setText("Student 2 Email: " + bMail1);
                              }
 
                              if (!bName2.trim().equals("")) {
 
                                  BudName2.setText("Student 3  Name: " + bName2);
-                                 BudMail2.setText("Student 3 Email " + bMail2);
+                                 BudMail2.setText("Student 3 Email: " + bMail2);
                              }
 
 
@@ -252,43 +285,135 @@ public class MyProfile extends AppCompatActivity {
              }
 
              else {
-                 if (isbud == 1) {
-                     String Studentname = sp.getString("StudentName", "");
-                     String Studentmail = sp.getString("StudentMail", "");
-                     String Studentname1 = sp.getString("StudentName1", "");
-                     String Studentmail1 = sp.getString("StudentMail1", "");
-                     String Studentname2 = sp.getString("StudentName2", "");
-                     String Studentmail2 = sp.getString("StudentMail2", "");
+                 if (isbud1 == 1) {
+                     form.setText("Your Buddy Account");
 
                      String Buddyname = sp.getString("BudName", "");
-                     String Buddymail = sp.getString("BudMail", "");
+                     final String Buddymail = sp.getString("BudMail", "");
+                     String Studentname = sp.getString("StudentName", "");
+                     final String Studentmail = sp.getString("StudentMail", "");
+                     final String Studentname1 = sp.getString("StudentName1", "");
+                     final String Studentmail1 = sp.getString("StudentMail1", "");
+                     String Studentname2 = sp.getString("StudentName2", "");
+                     final String Studentmail2 = sp.getString("StudentMail2", "");
+
+                     final Call<List<Buddy>> call3 = retroAPI.getBuddies();
+
+
+                     call3.enqueue(new Callback<List<Buddy>>() {
+
+                         public void onResponse (Call <List<Buddy>> call3, Response <List<Buddy>> response){
+                        buddies = response.body();
+                        final Call<List<Student>> call4 = retroAPI.getStudents();
+                        call4.enqueue(new Callback<List<Student>>() {
+                            @Override
+                            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                                students = response.body();
+                                for (Buddy a: buddies){
+                                    if (a.getUsername().trim().equals(Buddymail.trim())){
+                                        if (!a.getStudent1ID().trim().equals(Studentmail.trim())){
+                                            for (Student w: students){
+                                                if (w.getUserName().trim().equals(a.getStudent1ID().trim())) {
+                                                    String stuname1 = w.getFirstName() + " " + w.getLastName();
+                                                    String stumail1 = w.getUserName();
+                                                    SharedPreferences.Editor Lw = sp.edit();
+                                                    Lw.putString("StudentName", stuname1);
+                                                    Lw.putString("StudentMail", stumail1);
+                                                    Lw.commit();
+
+                                                }
+
+                                            }
+                                        }
+                                        if (!a.getStudent2ID().trim().equals(Studentmail1.trim())){
+                                            for (Student w: students){
+                                                if (w.getUserName().trim().equals(a.getStudent2ID().trim())) {
+                                                    String stuname2 = w.getFirstName() + " " + w.getLastName();
+                                                    String stumail2 = w.getUserName();
+                                                    SharedPreferences.Editor Lw = sp.edit();
+                                                    Lw.putString("StudentName1", stuname2);
+                                                    Lw.putString("StudentMail1", stumail2);
+                                                    Lw.commit();
+
+                                                }
+
+                                            }
+                                        }
+                                        if (!a.getStudent3ID().trim().equals(Studentmail2.trim())){
+                                            for (Student w: students){
+                                                if (w.getUserName().trim().equals(a.getStudent3ID().trim())) {
+                                                    String stuname3 = w.getFirstName() + " " + w.getLastName();
+                                                    String stumail3 = w.getUserName();
+                                                    SharedPreferences.Editor Lw = sp.edit();
+                                                    Lw.putString("StudentName2", stuname3);
+                                                    Lw.putString("StudentMail2", stumail3);
+                                                    Lw.commit();
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Student>> call, Throwable t) {
+
+                            }
+                        });
+
+
+                         }
+
+                         @Override
+                         public void onFailure (Call <List<Buddy>> call3, Throwable t){
+
+
+                         }
+                     });
+
+                     String studentname = sp.getString("StudentName", "");
+                     String studentmail = sp.getString("StudentMail", "");
+                     String studentname1 = sp.getString("StudentName1", "");
+                     String studentmail1 = sp.getString("StudentMail1", "");
+                     String studentname2 = sp.getString("StudentName2", "");
+                     String studentmail2 = sp.getString("StudentMail2", "");
+
+
 
                      String idd = String.valueOf(5000);
+
+
 
                      fullName.setText("Name: " + Buddyname);
                      email.setText("Email: " + Buddymail);
                      id.setText("User ID: " + idd);
 
-                     BudName.setText("Student 1 Name: " + Studentname);
-                     BudMail.setText("Student 1 Email: " + Studentmail);
+                     BudName.setText("Student 1 Name: " + studentname);
+                     BudMail.setText("Student 1 Email: " + studentmail);
 
-                     if (!Studentname1.trim().equals("")) {
-                         BudName1.setText("Student 2 Name: " + Studentname1);
-                         BudMail1.setText("Student 2 Email: " + Studentmail1);
+                     if (!studentname1.trim().equals("")) {
+                         BudName1.setText("Student 2 Name: " + studentname1);
+                         BudMail1.setText("Student 2 Email: " + studentmail1);
                      }
-                     if (!Studentname2.trim().equals("")) {
+                     if (!studentname2.trim().equals("")) {
 
-                         BudName2.setText("Student 3 Name: " + Studentname2);
-                         BudMail2.setText("Student 3 Email: " + Studentmail2);
+                         BudName2.setText("Student 3 Name: " + studentname2);
+                         BudMail2.setText("Student 3 Email: " + studentmail2);
                      }
                  }
 
              }
 
 
+
+
 //            Log.d("ZZZZ", regBuddy.getFirstName());
 //            Log.d("MMMM", regstudent.getFirstName());
              if (student != null && isbud == -1 ) {
+                 form.setText("Your Student Account");
                  Log.d("RECIEVEDSTUDENT", student.getFirstName());
                  String idd = String.valueOf(5000);
                  String name = student.getFirstName() + " " + student.getLastName();
@@ -328,6 +453,8 @@ public class MyProfile extends AppCompatActivity {
                                           Lo.commit();
                                       }
                                       else {
+                                          form.setText("Your Student Account");
+
                                           String buddyname = sp.getString("BudName","");
                                           String buddymail = sp.getString("BudMail","");
                                           String studentname = sp.getString("StudentName","");
@@ -352,27 +479,83 @@ public class MyProfile extends AppCompatActivity {
              }
 
 
+
+
              else {
+                 Log.d("LLLL",String.valueOf(isbud));
 
-                 if (isbud == -1) {
+
+
+
+                 if (isbud1 == -1) {
+                     form.setText("Your Student Account");
                      String buddyname = sp.getString("BudName", "");
-                     String buddymail = sp.getString("BudMail", "");
+                     final String buddymail = sp.getString("BudMail", "");
                      String studentname = sp.getString("StudentName", "");
-                     String studentmail = sp.getString("StudentMail", "");
+                     final String studentmail = sp.getString("StudentMail", "");
 
-//                     Log.d("RECIEVEDBUDSTUDENT",regBuddy.getFirstName());
+                     final Call<List<Student>> call5 = retroAPI.getStudents();
+
+
+                     call5.enqueue(new Callback<List<Student>>() {
+
+                         public void onResponse (Call <List<Student>> call5, Response <List<Student>> response){
+                             students = response.body();
+                             final Call<List<Buddy>> call6 = retroAPI.getBuddies();
+                             call6.enqueue(new Callback<List<Buddy>>() {
+                                 @Override
+                                 public void onResponse(Call<List<Buddy>> call6, Response<List<Buddy>> response) {
+                                     buddies = response.body();
+                                     for (Student a: students){
+                                         if (a.getUserName().trim().equals(studentmail.trim())){
+                                             if (!a.getBuddy().trim().equals(buddymail.trim())){
+                                                 for (Buddy w: buddies){
+                                                     if (w.getUsername().trim().equals(a.getBuddy().trim())) {
+                                                         String budname1 = w.getFirstName() + " " + w.getLastName();
+                                                         String budmail1 = w.getUsername();
+                                                         SharedPreferences.Editor Lw = sp.edit();
+                                                         Lw.putString("BudName", budname1);
+                                                         Lw.putString("BudMail", budmail1);
+                                                         Lw.commit();
+
+                                                     }
+
+                                                 }
+                                             }
+
+
+                                         }
+
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onFailure(Call<List<Buddy>> call6, Throwable t) {
+
+                                 }
+                             });
+
+
+                         }
+
+                         @Override
+                         public void onFailure (Call <List<Student>> call5, Throwable t){
+
+
+                         }
+                     });
+
+                     String budyname = sp.getString("BudName", "");
+                     final String budymail = sp.getString("BudMail", "");
+                     String studntname = sp.getString("StudentName", "");
+                     final String studntmail = sp.getString("StudentMail", "");
+
                      String idd = String.valueOf(5000);
-//                     String name = regstudent.getFirstName() + " " + regstudent.getLastName();
-//                     String username = regstudent.getUserName();
-                     fullName.setText("Name : " + studentname);
-                     email.setText("Email: " + studentmail);
+                     fullName.setText("Name : " + studntname);
+                     email.setText("Email: " + studntmail);
                      id.setText("User ID: " + idd);
-//                         String budName = buddyname;
-//
-//                         String budEmail = buddymail;
-
-                     BudName.setText("Buddy Name: " + buddyname);
-                     BudMail.setText("Buddy Email " + buddymail);
+                     BudName.setText("Buddy Name: " + budyname);
+                     BudMail.setText("Buddy Email " + budymail);
                      BudName1.setText("");
                      BudMail1.setText("");
                      BudName2.setText("");
@@ -427,14 +610,12 @@ public class MyProfile extends AppCompatActivity {
     {
         super.onBackPressed();
         startActivity(new Intent(MyProfile.this, MainPage.class));
+        finish();
     }
 
 
 
-    public void openForm(View view) {
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSfUHn6_GoD39DKDGn_uqjoEUvoLTB4wM3Eiv1uIPN5oAIfnwQ/viewform?usp=sf_link"));
-        startActivity(i);
-    }
+
 
     private void signOut() {
         googleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {

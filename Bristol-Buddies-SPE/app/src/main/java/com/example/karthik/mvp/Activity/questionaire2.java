@@ -3,6 +3,7 @@ package com.example.karthik.mvp.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.xeoh.android.checkboxgroup.CheckBoxGroup;
 
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,22 +25,33 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class questionaire2 extends AppCompatActivity {
-    CheckBox outgo,nervous,curi,orig,nones;
-    CheckBox int1,int2,int3,int4;
-    CheckBox pers1,pers2,pers3,pers4;
-    CheckBox cours1,cours2,cours3,cours4;
-    CheckBox nat1, nat2,nat3,nat4;
+    CheckBox outgo, nervous, curi, orig, nones;
+    CheckBox int1, int2, int3, int4;
+    CheckBox pers1, pers2, pers3, pers4;
+    CheckBox cours1, cours2, cours3, cours4;
+    CheckBox nat1, nat2, nat3, nat4;
     Button question2;
     private RetroAPI retroAPI;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //----------------------------------------------------------
+        //TESTING PUTTING DATA
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://132.145.45.239/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        retroAPI = retrofit.create(RetroAPI.class);
+        //----------------------------------------------------------
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionaire2);
-        outgo =(CheckBox) findViewById(R.id.outgoing);
-        nervous= (CheckBox)findViewById(R.id.nervous);
-        curi=(CheckBox)findViewById(R.id.curious);
-        orig =(CheckBox) findViewById(R.id.original);
-        nones = (CheckBox)findViewById(R.id.none2);
+        outgo = (CheckBox) findViewById(R.id.outgoing);
+        nervous = (CheckBox) findViewById(R.id.nervous);
+        curi = (CheckBox) findViewById(R.id.curious);
+        orig = (CheckBox) findViewById(R.id.original);
+        nones = (CheckBox) findViewById(R.id.none2);
 
         int1 = (CheckBox) findViewById(R.id.Interestslimport);
         int2 = (CheckBox) findViewById(R.id.Interestsnrimport);
@@ -63,21 +76,12 @@ public class questionaire2 extends AppCompatActivity {
         question2 = findViewById(R.id.question2);
 
 
-        //----------------------------------------------------------
-        //TESTING PUTTING DATA
-        Gson gson = new GsonBuilder().serializeNulls().create();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://132.145.45.239/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        retroAPI = retrofit.create(RetroAPI.class);
-        //----------------------------------------------------------
+
 
         nones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     outgo.setChecked(false);
                     nervous.setChecked(false);
                     curi.setChecked(false);
@@ -90,8 +94,7 @@ public class questionaire2 extends AppCompatActivity {
         outgo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nones.setChecked(false);
                 }
             }
@@ -99,8 +102,7 @@ public class questionaire2 extends AppCompatActivity {
         nervous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nones.setChecked(false);
                 }
             }
@@ -109,8 +111,7 @@ public class questionaire2 extends AppCompatActivity {
         curi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nones.setChecked(false);
                 }
             }
@@ -119,20 +120,17 @@ public class questionaire2 extends AppCompatActivity {
         orig.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nones.setChecked(false);
                 }
             }
         });
 
 
-
         int1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     int2.setChecked(false);
                     int3.setChecked(false);
                     int4.setChecked(false);
@@ -143,8 +141,7 @@ public class questionaire2 extends AppCompatActivity {
         int2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     int1.setChecked(false);
                     int3.setChecked(false);
                     int4.setChecked(false);
@@ -154,8 +151,7 @@ public class questionaire2 extends AppCompatActivity {
         int3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     int1.setChecked(false);
                     int2.setChecked(false);
                     int4.setChecked(false);
@@ -165,8 +161,7 @@ public class questionaire2 extends AppCompatActivity {
         int4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     int1.setChecked(false);
                     int2.setChecked(false);
                     int3.setChecked(false);
@@ -177,8 +172,7 @@ public class questionaire2 extends AppCompatActivity {
         pers1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     pers2.setChecked(false);
                     pers3.setChecked(false);
                     pers4.setChecked(false);
@@ -189,8 +183,7 @@ public class questionaire2 extends AppCompatActivity {
         pers2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     pers1.setChecked(false);
                     pers3.setChecked(false);
                     pers4.setChecked(false);
@@ -200,8 +193,7 @@ public class questionaire2 extends AppCompatActivity {
         pers3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     pers1.setChecked(false);
                     pers2.setChecked(false);
                     pers4.setChecked(false);
@@ -211,8 +203,7 @@ public class questionaire2 extends AppCompatActivity {
         pers4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     pers1.setChecked(false);
                     pers2.setChecked(false);
                     pers3.setChecked(false);
@@ -223,8 +214,7 @@ public class questionaire2 extends AppCompatActivity {
         cours1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     cours2.setChecked(false);
                     cours3.setChecked(false);
                     cours4.setChecked(false);
@@ -235,8 +225,7 @@ public class questionaire2 extends AppCompatActivity {
         cours2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     cours1.setChecked(false);
                     cours3.setChecked(false);
                     cours4.setChecked(false);
@@ -246,8 +235,7 @@ public class questionaire2 extends AppCompatActivity {
         cours3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     cours1.setChecked(false);
                     cours2.setChecked(false);
                     cours4.setChecked(false);
@@ -257,8 +245,7 @@ public class questionaire2 extends AppCompatActivity {
         cours4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     cours1.setChecked(false);
                     cours2.setChecked(false);
                     cours3.setChecked(false);
@@ -269,8 +256,7 @@ public class questionaire2 extends AppCompatActivity {
         nat1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nat2.setChecked(false);
                     nat3.setChecked(false);
                     nat4.setChecked(false);
@@ -281,8 +267,7 @@ public class questionaire2 extends AppCompatActivity {
         nat2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nat1.setChecked(false);
                     nat3.setChecked(false);
                     nat4.setChecked(false);
@@ -292,8 +277,7 @@ public class questionaire2 extends AppCompatActivity {
         nat3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nat1.setChecked(false);
                     nat2.setChecked(false);
                     nat4.setChecked(false);
@@ -303,8 +287,7 @@ public class questionaire2 extends AppCompatActivity {
         nat4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     nat1.setChecked(false);
                     nat2.setChecked(false);
                     nat3.setChecked(false);
@@ -317,100 +300,132 @@ public class questionaire2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createPost();
-                Intent l = new Intent(getApplicationContext(),MainPage.class);
+
+
             }
         });
 
     }
 
     private void createPost() {
-        final Student student = (Student)getIntent().getSerializableExtra("serialize_data2");
+        final Student student = (Student) getIntent().getSerializableExtra("serialize_data2");
+        final Buddy buddy = (Buddy) getIntent().getSerializableExtra("buddy_data1");
 
-        String personality="";
+
+
+
+        String personality = "";
         String pref = "";
 
-        if (outgo.isChecked()){
-            personality +="1";
-        }
-        else personality +="0";
-        if (nervous.isChecked()){
-            personality +="1";
-        }
-        else personality +="0";
-        if (curi.isChecked()){
-            personality +="1";
-        }
-        else personality +="0";
-        if (orig.isChecked()){
-            personality +="1";
-        }
-        else personality +="0";
-        if (nones.isChecked()){
-            personality ="0000";
+        if (outgo.isChecked()) {
+            personality += "1";
+        } else personality += "0";
+        if (nervous.isChecked()) {
+            personality += "1";
+        } else personality += "0";
+        if (curi.isChecked()) {
+            personality += "1";
+        } else personality += "0";
+        if (orig.isChecked()) {
+            personality += "1";
+        } else personality += "0";
+        if (nones.isChecked()) {
+            personality = "0000";
         }
 
 
-        if (int4.isChecked()){
+        if (int4.isChecked()) {
             pref += "3";
         }
-        if (int3.isChecked()){
+        if (int3.isChecked()) {
             pref += "2";
         }
-        if (int2.isChecked()){
+        if (int2.isChecked()) {
             pref += "1";
         }
-        if (int1.isChecked()){
+        if (int1.isChecked()) {
             pref += "0";
         }
 
-        if (pers4.isChecked()){
+        if (pers4.isChecked()) {
             pref += "3";
         }
-        if (pers3.isChecked()){
+        if (pers3.isChecked()) {
             pref += "2";
         }
-        if (pers2.isChecked()){
+        if (pers2.isChecked()) {
             pref += "1";
         }
-        if (pers1.isChecked()){
+        if (pers1.isChecked()) {
             pref += "0";
         }
 
-        if (cours4.isChecked()){
+        if (cours4.isChecked()) {
             pref += "3";
         }
-        if (cours3.isChecked()){
+        if (cours3.isChecked()) {
             pref += "2";
         }
-        if (cours2.isChecked()){
+        if (cours2.isChecked()) {
             pref += "1";
         }
-        if (cours1.isChecked()){
+        if (cours1.isChecked()) {
             pref += "0";
         }
 
-        if (nat4.isChecked()){
+        if (nat4.isChecked()) {
             pref += "3";
         }
-        if (nat3.isChecked()){
+        if (nat3.isChecked()) {
             pref += "2";
         }
-        if (nat2.isChecked()){
+        if (nat2.isChecked()) {
             pref += "1";
         }
-        if (nat1.isChecked()){
+        if (nat1.isChecked()) {
             pref += "0";
         }
 
+        if (student != null) {
+            Student student2 = new Student(student.getFirstName(), student.getLastName(), student.getGender(),
+                    student.getUserName(), student.getPassword(), student.getDepartment(), student.getYearofStudy(),
+                    student.getNationality(), student.getInterests(), personality, pref, "");
+            Intent k = new Intent(getApplicationContext(), Matching.class);
+            k.putExtra("serialize_data3", student2);
+            startActivity(k);
+            finish();
+        } else if (buddy != null) {
+            Toast.makeText(getApplicationContext(), buddy.getUsername(), Toast.LENGTH_LONG).show();
+            Buddy buddy2 = new Buddy(buddy.getFirstName(), buddy.getLastName(), buddy.getUsername(), buddy.getCourse(), buddy.getNationality(), buddy.getInterests(), personality, pref, buddy.getPassword(), 0, "", "","");
+//            Buddy buddy2 = new Buddy ("","","L","","","","","","",0,"","","")"
 
-        Student student2 = new Student(student.getFirstName(),student.getLastName(),student.getGender(),
-                student.getUserName(),student.getPassword(),student.getDepartment(),student.getYearofStudy(),
-                student.getNationality(),student.getInterests(),personality,pref, "");
-        Intent k = new Intent(getApplicationContext(),Matching.class);
-        k.putExtra("serialize_data3",student2);
-        startActivity(k);
-        finish();
+            Call<Buddy> call2 = retroAPI.createBuddy(buddy2);
+
+            call2.enqueue(new Callback<Buddy>() {
+
+                public void onResponse (Call < Buddy > call2, Response < Buddy > response){
+
+
+                }
+
+                @Override
+                public void onFailure (Call < Buddy > call2, Throwable t){
+                    Toast.makeText(questionaire2.this, "FAILED TO POST", Toast.LENGTH_LONG).show();
+
+
+                }
+            });
+            Intent k = new Intent(getApplicationContext(), MainPage.class);
+            k.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent m = new Intent(getApplicationContext(), MyProfile.class);
+            m.putExtra("REGbuddy", buddy2);
+            startActivity(m);
+            startActivity(k);
+            finish();
+
+            }
+
+        }
 
     }
 
-}

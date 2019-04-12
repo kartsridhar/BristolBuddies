@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.karthik.mvp.R;
 
@@ -37,6 +38,7 @@ public class Questionaire extends AppCompatActivity {
         question1 = findViewById(R.id.question1);
 
         final Student student = (Student)getIntent().getSerializableExtra("serialize_data1");
+        final Buddy buddy = (Buddy) getIntent().getSerializableExtra("buddy_data");
 
         none.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -159,12 +161,21 @@ public class Questionaire extends AppCompatActivity {
                 }
 
 
-
-                final Student student1 = new Student(student.getFirstName(),student.getLastName(),student.getGender(),student.getUserName(),student.getPassword(),fac,student.getYearofStudy(),nat,interests,"","", "");
-                Intent k = new Intent(getApplicationContext(),questionaire2.class);
-                k.putExtra("serialize_data2",student1);
+            if (student != null) {
+                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getGender(), student.getUserName(), student.getPassword(), fac, student.getYearofStudy(), nat, interests, "", "", "");
+                Intent k = new Intent(getApplicationContext(), questionaire2.class);
+                k.putExtra("serialize_data2", student1);
                 startActivity(k);
                 finish();
+            }
+
+            if (buddy != null){
+                final Buddy buddy1 = new Buddy(buddy.getFirstName(),buddy.getLastName(),buddy.getUsername(),fac,nat,interests,"","",buddy.getPassword(),0,"","","");
+                Intent k = new Intent(getApplicationContext(), questionaire2.class);
+                k.putExtra("buddy_data1", buddy1);
+                startActivity(k);
+                finish();
+            }
             }
 
 

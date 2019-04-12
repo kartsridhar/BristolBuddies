@@ -17,6 +17,9 @@ public interface RetroAPI {
     @POST("students")
     Call<Student> createStudent(@Body Student student);
 
+    @POST("buddies")
+    Call<Buddy> createBuddy(@Body Buddy buddy);
+
     @GET("students")
     Call<List<Student>> getStudents();
 

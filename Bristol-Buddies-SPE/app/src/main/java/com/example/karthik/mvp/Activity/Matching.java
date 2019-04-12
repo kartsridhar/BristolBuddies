@@ -67,10 +67,10 @@ public class Matching extends AppCompatActivity {
                         student.getPersonality(), student.getPreferences(), bestBud.getUsername());
                 Call<Student> call2 = retroAPI.createStudent(student2);
                     matchingBuddy();
-                    Intent m = new Intent(getApplicationContext(), MyProfile.class);
                     Intent l = new Intent(getApplicationContext(),MainPage.class);
                     l.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    m.putExtra("buddy", bestBud);
+                Intent m = new Intent(getApplicationContext(), MyProfile.class);
+                m.putExtra("buddy", bestBud);
                     m.putExtra("student", student);
                     Log.d("XXXX", bestBud.getFirstName());
                     Log.d("YYYY", student.getFirstName());
@@ -193,7 +193,9 @@ public class Matching extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Buddy> call3, Throwable t) {}
+            public void onFailure(Call<Buddy> call3, Throwable t) {
+
+            }
         });
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.karthik.mvp.R;
@@ -24,6 +25,7 @@ public class Register extends AppCompatActivity {
     TextInputLayout firstName, lastName, uName, uGender, uPass;
     String db_fname, db_lname, db_uname, db_ugender, db_upass, db_unat, db_uint,db_upers,db_upref;
     Button register;
+    Switch IsBuddy;
     private RetroAPI retroAPI;
 
     @Override
@@ -37,6 +39,8 @@ public class Register extends AppCompatActivity {
         uGender = findViewById(R.id.gender);
         uPass = findViewById(R.id.studPass);
         register = findViewById(R.id.regButton);
+        IsBuddy = findViewById(R.id.switch3);
+
 
         //----------------------------------------------------------
         //TESTING PUTTING DATA
@@ -58,8 +62,8 @@ public class Register extends AppCompatActivity {
                 db_upass = uPass.getEditText().getText().toString().trim();
                 db_unat = "";
                 db_uint = "";
-                db_upers="";
-                db_upref="";
+                db_upers = "";
+                db_upref = "";
 
                 int errorCount = 0;
 
@@ -87,8 +91,7 @@ public class Register extends AppCompatActivity {
                 } else if (db_uname.length() > 7) {
                     uName.setError("Username too long");
                     errorCount += 1;
-                }
-                else {
+                } else {
                     uName.setError(null);
                 }
 
@@ -98,8 +101,7 @@ public class Register extends AppCompatActivity {
                 } else if (db_ugender.length() > 1) {
                     uName.setError("Please enter M, F, O only!");
                     errorCount += 1;
-                }
-                else {
+                } else {
                     uGender.setError(null);
                 }
 
@@ -110,19 +112,27 @@ public class Register extends AppCompatActivity {
                     uPass.setError(null);
                 }
 
+                if (IsBuddy.isChecked()) {
+                    Toast.makeText(Register.this, "MADE IT TO BUDDY REG", Toast.LENGTH_LONG).show();
+                    final Buddy buddy = new Buddy(db_fname, db_lname, db_uname, "", db_unat, "", "", "", db_upass, 0, null, null, null);
+                    if (errorCount > 1 && errorCount < 9) {
+                    } else {
+                        Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                        j.putExtra("buddy_data", buddy);
+                        startActivity(j);
+                        finish();
+                    }
+                } else {
+                    final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
+                    if (errorCount > 1 && errorCount < 9) {
+                        Toast.makeText(getApplicationContext(), "Check Fields!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                        j.putExtra("serialize_data1", student);
+                        startActivity(j);
+                        finish();
+                    }
 
-
-
-
-                final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, "","",db_unat,db_uint,db_upers,db_upref,"");
-                if (errorCount > 1 && errorCount < 9) {
-                    Toast.makeText(getApplicationContext(), "Check Fields!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Intent j = new Intent(getApplicationContext(), Questionaire.class);
-                    j.putExtra("serialize_data1",student);
-                    startActivity(j);
-                    finish();
                 }
             }
         });
