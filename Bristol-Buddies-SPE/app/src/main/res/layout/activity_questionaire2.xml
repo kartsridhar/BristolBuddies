@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Quick Questionaire"
+        android:text="Quick Questionnaire"
         android:textSize="25sp"
         android:textColor="#ffffff"
         />

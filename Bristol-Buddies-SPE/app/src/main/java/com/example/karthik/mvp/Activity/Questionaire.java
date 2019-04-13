@@ -1,6 +1,7 @@
 package com.example.karthik.mvp.Activity;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 import com.example.karthik.mvp.R;
 
 public class Questionaire extends AppCompatActivity {
-    EditText faculty,Gradyear,Nationality;
+    TextInputLayout faculty,Gradyear,Nationality;
     CheckBox ArtandMus,Tele,Vidgames,Gigs,clubs,none,creat,sport;
     String fac,gY,nat;
     Button question1;
@@ -127,9 +128,9 @@ public class Questionaire extends AppCompatActivity {
         question1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fac = faculty.getText().toString();
-                gY = Gradyear.getText().toString();
-                nat = Gradyear.getText().toString();
+                fac = faculty.getEditText().getText().toString();
+                gY = Gradyear.getEditText().getText().toString();
+                nat = Gradyear.getEditText().getText().toString();
                 String interests = "";
                 if (ArtandMus.isChecked()){
                     interests += "1";
