@@ -183,9 +183,5 @@ public class Questionaire extends AppCompatActivity {
 
         });
 
-
-
-
-
     }
 }
