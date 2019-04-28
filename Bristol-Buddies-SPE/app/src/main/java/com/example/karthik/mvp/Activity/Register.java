@@ -14,6 +14,8 @@ import com.example.karthik.mvp.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
-    TextInputLayout firstName, lastName, uName, uGender, uPass;
+    TextInputLayout firstName, lastName, uName, uPass;
     String db_fname, db_lname, db_uname, db_upass, db_unat, db_uint,db_upers,db_upref;
     Button register;
     Switch IsBuddy;
@@ -63,75 +65,95 @@ public class Register extends AppCompatActivity {
                 db_upers = "";
                 db_upref = "";
 
-                int errorCount = 0;
+                Call<List<Student>> call = retroAPI.getStudents();
 
-                if (db_fname.isEmpty()) {
-                    firstName.setError("Field can't be empty");
-                    errorCount += 1;
-                } else if(!checkName(db_fname)) {
-                    firstName.setError("Only letters!");
-                    errorCount += 1;
-                }
-                else {
-                    firstName.setError(null);
-                }
+                call.enqueue(new Callback<List<Student>>() {
 
-                if (db_lname.isEmpty()) {
-                    lastName.setError("Field can't be empty");
-                    errorCount += 1;
-                } else if(!checkName(db_lname)) {
-                    lastName.setError("Only letters!");
-                    errorCount += 1;
-                }
-                else {
-                    lastName.setError(null);
-                }
+                    @Override
+                    public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                        List<Student> students = response.body();
+                        int errorCount = 0;
 
-                if (db_uname.isEmpty()) {
-                    uName.setError("Field can't be empty");
-                    errorCount += 1;
-                } else if (!checkUsername(db_uname)) {
-                    uName.setError("Enter right format");
-                    errorCount += 1;
+                        for (Student s : students) {
+                            if (db_fname.isEmpty()) {
+                                firstName.setError("Field can't be empty");
+                                errorCount += 1;
+                            } else if(!checkName(db_fname)) {
+                                firstName.setError("Only letters!");
+                                errorCount += 1;
+                            }
+                            else {
+                                firstName.setError(null);
+                            }
 
-                } else if (db_uname.length() > 7) {
-                    uName.setError("Username too long");
-                    errorCount += 1;
-                } else {
-                    uName.setError(null);
-                }
+                            if (db_lname.isEmpty()) {
+                                lastName.setError("Field can't be empty");
+                                errorCount += 1;
+                            } else if(!checkName(db_lname)) {
+                                lastName.setError("Only letters!");
+                                errorCount += 1;
+                            }
+                            else {
+                                lastName.setError(null);
+                            }
+
+                            if (db_uname.isEmpty()) {
+                                uName.setError("Field can't be empty");
+                                errorCount += 1;
+                            } else if (!checkUsername(db_uname)) {
+                                uName.setError("Enter right format");
+                                errorCount += 1;
+                            } else if (db_uname.length() > 7) {
+                                uName.setError("Username too long");
+                                errorCount += 1;
+                            } else if(db_uname.equals(s.getUserName().trim())) {
+                                uName.setError("Username Exists");
+                                errorCount += 1;
+                            } else {
+                                uName.setError(null);
+                            }
 
 
-                if (db_upass.isEmpty()) {
-                    uPass.setError("Field can't be empty");
-                    errorCount += 1;
-                } else {
-                    uPass.setError(null);
-                }
+                            if (db_upass.isEmpty()) {
+                                uPass.setError("Field can't be empty");
+                                errorCount += 1;
+                            } else {
+                                uPass.setError(null);
+                            }
+                        }
 
-                if (IsBuddy.isChecked()) {
-                    Toast.makeText(Register.this, "MADE IT TO BUDDY REG", Toast.LENGTH_LONG).show();
-                    final Buddy buddy = new Buddy(db_fname, db_lname, db_uname, "", db_unat, "", "", "", db_upass, 0, null, null, null);
-                    if (errorCount != 0) {
-                        Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
-                    } else {
-                        Intent j = new Intent(getApplicationContext(), Questionaire.class);
-                        j.putExtra("buddy_data", buddy);
-                        startActivity(j);
-                        finish();
+                        if (IsBuddy.isChecked()) {
+                            Toast.makeText(Register.this, "MADE IT TO BUDDY REG", Toast.LENGTH_LONG).show();
+                            final Buddy buddy = new Buddy(db_fname, db_lname, db_uname, "", db_unat, "", "", "", db_upass, 0, null, null, null);
+                            if (errorCount != 0) {
+                                Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
+                            } else {
+                                Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                                j.putExtra("buddy_data", buddy);
+                                startActivity(j);
+                                finish();
+                            }
+                        } else {
+                            final Student student = new Student(db_fname, db_lname, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
+
+                            if (errorCount != 0) {
+                                Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Intent j = new Intent(getApplicationContext(), Questionaire.class);
+                                j.putExtra("serialize_data1", student);
+                                startActivity(j);
+                                finish();
+                            }
+
+                        }
                     }
-                } else {
-                    final Student student = new Student(db_fname, db_lname, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
-                    if (errorCount != 0) {
-                        Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
-                    } else {
-                        Intent j = new Intent(getApplicationContext(), Questionaire.class);
-                        j.putExtra("serialize_data1", student);
-                        startActivity(j);
-                        finish();
-                    }
 
-                }
+                    @Override
+                    public void onFailure(Call<List<Student>> call, Throwable t) {
+                        Toast.makeText(Register.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

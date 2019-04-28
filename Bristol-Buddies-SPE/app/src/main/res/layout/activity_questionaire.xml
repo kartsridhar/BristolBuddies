@@ -84,9 +84,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="275dp"
+        android:layout_below="@+id/nat"
         android:layout_centerHorizontal="true"
-        android:text="       Interests (Please select all that apply)"
+        android:text="    Interests (Please select all that apply)"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -107,7 +107,6 @@
         android:layout_marginTop="350dp"
         android:textColor="#ffffff"
         android:textSize="10dp"
-
         android:text="Television"
         />
     <CheckBox
