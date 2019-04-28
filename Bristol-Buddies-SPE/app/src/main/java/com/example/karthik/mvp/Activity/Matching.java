@@ -141,7 +141,7 @@ public class Matching extends AppCompatActivity {
     }
 
 
-    private static Buddy bestMatch(List<Buddy> buddies, Student student){
+    public static Buddy bestMatch(List<Buddy> buddies, Student student){
         double bestSim = -1;
         Buddy bestBuddy = null;
         for (Buddy b : buddies) {
