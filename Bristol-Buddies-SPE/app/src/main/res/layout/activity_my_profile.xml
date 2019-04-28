@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/form"
-        android:onClick="openForm"
         android:layout_marginTop="20dp"
         android:background="#e1c9a6"
         android:text="Fill Questionnaire"/>

@@ -19,10 +19,12 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
@@ -99,12 +101,10 @@ public class GoogleLogin extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
           GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-          //Successful sign in
-            startActivity(new Intent(GoogleLogin.this, MainPage.class));
+          updateUI(account);
         } catch (ApiException e) {
             Log.w("GGGG", "signInResult:failed code = " + e.getStatusCode());
-            Toast.makeText(GoogleLogin.this, "Failed", Toast.LENGTH_LONG).show();
+            updateUI(null);
         }
     }
 
@@ -112,10 +112,14 @@ public class GoogleLogin extends AppCompatActivity {
     protected void onStart() {
         //To check if the user has signed in in the previous session
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (account != null) {
-            startActivity(new Intent(GoogleLogin.this, MainPage.class));
+        updateUI(account);
+        super.onStart();
+    }
+
+    private void updateUI(GoogleSignInAccount account) {
+        if(account != null) {
+            startActivity(new Intent(getApplicationContext(), MainPage.class));
             finish();
         }
-        super.onStart();
     }
 }
