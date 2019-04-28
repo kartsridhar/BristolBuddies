@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Register extends AppCompatActivity {
 
     TextInputLayout firstName, lastName, uName, uGender, uPass;
-    String db_fname, db_lname, db_uname, db_ugender, db_upass, db_unat, db_uint,db_upers,db_upref;
+    String db_fname, db_lname, db_uname, db_upass, db_unat, db_uint,db_upers,db_upref;
     Button register;
     Switch IsBuddy;
     private RetroAPI retroAPI;
@@ -57,7 +57,6 @@ public class Register extends AppCompatActivity {
                 db_fname = firstName.getEditText().getText().toString().trim();
                 db_lname = lastName.getEditText().getText().toString().trim();
                 db_uname = uName.getEditText().getText().toString().trim();
-                db_ugender = "";
                 db_upass = uPass.getEditText().getText().toString().trim();
                 db_unat = "";
                 db_uint = "";
@@ -69,14 +68,22 @@ public class Register extends AppCompatActivity {
                 if (db_fname.isEmpty()) {
                     firstName.setError("Field can't be empty");
                     errorCount += 1;
-                } else {
+                } else if(!checkName(db_fname)) {
+                    firstName.setError("Only letters!");
+                    errorCount += 1;
+                }
+                else {
                     firstName.setError(null);
                 }
 
                 if (db_lname.isEmpty()) {
                     lastName.setError("Field can't be empty");
                     errorCount += 1;
-                } else {
+                } else if(!checkName(db_lname)) {
+                    lastName.setError("Only letters!");
+                    errorCount += 1;
+                }
+                else {
                     lastName.setError(null);
                 }
 
@@ -105,7 +112,8 @@ public class Register extends AppCompatActivity {
                 if (IsBuddy.isChecked()) {
                     Toast.makeText(Register.this, "MADE IT TO BUDDY REG", Toast.LENGTH_LONG).show();
                     final Buddy buddy = new Buddy(db_fname, db_lname, db_uname, "", db_unat, "", "", "", db_upass, 0, null, null, null);
-                    if (errorCount > 1 && errorCount < 9) {
+                    if (errorCount != 0) {
+                        Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
                     } else {
                         Intent j = new Intent(getApplicationContext(), Questionaire.class);
                         j.putExtra("buddy_data", buddy);
@@ -113,9 +121,9 @@ public class Register extends AppCompatActivity {
                         finish();
                     }
                 } else {
-                    final Student student = new Student(db_fname, db_lname, db_ugender, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
-                    if (errorCount > 1 && errorCount < 9) {
-                        Toast.makeText(getApplicationContext(), "Check Fields!", Toast.LENGTH_LONG).show();
+                    final Student student = new Student(db_fname, db_lname, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
+                    if (errorCount != 0) {
+                        Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
                     } else {
                         Intent j = new Intent(getApplicationContext(), Questionaire.class);
                         j.putExtra("serialize_data1", student);
@@ -130,11 +138,10 @@ public class Register extends AppCompatActivity {
 
     public static boolean checkUsername(String str) {
 
-        if(str.length() != 7) return false;
-
         if(Character.isLetter(str.charAt(0)) && Character.isLetter(str.charAt(1))
                 && Character.isDigit(str.charAt(2)) && Character.isDigit(str.charAt(3))
-                && Character.isDigit(str.charAt(4)))
+                && Character.isDigit(str.charAt(4)) && Character.isDigit(str.charAt(5))
+                && Character.isDigit(str.charAt(6)))
             return true;
         else return false;
     }
