@@ -90,7 +90,7 @@ public class StudentDbDAO implements StudentDAO {
     public boolean add(Student student){
         String insertTableSQL = "INSERT INTO BRISBUDS"
             + "(FIRSTNAME, LASTNAME, USERNAME, PASSWORD, DEPARTMENT, NATIONALITY, INTERESTS, PERSONALITY, PREFERENCES, BUDDY) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+                + "VALUES(?,?,?,?,?,?,?,?,?,?);";
 
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(insertTableSQL)) {
