@@ -34,7 +34,7 @@ public class RegMainPresenterTest {
     public void fetchValidDataShouldLoadIntoView() {
 
         // init empty student to receive in
-        Student student = new Student("", "", "", "",
+        Student student = new Student("", "", "",
                 "", "", "", "", "", "", "");
 
         // since its mock, telling the regDataSource to return a fixed student response

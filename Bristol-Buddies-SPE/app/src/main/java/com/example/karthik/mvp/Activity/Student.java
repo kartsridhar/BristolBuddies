@@ -9,7 +9,6 @@ public class Student implements Serializable {
     private final String userName;
     private final String password;
     private final String department;
-    private final String yearofStudy;
     private final String nationality;
     private final String interests;
     private final String personality;
@@ -26,7 +25,6 @@ public class Student implements Serializable {
         userName="";
         password = "";
         department = "";
-        yearofStudy = "";
         nationality = "";
         interests = "";
         personality = "";
@@ -34,15 +32,14 @@ public class Student implements Serializable {
         buddy = "";
     }
 
-    public Student(String firstName,String lastName, String userName, String password, String department,
-                   String yearofStudy,String nationality,String interests,String personality,String preferences, String buddy ){
+    public Student(String firstName,String lastName, String userName, String password, String departmentgu
+                   ,String nationality,String interests,String personality,String preferences, String buddy ){
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.department = department;
-        this.yearofStudy = yearofStudy;
         this.nationality = nationality;
         this.interests = interests;
         this.personality = personality;
@@ -68,21 +65,15 @@ public class Student implements Serializable {
     public String getDepartment(){
         return department;
     }
-    public String getYearofStudy(){
-        return yearofStudy;
-    }
     public String getNationality() {
         return nationality;
     }
-
     public String getInterests() {
         return interests;
     }
-
     public String getPersonality() {
         return personality;
     }
-
     public String getPreferences() {
         return preferences;
     }
@@ -99,7 +90,6 @@ public class Student implements Serializable {
                 + " Username: " + userName
                 + " Password: " + password
                 + " Department: " + department
-                + " Year of Study: " + yearofStudy
                 + " Nationality: " + nationality
                 + " Interests: " + interests
                 + " personality: "+ personality

@@ -388,7 +388,7 @@ public class questionaire2 extends AppCompatActivity {
 
         if (student != null) {
             Student student2 = new Student(student.getFirstName(), student.getLastName(),
-                    student.getUserName(), student.getPassword(), student.getDepartment(), student.getYearofStudy(),
+                    student.getUserName(), student.getPassword(), student.getDepartment(),
                     student.getNationality(), student.getInterests(), personality, pref, "");
             Intent k = new Intent(getApplicationContext(), Matching.class);
             k.putExtra("serialize_data3", student2);
@@ -397,7 +397,6 @@ public class questionaire2 extends AppCompatActivity {
         } else if (buddy != null) {
             Toast.makeText(getApplicationContext(), buddy.getUsername(), Toast.LENGTH_LONG).show();
             Buddy buddy2 = new Buddy(buddy.getFirstName(), buddy.getLastName(), buddy.getUsername(), buddy.getCourse(), buddy.getNationality(), buddy.getInterests(), personality, pref, buddy.getPassword(), 0, "", "","");
-//            Buddy buddy2 = new Buddy ("","","L","","","","","","",0,"","","")"
 
             Call<Buddy> call2 = retroAPI.createBuddy(buddy2);
 

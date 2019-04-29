@@ -62,8 +62,8 @@ public class Matching extends AppCompatActivity {
                 Log.d("BUDDYEXISTS", bestBud.getFirstName());
 
                 Student student2 = new Student(student.getFirstName(),student.getLastName()
-                        ,student.getUserName(),student.getPassword(),student.getDepartment(),
-                        student.getYearofStudy(),student.getNationality(),student.getInterests(),
+                        ,student.getUserName(),student.getPassword(),student.getDepartment()
+                        ,student.getNationality(),student.getInterests(),
                         student.getPersonality(), student.getPreferences(), bestBud.getUsername());
                 Call<Student> call2 = retroAPI.createStudent(student2);
                     matchingBuddy();

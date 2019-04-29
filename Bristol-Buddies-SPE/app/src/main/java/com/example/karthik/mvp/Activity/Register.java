@@ -138,7 +138,7 @@ public class Register extends AppCompatActivity {
                                 finish();
                             }
                         } else {
-                            final Student student = new Student(db_fname, db_lname, db_uname, db_upass, "", "", db_unat, db_uint, db_upers, db_upref, "");
+                            final Student student = new Student(db_fname, db_lname, db_uname, db_upass, "", db_unat, db_uint, db_upers, db_upref, "");
 
                             if (errorCount != 0) {
                                 Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();
