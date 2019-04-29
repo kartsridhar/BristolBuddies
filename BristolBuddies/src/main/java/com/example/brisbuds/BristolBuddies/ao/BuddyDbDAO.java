@@ -82,18 +82,18 @@ public class BuddyDbDAO implements BuddyDAO {
     }
 
     @Override
-    public boolean update(long id, Buddy student){
-        String updateTableSQL = "UPDATE BUDDIES SET FIRSTNAME=?, LASTNAME=?, USERNAME=?, DEPARTMENT=?, YEAROFSTUDY=?, NATIONALITY=?, BUDDY=? WHERE ID=?";
+    public boolean update(long id, Buddy buddy){
+        String updateTableSQL = "UPDATE BUDDIES SET FIRSTNAME=?, LASTNAME=?, USERNAME=?, DEPARTMENT=?, NATIONALITY=?, STUDENT1ID=?, STUDENT2ID=?, STUDENT3ID=? WHERE ID=?";
         try (PreparedStatement preparedStatement = this.conn
                 .prepareStatement(updateTableSQL);) {
-            preparedStatement.setString(1, student.getFirstName());
-            preparedStatement.setString(2, student.getLastName());
-            preparedStatement.setString(3, student.getUsername());
-            preparedStatement.setString(4, student.getCourse());
-            preparedStatement.setString(5, student.getYearofStudy());
-            preparedStatement.setString(6,student.getNationality());
-            preparedStatement.setString(7,student.getBuddy());
-            preparedStatement.setString(8, Long.toString(id));
+            preparedStatement.setString(1, buddy.getFirstName());
+            preparedStatement.setString(2, buddy.getLastName());
+            preparedStatement.setString(3, buddy.getUsername());
+            preparedStatement.setString(4, buddy.getCourse());
+            preparedStatement.setString(6, buddy.getStudent1ID());
+            preparedStatement.setString(7, buddy.getStudent2ID());
+            preparedStatement.setString(8, buddy.getStudent3ID());
+            preparedStatement.setString(9, Long.toString(id));
 
             preparedStatement.executeUpdate();
             return true;
