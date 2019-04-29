@@ -166,7 +166,7 @@ public class Questionaire extends AppCompatActivity {
 
 
             if (student != null) {
-                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getGender(), student.getUserName(), student.getPassword(), fac, student.getYearofStudy(), nat, interests, "", "", "");
+                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(), fac, student.getYearofStudy(), nat, interests, "", "", "");
                 Intent k = new Intent(getApplicationContext(), questionaire2.class);
                 k.putExtra("serialize_data2", student1);
                 startActivity(k);

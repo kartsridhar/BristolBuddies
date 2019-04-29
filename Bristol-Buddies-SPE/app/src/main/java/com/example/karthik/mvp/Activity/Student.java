@@ -6,7 +6,6 @@ public class Student implements Serializable {
     private long id;
     private final String firstName;
     private final String lastName;
-    private final String gender;
     private final String userName;
     private final String password;
     private final String department;
@@ -24,7 +23,6 @@ public class Student implements Serializable {
         id = 0;
         firstName = "";
         lastName = "";
-        gender = "";
         userName="";
         password = "";
         department = "";
@@ -36,12 +34,11 @@ public class Student implements Serializable {
         buddy = "";
     }
 
-    public Student(String firstName,String lastName, String gender, String userName, String password, String department,
+    public Student(String firstName,String lastName, String userName, String password, String department,
                    String yearofStudy,String nationality,String interests,String personality,String preferences, String buddy ){
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.gender = gender;
         this.userName = userName;
         this.password = password;
         this.department = department;
@@ -64,7 +61,6 @@ public class Student implements Serializable {
     public String getLastName(){
         return lastName;
     }
-    public String getGender(){ return gender; }
     public String getUserName(){ return userName; }
     public String getPassword(){
         return password;
@@ -100,7 +96,6 @@ public class Student implements Serializable {
         return "ID" + id
                 + " First Name: " + firstName
                 + " Last Name: " + lastName
-                + " Gender: " + gender
                 + " Username: " + userName
                 + " Password: " + password
                 + " Department: " + department

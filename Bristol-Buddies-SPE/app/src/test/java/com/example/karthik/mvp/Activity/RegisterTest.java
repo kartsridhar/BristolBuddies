@@ -26,7 +26,6 @@ public class RegisterTest {
     private static final String TEST_FNAME = "Successful";
     private static final String TEST_LNAME = "Test";
     private static final String TEST_UNAME = "ab12345";
-    private static final String TEST_GENDER = "M";
     private static final String TEST_PWD = "pr0mis1ng";
     private static final String TEST_DEPT = "Engg";
     private static final String TEST_YOS = "2";
@@ -42,7 +41,7 @@ public class RegisterTest {
 
     @Before
     public void setUp() {
-        Student student = new Student(TEST_FNAME, TEST_LNAME, TEST_GENDER, TEST_UNAME, TEST_PWD,
+        Student student = new Student(TEST_FNAME, TEST_LNAME, TEST_UNAME, TEST_PWD,
                  TEST_DEPT, TEST_YOS, TEST_NAT, TEST_INT, TEST_PER, TEST_PRE, TEST_BUD);
         mockStudentList = new ArrayList<>();
         mockStudentList.add(student);
@@ -68,7 +67,6 @@ public class RegisterTest {
 
         //Then
         mockSubscriber.assertNoErrors();
-//        mockSubscriber.assertComplete();
     }
 
     @Test

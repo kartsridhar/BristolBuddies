@@ -7,6 +7,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
+        multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -19,7 +20,7 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
+        exclude 'multiDexEnabled trueMETA-INF/NOTICE'
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
@@ -49,6 +50,9 @@ dependencies {
     implementation 'com.android.support:support-media-compat:28.0.0'
     implementation 'com.xeoh.android:checkboxgroup:1.0.1'
 
+    //Mockito
+    testImplementation 'org.mockito:mockito-core:1.+'
+
     // RX JAVA
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
@@ -66,6 +70,8 @@ dependencies {
 
     //Messaging
     implementation 'com.applozic.communication.uiwidget:mobicomkitui:5.34'
+
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'de.hdodenhof:circleimageview:2.2.0' //for circular images
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'//for image cropping

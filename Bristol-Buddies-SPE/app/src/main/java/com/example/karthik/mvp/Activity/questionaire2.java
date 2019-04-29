@@ -387,7 +387,7 @@ public class questionaire2 extends AppCompatActivity {
         }
 
         if (student != null) {
-            Student student2 = new Student(student.getFirstName(), student.getLastName(), student.getGender(),
+            Student student2 = new Student(student.getFirstName(), student.getLastName(),
                     student.getUserName(), student.getPassword(), student.getDepartment(), student.getYearofStudy(),
                     student.getNationality(), student.getInterests(), personality, pref, "");
             Intent k = new Intent(getApplicationContext(), Matching.class);
