@@ -67,8 +67,6 @@
             android:id="@+id/nat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/null"
-            android:layout_alignBottom="@+id/null"
             android:layout_weight="1"
             android:entries="@array/country_arrays"
             android:prompt="@string/country_prompt"
