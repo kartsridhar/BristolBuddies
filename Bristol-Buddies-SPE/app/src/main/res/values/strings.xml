@@ -20,4 +20,5 @@
     <string name="facebook_app_id">317735402200331</string>
     <string name="fb_login_protocol_scheme">fb317735402200331</string>
     <string name="questions_answered">questions_answered</string>
+    <string name="title_activity_get_buddy">get_buddy</string>
 </resources>

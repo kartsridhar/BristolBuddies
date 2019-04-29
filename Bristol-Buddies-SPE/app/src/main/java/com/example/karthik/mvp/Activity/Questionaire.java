@@ -156,6 +156,9 @@ public class Questionaire extends AppCompatActivity {
                 if (sport.isChecked()){
                     interests += "1";
                 }
+                if (clubs.isChecked()){
+                    interests += "1";
+                }
                 else interests +="0";
                 if (none.isChecked()){
                     interests = "000000";
