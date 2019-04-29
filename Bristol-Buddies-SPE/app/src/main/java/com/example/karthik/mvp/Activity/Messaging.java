@@ -43,9 +43,6 @@ public class Messaging extends AppCompatActivity  {
         Applozic.init(getApplicationContext(), "bristol1531aa8e1d36eade3217f60d8c8b6cbc");
 
         User user = new User();
-        //  final Student student = (Student)getIntent().getSerializableExtra("messagingData");
-        //     user.setUserId(student.getUserName());
-        //     user.setDisplayName(student.getFirstName() + " " + student.getLastName());
         user.setUserId("ks17226");
         user.setDisplayName("KARTHIK SRIDHAR");
         user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());
@@ -121,10 +118,7 @@ public class Messaging extends AppCompatActivity  {
         MobiComUserPreference.getInstance(context).setContactGroupIdList(groupMemberSet);
 
         Intent i = new Intent(getApplicationContext(), ConversationActivity.class);
-        //              i.putExtra(ConversationUIService.USER_ID, student.getUserName());
-        //              i.putExtra(ConversationUIService.DISPLAY_NAME, student.getFirstName());
         i.putExtra(ConversationUIService.USER_ID, "ks17226");
-//         i.putExtra(ConversationUIService.CONTEXT_BASED_CHAT,true) ;
         i.putExtra(ConversationUIService.DISPLAY_NAME, "KARTHIK");
         i.putExtra(ConversationUIService.GROUP_NAME_LIST_CONTACTS,"ks17726");
         startActivity(i);

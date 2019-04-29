@@ -22,7 +22,6 @@ public class Buddy2Controller {
     // Update a buddy
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity update(@RequestBody Buddy student) {
-        System.out.println();
         if (edao.update(student)) {
             return new ResponseEntity<>(null, HttpStatus.OK);
         } else {

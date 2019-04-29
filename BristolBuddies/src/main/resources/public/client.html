@@ -120,14 +120,11 @@
                 "      <small>"+obj.userName+"</small>"+
                 "    </div>"+
                 "  </div>"+
-                "  <div style=\"padding-left:35px;\">"+
-                "    <img src=\"graduation.png\">"+ obj.yearofStudy+""+
+                "  <div style=\"padding-left:35px;\">" +
+                "    <img src=\"country.png\"> "+obj.nationality+""+
                 "  </div>"+
-                "  <div style=\"padding-left:35px;\">"+
-                "    <img src=\"gender-symbol.png\">"+obj.gender+""+
-                "    <div style=\"padding-left:35px;\">"+
-                "    </div>"+
-                "    <img src=\"safe.png\"> "+obj.buddy+""+
+                "  <div style=\"padding-left:35px;\">" +
+                "    <img src=\"match.png\"> "+obj.buddy+""+
                 "  </div>"+
                 "  <div style=\"padding-left:35px;\">"+
                 "    <a href=\"#\" class=\"editButton\"><img src=\"edit.png\">Edit</a>"+
@@ -175,12 +172,10 @@
           element.find(".editButton").on("click",function(){
               $("#editFirstName").val(student.firstName);
               $("#editLastName").val(student.lastName);
-              $("#editgender").val(student.gender);
               $("#editBuddy").val(student.buddy);
+              $("#editNationality").val(student.nationality);
               $("#edituserName").val(student.userName);
-              $("#editpassword").val(student.password);
               $("#editDept").val(student.department);
-              $("#edityearofStudy").val(student.yearofStudy);
 
 
               $('#editDialog').dialog({
@@ -191,12 +186,10 @@
                           var editStudent={
                               firstName:$("#editFirstName").val(),
                               lastName:$("#editLastName").val(),
-                              gender:$("#editgender").val(),
                               userName:$("#edituserName").val(),
-                              password:$("#editpassword").val(),
                               department:$("#editDept").val(),
-                              yearofStudy:$("#edityearofStudy").val(),
-                              buddy:$("editBuddy").val(),
+                              nationality:$("#editNationality").val(),
+                              buddy:$("#editBuddy").val(),
 
                           };
                           $("#detail").html("UPDATING...");
@@ -224,11 +217,10 @@
 
           $("#addFirstName").val("");
           $("#addLastName").val("");
-          $("#addgender").val("");
           $("#adduserName").val("");
-          $("#addpassword").val("");
           $("#addDept").val("");
-          $("#addyearofStudy").val("");
+          $("#addNationality").val("");
+          $("#addBuddy").val("");
 
         $("#addDialog").dialog({
             modal:true,
@@ -236,13 +228,12 @@
             buttons:{
               "Add":function(){
                 var addStudent={
-                  firstName:$("#addFirstName").val(),
-                  lastName:$("#addLastName").val(),
-                  gender:$("#addgender").val(),
-                  userName:$("#adduserName").val(),
-                  password:$("#addpassword").val(),
-                  department:$("#addDept").val(),
-                  yearofStudy:$("#addyearofStudy").val(),
+                    firstName:$("#addFirstName").val(),
+                    lastName:$("#addLastName").val(),
+                    userName:$("#adduserName").val(),
+                    department:$("#addDept").val(),
+                    nationality:$("#addNationality").val(),
+                    buddy:$("#addBuddy").val(),
                 };
                 $("#detail").html("ADDING...");
                 $( this ).dialog( "close" );
@@ -304,6 +295,7 @@
     });
 
 </script>
+
     <script>
    function loadStudents(){
         $("#people").show();
@@ -329,6 +321,7 @@
         });
       }
   </script>
+
 </head>
 
 <body>
@@ -365,11 +358,10 @@
 
       <label for="editFirstName">First Name</label><input type="text" id="editFirstName" value="" class="text ui-widget-content ui-corner-all">
       <label for="editLastName">Last Name</label><input type="text" id="editLastName" value="" class="text ui-widget-content ui-corner-all">
-      <label for="editgender">Gender</label><input type="text" id="editgender" value="" class="text ui-widget-content ui-corner-all">
       <label for="edituserName">Username</label><input type="text" id="edituserName" value="" class="text ui-widget-content ui-corner-all">
-      <label for="editpassword">Password</label><input type="text" id="editpassword" value="" class="text ui-widget-content ui-corner-all">
       <label for="editDept">Department</label><input type="text" id="editDept" value="" class="text ui-widget-content ui-corner-all">
-      <label for="edityearofStudy">YearOfStudy</label><input type="text" id="edityearofStudy" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editNationality">Nationality</label><input type="text" id="editNationality" value="" class="text ui-widget-content ui-corner-all">
+      <label for="editBuddy">Buddy</label><input type="text" id="editBuddy" value="" class="text ui-widget-content ui-corner-all">
 
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -384,11 +376,10 @@
 
       <label for="addFirstName">First Name</label><input type="text" id="addFirstName" value="" class="text ui-widget-content ui-corner-all">
       <label for="addLastName">Last Name</label><input type="text" id="addLastName" value="" class="text ui-widget-content ui-corner-all">
-      <label for="addgender">Gender</label><input type="text" id="addgender" value="" class="text ui-widget-content ui-corner-all">
       <label for="adduserName">Username</label><input type="text" id="adduserName" value="" class="text ui-widget-content ui-corner-all">
-      <label for="addpassword">password</label><input type="text" id="addpassword" value="" class="text ui-widget-content ui-corner-all">
       <label for="addDept">Department</label><input type="text" id="addDept" value="" class="text ui-widget-content ui-corner-all">
-      <label for="addyearofStudy">YearOfStudy</label><input type="text" id="addyearofStudy" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addNationality">Nationality</label><input type="text" id="addNationality" value="" class="text ui-widget-content ui-corner-all">
+      <label for="addBuddy">Buddy</label><input type="text" id="addBuddy" value="" class="text ui-widget-content ui-corner-all">
 
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">

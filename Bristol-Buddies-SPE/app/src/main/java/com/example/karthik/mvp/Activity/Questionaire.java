@@ -9,23 +9,23 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.karthik.mvp.R;
 
 public class Questionaire extends AppCompatActivity {
-    TextInputLayout faculty,Gradyear,Nationality;
     CheckBox ArtandMus,Tele,Vidgames,Gigs,clubs,none,creat,sport;
-    String fac,gY,nat;
+    String fac,nat;
     Button question1;
+    Spinner nationality, faculty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionaire);
-        faculty = findViewById(R.id.faculty);
-        Nationality = findViewById(R.id.nat);
-
+        faculty = findViewById(R.id.facultySpinner);
+        nationality = findViewById(R.id.nat);
 
         ArtandMus = findViewById(R.id.artmus);
         Tele = findViewById(R.id.tele);
@@ -127,6 +127,7 @@ public class Questionaire extends AppCompatActivity {
         question1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 fac = faculty.getEditText().getText().toString();
                 nat = Nationality.getEditText().getText().toString();
                 String interests = "";
@@ -161,6 +162,46 @@ public class Questionaire extends AppCompatActivity {
                 if (none.isChecked()){
                     interests = "000000";
                 }
+=======
+        fac = faculty.getSelectedItem().toString();
+        nat = nationality.getSelectedItem().toString();
+
+        String interests = "";
+        if (ArtandMus.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Tele.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Vidgames.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Gigs.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (creat.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+
+        if (sport.isChecked()){
+            interests += "1";
+        }
+        else interests += "0";
+
+        if (clubs.isChecked()){
+            interests += "1";
+        }
+
+        else interests +="0";
+        if (none.isChecked()){
+            interests = "0000000";
+        }
+>>>>>>> master
 
 
             if (student != null) {

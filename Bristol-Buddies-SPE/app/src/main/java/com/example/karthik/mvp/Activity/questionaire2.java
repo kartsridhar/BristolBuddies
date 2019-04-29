@@ -75,9 +75,6 @@ public class questionaire2 extends AppCompatActivity {
 
         question2 = findViewById(R.id.question2);
 
-
-
-
         nones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -300,19 +297,13 @@ public class questionaire2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createPost();
-
-
             }
         });
-
     }
 
     private void createPost() {
         final Student student = (Student) getIntent().getSerializableExtra("serialize_data2");
         final Buddy buddy = (Buddy) getIntent().getSerializableExtra("buddy_data1");
-
-
-
 
         String personality = "";
         String pref = "";
@@ -332,7 +323,6 @@ public class questionaire2 extends AppCompatActivity {
         if (nones.isChecked()) {
             personality = "0000";
         }
-
 
         if (int4.isChecked()) {
             pref += "3";
@@ -388,8 +378,8 @@ public class questionaire2 extends AppCompatActivity {
 
         if (student != null) {
             Student student2 = new Student(student.getFirstName(), student.getLastName(),
-                    student.getUserName(), student.getPassword(), student.getDepartment(),
-                    student.getNationality(), student.getInterests(), personality, pref, "");
+            student.getUserName(), student.getPassword(), student.getDepartment(),
+            student.getNationality(), student.getInterests(), personality, pref, "");
             Intent k = new Intent(getApplicationContext(), Matching.class);
             k.putExtra("serialize_data3", student2);
             startActivity(k);
