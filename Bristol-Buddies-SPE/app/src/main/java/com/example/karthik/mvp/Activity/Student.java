@@ -32,7 +32,7 @@ public class Student implements Serializable {
         buddy = "";
     }
 
-    public Student(String firstName,String lastName, String userName, String password, String departmentgu
+    public Student(String firstName,String lastName, String userName, String password, String department
                    ,String nationality,String interests,String personality,String preferences, String buddy ){
 
         this.firstName = firstName;

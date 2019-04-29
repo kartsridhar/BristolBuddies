@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class StudentTest {
 
-    private Student s = new Student(100, "Frank", "Castle", "Male", "fc17231", "quardive", "PE", "3", "American", "1001", "1100", "0001", null);
+    private Student s = new Student(100, "Frank", "Castle", "fc17231", "quardive", "PE", "American", "1001", "1100", "0001", null);
 
     @Test
     public void getId() {
@@ -25,11 +25,6 @@ public class StudentTest {
     }
 
     @Test
-    public void getGender() {
-        assertEquals("Male", s.getGender());
-    }
-
-    @Test
     public void getUserName() {
         assertEquals("fc17231", s.getUserName());
     }
@@ -42,11 +37,6 @@ public class StudentTest {
     @Test
     public void getDepartment() {
         assertEquals("PE", s.getDepartment());
-    }
-
-    @Test
-    public void getYearofStudy() {
-        assertEquals("3", s.getYearofStudy());
     }
 
     @Test

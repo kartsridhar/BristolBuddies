@@ -9,12 +9,8 @@ public interface StudentDAO {
      Student getStudent(long id);
      List<Student> getByFirstName(String name1);
      List <Student> getByLastName(String name2);
-     List <Student> getByGender (String gender);
      List <Student> getByUsername (String username);
      List <Student> getByDepartment (String department);
-     List <Student> getByYearofStudy (String yearOfStudy);
-     List <Student> getByNationality (String nationality);
-
 
 
      boolean add(Student student);
