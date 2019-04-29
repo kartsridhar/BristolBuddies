@@ -16,14 +16,32 @@ public class Buddy {
     private final String student2ID;
     private final String student3ID;
 
+    public Buddy(){
+        super();
+        id = 0;
+        firstName = "";
+        lastName = "";
+        username="";
+        password = "";
+        course = "";
+        nationality = "";
+        interests = "";
+        personality = "";
+        preferences = "";
+        numberOfMatches = 0;
+        student1ID = "";
+        student2ID = "";
+        student3ID = "";
+    }
 
-    public Buddy(long id, String firstName, String lastName, String userName, String course, String nationality,
+
+    public Buddy(long id, String firstName, String lastName, String username, String course, String nationality,
                  String interests, String personality, String preferences, String password,
                  int numberOfMatches, String student1ID, String student2ID, String student3ID){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = userName;
+        this.username = username;
         this.course = course;
         this.nationality = nationality;
         this.interests = interests;

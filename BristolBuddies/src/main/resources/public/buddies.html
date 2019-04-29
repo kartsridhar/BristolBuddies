@@ -99,8 +99,8 @@
                 "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
                 "    <div class=\"peopleContent\">"+
                 "      <h4>"+obj.firstName+" "+obj.lastName+"</h4>"+
-                "      "+obj.department+"<br>"+
-                "      <small>"+obj.userName+"</small>"+
+                "      "+obj.course+"<br>"+
+                "      <small>"+obj.username+"</small>"+
                 "    </div>"+
                 "  </div>"+
                 "";
@@ -116,8 +116,8 @@
                 "    <div class=\"portrait\"><img src=\"nopic.png\"></div>"+
                 "    <div class=\"peopleContent\">"+
                 "      <h3>"+obj.firstName+" "+obj.lastName+"</h3>"+
-                "      "+obj.department+"<br>"+
-                "      <small>"+obj.userName+"</small>"+
+                "      "+obj.course+"<br>"+
+                "      <small>"+obj.username+"</small>"+
                 "    </div>"+
                 "  </div>"+
                 "  <div style=\"padding-left:35px;\">" +
@@ -178,9 +178,8 @@
                 $("#editStudent1ID").val(student.student1ID);
                 $("#editStudent2ID").val(student.student2ID);
                 $("#editStudent3ID").val(student.student3ID);
-                $("#edituserName").val(student.userName);
-                $("#editDept").val(student.department);
-                $("#edityearofStudy").val(student.yearofStudy);
+                $("#editusername").val(student.username);
+                $("#editCourse").val(student.course);
                 $("#editNumberOfMatches").val(student.numberOfMatches);
 
                 $('#editDialog').dialog({
@@ -191,19 +190,18 @@
                             var editStudent={
                                 firstName:$("#editFirstName").val(),
                                 lastName:$("#editLastName").val(),
-                                userName:$("#edituserName").val(),
-                                department:$("#editDept").val(),
-                                yearofStudy:$("#edityearofStudy").val(),
+                                userName:$("#editusername").val(),
+                                course:$("#editCourse").val(),
                                 student1ID:$("#editStudent1ID").val(),
                                 student2ID:$("#editStudent2ID").val(),
                                 student3ID:$("#editStudent3ID").val(),
-                                numberOfMatches:$("#editStudent3ID").val(""),
+                                numberOfMatches:$("#editNumberOfMatches").val().toString(),
                             };
                             $("#detail").html("UPDATING...");
                             $( this ).dialog( "close" );
                             $.ajax({
-                                url:server +"buddies/"+student.id,
-                                method:"PUT",
+                                url:server +"buddies2/",
+                                method:"POST",
                                 data:JSON.stringify(editStudent),
                                 contentType: 'application/json',
                             }).done(function(data){
@@ -224,9 +222,8 @@
 
                 $("#addFirstName").val("");
                 $("#addLastName").val("");
-                $("#adduserName").val("");
-                $("#addDept").val("");
-                $("#addyearofStudy").val("");
+                $("#addusername").val("");
+                $("#addCourse").val("");
                 $("#addStudent1ID").val("");
                 $("#addStudent2ID").val("");
                 $("#addStudent3ID").val("");
@@ -241,13 +238,12 @@
                             var addStudent={
                                 firstName:$("#addFirstName").val(),
                                 lastName:$("#addLastName").val(),
-                                userName:$("#adduserName").val(),
-                                department:$("#addDept").val(),
-                                yearofStudy:$("#addyearofStudy").val(),
+                                username:$("#addusername").val(),
+                                course:$("#addCourse").val(),
                                 student1ID:$("#addStudent1ID").val(),
                                 student2ID:$("#addStudent2ID").val(),
                                 student3ID:$("#addStudent3ID").val(),
-                                numberOfMatches:$("#addStudent3ID").val(""),
+                                numberOfMatches:$("#addNumberOfMatches").val().toString(),
                         };
                             $("#detail").html("ADDING...");
                             $( this ).dialog( "close" );
@@ -372,9 +368,8 @@
 
             <label for="editFirstName">First Name</label><input type="text" id="editFirstName" value="" class="text ui-widget-content ui-corner-all">
             <label for="editLastName">Last Name</label><input type="text" id="editLastName" value="" class="text ui-widget-content ui-corner-all">
-            <label for="edituserName">Username</label><input type="text" id="edituserName" value="" class="text ui-widget-content ui-corner-all">
-            <label for="editDept">Department</label><input type="text" id="editDept" value="" class="text ui-widget-content ui-corner-all">
-            <label for="edityearofStudy">YearOfStudy</label><input type="text" id="edityearofStudy" value="" class="text ui-widget-content ui-corner-all">
+            <label for="editusername">Username</label><input type="text" id="editusername" value="" class="text ui-widget-content ui-corner-all">
+            <label for="addCourse">Course</label><input type="text" id="editCourse" value="" class="text ui-widget-content ui-corner-all">
             <label for="editStudent1ID">1st Match</label><input type="text" id="editStudent1ID" value="" class="text ui-widget-content ui-corner-all">
             <label for="editStudent2ID">2nd Match</label><input type="text" id="editStudent2ID" value="" class="text ui-widget-content ui-corner-all">
             <label for="editStudent3ID">3rd Match</label><input type="text" id="editStudent3ID" value="" class="text ui-widget-content ui-corner-all">
@@ -393,14 +388,12 @@
 
             <label for="addFirstName">First Name</label><input type="text" id="addFirstName" value="" class="text ui-widget-content ui-corner-all">
             <label for="addLastName">Last Name</label><input type="text" id="addLastName" value="" class="text ui-widget-content ui-corner-all">
-            <label for="adduserName">Username</label><input type="text" id="adduserName" value="" class="text ui-widget-content ui-corner-all">
-            <label for="addDept">Department</label><input type="text" id="addDept" value="" class="text ui-widget-content ui-corner-all">
-            <label for="addyearofStudy">YearOfStudy</label><input type="text" id="addyearofStudy" value="" class="text ui-widget-content ui-corner-all">
+            <label for="addusername">Username</label><input type="text" id="addusername" value="" class="text ui-widget-content ui-corner-all">
+            <label for="addCourse">Course</label><input type="text" id="addCourse" value="" class="text ui-widget-content ui-corner-all">
             <label for="addStudent1ID">1st Match</label><input type="text" id="addStudent1ID" value="" class="text ui-widget-content ui-corner-all">
             <label for="addStudent2ID">2nd Match</label><input type="text" id="addStudent2ID" value="" class="text ui-widget-content ui-corner-all">
             <label for="addStudent3ID">3rd Match</label><input type="text" id="addStudent3ID" value="" class="text ui-widget-content ui-corner-all">
             <label for="addnumberOfMatches">Number of Matches</label><input type="text" id="addNumberOfMatches" value="" class="text ui-widget-content ui-corner-all">
-
 
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
             <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
