@@ -1,6 +1,7 @@
 package com.example.brisbuds.BristolBuddies;
 
 public class Buddy {
+    private final long id;
     private final String firstName;
     private final String lastName;
     private final String username;
@@ -16,9 +17,10 @@ public class Buddy {
     private final String student3ID;
 
 
-    public Buddy(String firstName, String lastName, String userName, String course, String nationality,
+    public Buddy(long id, String firstName, String lastName, String userName, String course, String nationality,
                  String interests, String personality, String preferences, String password,
                  int numberOfMatches, String student1ID, String student2ID, String student3ID){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = userName;
@@ -74,6 +76,7 @@ public class Buddy {
     public String getStudent3ID() {
         return student3ID;
     }
+    public long getId() { return id;}
 
     @Override
     public String toString() {
