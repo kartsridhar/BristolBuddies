@@ -16,7 +16,7 @@ import com.example.karthik.mvp.R;
 
 public class Questionaire extends AppCompatActivity {
     CheckBox ArtandMus,Tele,Vidgames,Gigs,clubs,none,creat,sport;
-    String fac,gY,nat;
+    String fac,nat;
     Button question1;
     Spinner nationality, faculty;
 
@@ -26,7 +26,6 @@ public class Questionaire extends AppCompatActivity {
         setContentView(R.layout.activity_questionaire);
         faculty = findViewById(R.id.facultySpinner);
         nationality = findViewById(R.id.nat);
-
 
         ArtandMus = findViewById(R.id.artmus);
         Tele = findViewById(R.id.tele);
@@ -156,13 +155,15 @@ public class Questionaire extends AppCompatActivity {
         if (sport.isChecked()){
             interests += "1";
         }
+        else interests += "0";
+
         if (clubs.isChecked()){
             interests += "1";
         }
 
         else interests +="0";
         if (none.isChecked()){
-            interests = "000000";
+            interests = "0000000";
         }
 
 

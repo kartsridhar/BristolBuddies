@@ -26,60 +26,34 @@
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true" />
-    
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/faculty"
+
+    <Spinner
+        android:id="@+id/facultySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="35dp"
-        android:textColorHint="#ffffff"
-        app:errorEnabled="true">
+        android:layout_weight="1"
+        android:layout_marginTop="80dp"
+        android:entries="@array/faculty_array"
+        android:prompt="@string/faculty_prompt"
+        android:spinnerMode="dialog" />
 
-        <Spinner
-            android:id="@+id/facultySpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/faculty_array"
-            android:prompt="@string/faculty_prompt"
-            android:spinnerMode="dialog" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/gradyear"
+    <Spinner
+        android:id="@+id/nat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/faculty"
-        android:layout_marginTop="18dp"
-        android:textColorHint="#ffffff"
-        app:errorEnabled="true" />
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gradyear"
-        android:layout_marginTop="49dp"
-        android:textColorHint="#ffffff"
-        app:errorEnabled="true">
-
-        <Spinner
-            android:id="@+id/nat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/country_arrays"
-            android:prompt="@string/country_prompt"
-            android:spinnerMode="dialog" />
-
-    </android.support.design.widget.TextInputLayout>
+        android:layout_weight="1"
+        android:layout_marginTop="150dp"
+        android:entries="@array/country_arrays"
+        android:prompt="@string/country_prompt"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="275dp"
         android:layout_centerHorizontal="true"
-        android:text="       Interests (Please select all that apply)"
+        android:layout_below="@+id/nat"
+        android:layout_marginTop="80dp"
+        android:text="    Interests (Please select all that apply)"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -131,7 +105,6 @@
         android:textColor="#ffffff"
         android:text="Club nights"
         android:textSize="10dp"
-
         />
 
     <CheckBox
@@ -142,8 +115,8 @@
         android:text="None of the above"
         android:textColor="#ffffff"
         android:textSize="10dp"
-
         />
+
     <CheckBox
         android:id="@+id/creative"
         android:layout_width="wrap_content"
@@ -171,16 +144,14 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="300dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="150dp"
+        android:layout_below="@id/none1"
         android:text="Next"
         android:textSize="9sp"
-        android:layout_marginTop="480dp"
         android:background="@color/browser_actions_bg_grey"
         android:id="@+id/question1"
         />
-
-
-
-
 
 </RelativeLayout>
