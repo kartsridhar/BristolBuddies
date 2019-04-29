@@ -26,13 +26,13 @@
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true" />
-
+    
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/faculty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/faculty"
-        android:textColorHint="#ffffff"
         android:paddingTop="35dp"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
         <Spinner
@@ -47,17 +47,19 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/gradyear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gradyear"
-        android:textColorHint="#ffffff"
         android:layout_below="@+id/faculty"
-        app:errorEnabled="true"/>
+        android:layout_marginTop="18dp"
+        android:textColorHint="#ffffff"
+        app:errorEnabled="true" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gradyear"
+        android:layout_marginTop="49dp"
         android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
@@ -65,6 +67,8 @@
             android:id="@+id/nat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/null"
+            android:layout_alignBottom="@+id/null"
             android:layout_weight="1"
             android:entries="@array/country_arrays"
             android:prompt="@string/country_prompt"

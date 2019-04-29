@@ -1,5 +1,6 @@
 package com.example.brisbuds.BristolBuddies.controllers;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.brisbuds.BristolBuddies.Buddy;
 import com.example.brisbuds.BristolBuddies.ao.BuddyDAO;
 import com.example.brisbuds.BristolBuddies.ao.BuddyDbDAO;
@@ -46,6 +47,19 @@ public class BuddyController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    // Delete a student
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+    public ResponseEntity delete(@PathVariable long id) {
+
+        boolean result = edao.delete(id);
+
+        if (result) {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
 }
