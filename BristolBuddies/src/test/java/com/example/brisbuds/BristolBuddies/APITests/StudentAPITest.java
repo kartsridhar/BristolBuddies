@@ -43,10 +43,8 @@ public class StudentAPITest extends BristolBuddiesApplicationTests {
                 .andExpect(jsonPath("$[0].id").value("1"))
                 .andExpect(jsonPath("$[0].firstName").value("Tony"))
                 .andExpect(jsonPath("$[0].lastName").value("Stark"))
-                .andExpect(jsonPath("$[0].gender").value("Male"))
                 .andExpect(jsonPath("$[0].userName").value("ab12312"))
                 .andExpect(jsonPath("$[0].password").value("starkintdustreks"))
-                .andExpect(jsonPath("$[0].department").value("Arts"))
-                .andExpect(jsonPath("$[0].yearofStudy").value("4"));
+                .andExpect(jsonPath("$[0].department").value("Arts"));
     }
 }
