@@ -604,16 +604,46 @@ public class MyProfile extends AppCompatActivity {
                         }
                     });
 
-                } else if (isbud == 1) {
+                }
+
+                else if (isbud == 1) {
                     String buddyname = sp.getString("BudName", "");
-                    String buddymail = sp.getString("BudName", "");
+                    final String buddymail = sp.getString("BudMail", "");
                     String studentname1 = sp.getString("StudentName1", "");
                     String studentmail1 = sp.getString("StudentMail1", "");
                     String studentname2 = sp.getString("StudentName2", "");
                     String studentmail2 = sp.getString("StudentMail2", "");
-                    Intent i = new Intent(getApplicationContext(), showMatch.class);
-                    i.putExtra("Buddy", buddymail);
-                    startActivity(i);
+
+                    final Call<List<Buddy>> cal = retroAPI.getBuddies();
+
+
+                    cal.enqueue(new Callback<List<Buddy>>() {
+
+
+                        public void onResponse(Call<List<Buddy>> cal, Response<List<Buddy>> response) {
+                            Log.d("NNNN",buddymail);
+
+
+                            buddies = response.body();
+                            for (Buddy b:buddies){
+                                if (b.getUsername().trim().equals(buddymail)){
+                                    final Buddy Budd = b;
+                                    Intent i = new Intent(getApplicationContext(), showMatch.class);
+                                    i.putExtra("Buddy", Budd);
+                                    startActivity(i);
+
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Buddy>> cal, Throwable t) {
+
+                        }
+                    });
+
+
 
                 }
 

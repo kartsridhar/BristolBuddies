@@ -128,7 +128,7 @@ public class Questionaire extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fac = faculty.getEditText().getText().toString();
-                nat = Gradyear.getEditText().getText().toString();
+                nat = Nationality.getEditText().getText().toString();
                 String interests = "";
                 if (ArtandMus.isChecked()){
                     interests += "1";
@@ -164,7 +164,7 @@ public class Questionaire extends AppCompatActivity {
 
 
             if (student != null) {
-                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(), fac, nat, interests, "", "", "");
+                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(),fac, nat, interests, "", "", "");
                 Intent k = new Intent(getApplicationContext(), questionaire2.class);
                 k.putExtra("serialize_data2", student1);
                 startActivity(k);

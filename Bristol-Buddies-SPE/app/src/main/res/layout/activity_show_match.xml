@@ -22,13 +22,27 @@
         />
 
     <TextView
+        android:id="@+id/MATCH1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Buddy1"
+        android:textSize="15dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="65dp"
+
+
+
+        />
+
+    <TextView
         android:id="@+id/INT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Interests: "
         android:layout_marginLeft="60dp"
         android:textSize="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:textColor="#ffffff"
 
         />
@@ -40,7 +54,89 @@
         android:text="Personality: "
         android:layout_marginLeft="60dp"
         android:textSize="20dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="160dp"
+        android:textColor="#ffffff"
+
+        />
+
+    <TextView
+        android:id="@+id/MATCH2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="220dp"
+
+
+
+        />
+
+    <TextView
+        android:id="@+id/INT1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:textSize="20dp"
+        android:layout_marginTop="240dp"
+        android:textColor="#ffffff"
+
+        />
+
+    <TextView
+        android:id="@+id/PERS1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:textSize="20dp"
+        android:layout_marginTop="320dp"
+        android:textColor="#ffffff"
+
+        />
+
+    <TextView
+        android:id="@+id/MATCH3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="220dp"
+
+
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="380dp"
+
+
+
+        />
+
+    <TextView
+        android:id="@+id/INT2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:textSize="20dp"
+        android:layout_marginTop="400dp"
+        android:textColor="#ffffff"
+
+        />
+
+    <TextView
+        android:id="@+id/PERS2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:textSize="20dp"
+        android:layout_marginTop="480dp"
         android:textColor="#ffffff"
 
         />
@@ -51,7 +147,7 @@
         android:text="Close"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="550dp"
 
         />
 
