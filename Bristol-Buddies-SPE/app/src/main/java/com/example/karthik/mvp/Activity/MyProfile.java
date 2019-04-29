@@ -71,15 +71,6 @@ public class MyProfile extends AppCompatActivity {
             return false;
         }
     };
-//
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        final Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
-//        outState.putSerializable("buddy1",regBuddy);
-//        Toast.makeText(MyProfile.this,"DATA STORED",Toast.LENGTH_LONG);
-//
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +82,14 @@ public class MyProfile extends AppCompatActivity {
                 .build();
         retroAPI = retrofit.create(RetroAPI.class);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my_profile);
+
         final SharedPreferences sp = getSharedPreferences("Buddy", MODE_PRIVATE);
         SharedPreferences.Editor Ed = sp.edit();
 
         final SharedPreferences mPrefs = getSharedPreferences("CHECK", 0);
         int isbud = mPrefs.getInt("ISBUDDY", 0);
-
-//        Intent b = new Intent(getApplicationContext(),MainPage.class);
-//        b.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//        b.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-//        startActivity(b);
-
 
         sign_out = findViewById(R.id.signOutBtn);
         form = findViewById(R.id.form);
@@ -117,6 +104,7 @@ public class MyProfile extends AppCompatActivity {
         BudMail1 = findViewById(R.id.buddyMail1);
         BudName2 = findViewById(R.id.buddyName2);
         BudMail2 = findViewById(R.id.buddyMail2);
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -139,17 +127,11 @@ public class MyProfile extends AppCompatActivity {
         } else {
             final Student student = (Student) getIntent().getSerializableExtra("serialize_data3");
             final Student regstudent = (Student) getIntent().getSerializableExtra("student");
+
             Buddy regBuddy = (Buddy) getIntent().getSerializableExtra("buddy");
             Buddy NEWBuddy = (Buddy) getIntent().getSerializableExtra("REGbuddy");
+
             final Buddy budlogin = (Buddy) getIntent().getSerializableExtra("budlogin");
-
-
-//            int isBud1 = Integer.parseInt(CheckBuddy);
-
-//            Log.d("GGGG", String.valueOf(isBud1));
-
-//            Log.d("RRRRR",String.valueOf(isbud));
-
 
             if (regBuddy != null && regstudent != null) {
                 form.setText("Your Student Account");
@@ -166,7 +148,6 @@ public class MyProfile extends AppCompatActivity {
 
 
             if (NEWBuddy != null) {
-                Log.d("QQQQ", NEWBuddy.getUsername());
                 Toast.makeText(getApplicationContext(), "Buddy Account saved", Toast.LENGTH_LONG);
                 form.setText("Your Buddy Account");
                 Ed.putString("BudName", NEWBuddy.getFirstName() + " " + NEWBuddy.getLastName());
@@ -179,9 +160,7 @@ public class MyProfile extends AppCompatActivity {
 
             }
 
-
             int isbud1 = mPrefs.getInt("ISBUDDY", 0);
-
 
             if (budlogin != null && isbud == 1) {
                 form.setText("Your Buddy Account");
@@ -207,13 +186,9 @@ public class MyProfile extends AppCompatActivity {
                             String bMail1 = "";
                             String bName2 = "";
                             String bMail2 = "";
-                            Log.d("CCCC", budlogin.getStudent1ID());
-
 
                             for (Student b : students) {
-                                Log.d("RRRR", b.getUserName());
                                 if (b.getUserName().trim().equals(budlogin.getStudent1ID().trim())) {
-                                    Log.d("RRRR", "FOUNDBUDDY");
                                     bName = b.getFirstName() + " " + b.getLastName();
                                     bMail = b.getUserName();
                                 }
@@ -231,8 +206,6 @@ public class MyProfile extends AppCompatActivity {
                                     }
 
                                 }
-
-
                             }
                             BudName.setText("Student 1  Name: " + bName);
                             BudMail.setText("Student 1  Email: " + bMail);
@@ -366,9 +339,7 @@ public class MyProfile extends AppCompatActivity {
                     String studentname2 = sp.getString("StudentName2", "");
                     String studentmail2 = sp.getString("StudentMail2", "");
 
-
                     String idd = String.valueOf(5000);
-
 
                     fullName.setText("Name: " + Buddyname);
                     email.setText("Email: " + Buddymail);
@@ -390,12 +361,8 @@ public class MyProfile extends AppCompatActivity {
 
             }
 
-
-//            Log.d("ZZZZ", regBuddy.getFirstName());
-//            Log.d("MMMM", regstudent.getFirstName());
             if (student != null && isbud == -1) {
                 form.setText("Your Student Account");
-                Log.d("RECIEVEDSTUDENT", student.getFirstName());
                 String idd = String.valueOf(5000);
                 String name = student.getFirstName() + " " + student.getLastName();
                 String username = student.getUserName();
@@ -415,10 +382,7 @@ public class MyProfile extends AppCompatActivity {
                         if (student.getBuddy() != null) {
                             String bName = "";
                             String bMail = "";
-                            Log.d("KKKK", student.getBuddy().trim());
                             for (Buddy b : buddies) {
-                                Log.d("BBBB", b.getUsername().trim());
-                                Log.d("CHECK", String.valueOf(b.getUsername().trim() == student.getBuddy().trim()));
                                 if (b.getUsername().trim().equals(student.getBuddy().trim())) {
                                     bName = b.getFirstName() + " " + b.getLastName();
                                     bMail = b.getUsername();
@@ -457,9 +421,6 @@ public class MyProfile extends AppCompatActivity {
                 });
 
             } else {
-                Log.d("LLLL", String.valueOf(isbud));
-
-
                 if (isbud1 == -1) {
                     form.setText("Your Student Account");
                     String buddyname = sp.getString("BudName", "");
@@ -468,7 +429,6 @@ public class MyProfile extends AppCompatActivity {
                     final String studentmail = sp.getString("StudentMail", "");
 
                     final Call<List<Student>> call5 = retroAPI.getStudents();
-
 
                     call5.enqueue(new Callback<List<Student>>() {
 

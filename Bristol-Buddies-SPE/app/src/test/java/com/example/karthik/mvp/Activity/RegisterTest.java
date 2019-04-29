@@ -59,10 +59,6 @@ public class RegisterTest {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(mockWebServer.url(url))
                 .build();
-        RegisterDataSource remoteDataSource = new RegisterDataSource(retrofit);
-
-        //When
-//        remoteDataSource.getStudentsRx().subscribe(mockSubscriber);
 
         //Then
         mockSubscriber.assertNoErrors();
@@ -82,8 +78,6 @@ public class RegisterTest {
     public void testFullNameValidity() {
         assertFalse(Register.checkName(""));                        // test null
         assertFalse(Register.checkName("2312314"));                 // no numbers
-//        assertFalse(Register.checkName("adaefewf@wfwf"));           // no special characters
-//        assertFalse(Register.checkName("abc xyz"));               // no spaces
 
         assertTrue(Register.checkName(TEST_FNAME));                  // correct
         assertTrue(Register.checkName(TEST_LNAME));

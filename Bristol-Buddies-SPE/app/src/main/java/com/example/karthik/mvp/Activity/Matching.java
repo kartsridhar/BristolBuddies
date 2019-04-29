@@ -49,8 +49,8 @@ public class Matching extends AppCompatActivity {
                 .build();
         retroAPI = retrofit.create(RetroAPI.class);
 
-
         student = (Student) getIntent().getSerializableExtra("serialize_data3");
+
         Call<List<Buddy>> call = retroAPI.getBuddies();
         call.enqueue(new Callback<List<Buddy>>() {
             @Override
@@ -58,25 +58,28 @@ public class Matching extends AppCompatActivity {
                 buddies = response.body();
                 bestBud = bestMatch(buddies,student);
 
-
-                Log.d("BUDDYEXISTS", bestBud.getFirstName());
-
                 Student student2 = new Student(student.getFirstName(),student.getLastName()
                         ,student.getUserName(),student.getPassword(),student.getDepartment()
                         ,student.getNationality(),student.getInterests(),
                         student.getPersonality(), student.getPreferences(), bestBud.getUsername());
+
                 Call<Student> call2 = retroAPI.createStudent(student2);
-                    matchingBuddy();
-                    Intent l = new Intent(getApplicationContext(),MainPage.class);
-                    l.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                matchingBuddy();
+
+                Intent l = new Intent(getApplicationContext(),MainPage.class);
+                l.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                 Intent m = new Intent(getApplicationContext(), MyProfile.class);
                 m.putExtra("buddy", bestBud);
-                    m.putExtra("student", student);
-                    Log.d("XXXX", bestBud.getFirstName());
-                    Log.d("YYYY", student.getFirstName());
-                    startActivity(m);
-        startActivity(l);
-                    finish();
+                m.putExtra("student", student);
+                startActivity(m);
+                startActivity(l);
+                finish();
+                m.putExtra("student", student);
+
+                startActivity(m);
+                startActivity(l);
+                finish();
 
                 call2.enqueue(new Callback<Student>() {
                     @Override
@@ -92,13 +95,9 @@ public class Matching extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Buddy>> call, Throwable t) {
+
             }
         });
-
-
-
-
-
         }
 
     @Override
@@ -159,9 +158,11 @@ public class Matching extends AppCompatActivity {
 
     private void matchingBuddy(){
         int newMatches = bestBud.getNumberOfMatches() + 1;
+
         String firstMatch = bestBud.getStudent1ID();
         String secondMatch = bestBud.getStudent2ID();
         String thirdMatch = bestBud.getStudent3ID();
+
         switch (bestBud.getNumberOfMatches()) {
             case 0 :
                 firstMatch = student.getUserName();
@@ -176,9 +177,7 @@ public class Matching extends AppCompatActivity {
         Buddy newBuddy = new Buddy(bestBud.getFirstName(), bestBud.getLastName(), bestBud.getUsername(), bestBud.getCourse(),
                 bestBud.getNationality(), bestBud.getInterests(), bestBud.getPersonality(), bestBud.getPreferences(),
                 bestBud.getPassword(), newMatches, firstMatch, secondMatch, thirdMatch);
-        Log.d("debug", newBuddy.getStudent1ID());
-        String strippedUsername = bestBud.getUsername().replace("\"","");
-        Log.d("debug", strippedUsername);
+
         Call<Buddy> call3 = retroAPI.updateBuddy(newBuddy);
         call3.enqueue(new Callback<Buddy>() {
             @Override

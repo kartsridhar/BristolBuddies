@@ -38,6 +38,7 @@ public class LoginPage extends AppCompatActivity {
     List<Buddy> buddies;
     Switch switch1;
     TextView switchtext;
+
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://132.145.45.239/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -45,39 +46,20 @@ public class LoginPage extends AppCompatActivity {
 
     RetroAPI retroAPI = retrofit.create(RetroAPI.class);
 
-//    public static void setDefaults(String key, String value, Context context) {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putString(key, value);
-//        editor.commit();
-//    }
-//
-//    public static String getDefaults(String key, Context context) {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-//        return preferences.getString(key, null);
-
-
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-
-
-
-
-
         username = findViewById(R.id.studID);
         password = findViewById(R.id.studPass);
         login = findViewById(R.id.loginButton);
-        switch1 = (Switch) findViewById(R.id.switch1);
+        switch1 = findViewById(R.id.switch1);
         switchtext = findViewById(R.id.switchtext);
         p = password.getEditText().getText().toString().trim();
 
         SharedPreferences mPrefs = getSharedPreferences("CHECK",0);
         final SharedPreferences.Editor editor = mPrefs.edit();
-
 
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,15 +70,10 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else {
                     switchtext.setText("   Buddy ");
-
-
-
                 }
 
             }
         });
-
-
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,28 +118,29 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> students = response.body();
-                Student tony = students.get(0);
                 int found = 0;
-                Log.d("STUDENTLISTSS",tony.getUserName().toString());
+
                 Student matchstudent = new Student("","","","","","","","","","");
+
                 for (Student a :students){
                     if ((u.equals(a.getUserName().trim())) && (p.equals(a.getPassword().trim()))){
-                        Log.d("ENTEREDIFSTATEMENT","ENTERED IF STATEMENT");
+
                         matchstudent = a;
                         Toast.makeText(LoginPage.this, "Login Successful!", Toast.LENGTH_LONG).show();
 
-                        Intent m = new Intent(getApplicationContext(),MyProfile.class);
+                        Intent m = new Intent(getApplicationContext(), MyProfile.class);
                         m.putExtra("serialize_data3",matchstudent);
                         m.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-                        Intent mess = new Intent(getApplicationContext(),Messaging.class);
+                        Intent mess = new Intent(getApplicationContext(), Messaging.class);
                         mess.putExtra("messagingData", matchstudent);
                         mess.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                         startActivity(m);
-                        Log.d("SENTSTUDENT",matchstudent.getFirstName());
+
                         found = 1;
-                        Intent k = new Intent(getApplicationContext(),MainPage.class);
+
+                        Intent k = new Intent(getApplicationContext(), MainPage.class);
                         startActivity(k);
                         finish();
                     }
@@ -172,8 +150,6 @@ public class LoginPage extends AppCompatActivity {
                     password.requestFocus();
                     username.requestFocus();
                 }
-                Log.d("MATCHSTUDENT",matchstudent.getFirstName());
-
             }
 
             @Override

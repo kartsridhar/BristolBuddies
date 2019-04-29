@@ -127,7 +127,6 @@ public class Register extends AppCompatActivity {
                         }
 
                         if (IsBuddy.isChecked()) {
-                            Toast.makeText(Register.this, "MADE IT TO BUDDY REG", Toast.LENGTH_LONG).show();
                             final Buddy buddy = new Buddy(db_fname, db_lname, db_uname, "", db_unat, "", "", "", db_upass, 0, null, null, null);
                             if (errorCount != 0) {
                                 Toast.makeText(getApplicationContext(), "Check Again!", Toast.LENGTH_LONG).show();

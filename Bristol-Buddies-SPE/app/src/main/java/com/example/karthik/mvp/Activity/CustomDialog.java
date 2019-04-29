@@ -42,7 +42,6 @@ public class CustomDialog extends AppCompatActivity {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CustomDialog.this, "Should close!", Toast.LENGTH_LONG).show();
                 Intent o = new Intent(getApplicationContext(),MainPage.class);
                 startActivity(o);
                 finish();

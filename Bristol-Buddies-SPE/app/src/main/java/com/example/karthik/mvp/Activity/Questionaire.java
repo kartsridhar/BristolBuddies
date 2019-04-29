@@ -128,41 +128,42 @@ public class Questionaire extends AppCompatActivity {
         question1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fac = faculty.getSelectedItem().toString();
-                nat = nationality.getSelectedItem().toString();
-                String interests = "";
-                if (ArtandMus.isChecked()){
-                    interests += "1";
-                }
-                else interests +="0";
-                if (Tele.isChecked()){
-                    interests += "1";
-                }
-                else interests +="0";
-                if (Vidgames.isChecked()){
-                    interests += "1";
-                }
-                else interests +="0";
-                if (Gigs.isChecked()){
-                    interests += "1";
-                }
-                else interests +="0";
-                if (creat.isChecked()){
-                    interests += "1";
-                }
-                else interests +="0";
+        fac = faculty.getSelectedItem().toString();
+        nat = nationality.getSelectedItem().toString();
 
-                if (sport.isChecked()){
-                    interests += "1";
-                }
-                if (clubs.isChecked()){
-                    interests += "1";
-                }
+        String interests = "";
+        if (ArtandMus.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Tele.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Vidgames.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (Gigs.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
+        if (creat.isChecked()){
+            interests += "1";
+        }
+        else interests +="0";
 
-                else interests +="0";
-                if (none.isChecked()){
-                    interests = "000000";
-                }
+        if (sport.isChecked()){
+            interests += "1";
+        }
+        if (clubs.isChecked()){
+            interests += "1";
+        }
+
+        else interests +="0";
+        if (none.isChecked()){
+            interests = "000000";
+        }
 
 
             if (student != null) {

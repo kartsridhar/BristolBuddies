@@ -28,7 +28,6 @@ import java.util.List;
 
 public class MainPage extends AppCompatActivity {
 
-    private static final String TAG = "MainPage";
     private static final String url = "http://132.145.45.239/events";
     private ProgressDialog dialog;
     private List<Item> array = new ArrayList<Item>();
@@ -48,14 +47,8 @@ public class MainPage extends AppCompatActivity {
                     startActivity(i);
                     break;
                 case R.id.myProfile:
-                        Intent j = new Intent(getApplicationContext(), MyProfile.class);
-                        startActivity(j);
-//                    }
-//                    else {
-//                        Intent j = new Intent(getApplicationContext(), MyProfile.class);
-//                        j.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-//                        startActivity(j);
-//                    }
+                    Intent j = new Intent(getApplicationContext(), MyProfile.class);
+                    startActivity(j);
                     break;
             }
             return false;
@@ -108,18 +101,16 @@ public class MainPage extends AppCompatActivity {
         });
         EventController.getmInstance().addToRequestQueue(jsonArrayRequest);
 
-listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Item clickeditem = array.get(position);
-        Intent j = new Intent(getApplicationContext(),CustomDialog.class);
-        Event event = new Event(clickeditem.getId(),clickeditem.getDate(),clickeditem.getTitle(),clickeditem.getDescription(),clickeditem.getVenue(),clickeditem.getTime());
-        j.putExtra("cevent",new Gson().toJson(event));
-        startActivity(j);
-    }
-});
-
-
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Item clickeditem = array.get(position);
+            Intent j = new Intent(getApplicationContext(),CustomDialog.class);
+            Event event = new Event(clickeditem.getId(),clickeditem.getDate(),clickeditem.getTitle(),clickeditem.getDescription(),clickeditem.getVenue(),clickeditem.getTime());
+            j.putExtra("cevent",new Gson().toJson(event));
+            startActivity(j);
+        }
+    });
     }
 
     public void hideDialog() {
@@ -128,12 +119,4 @@ listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             dialog = null;
         }
     }
-
-//    public void customDialog(String description, String venue, String time, final String okMethod) {
-//        final android.support.v7.app.A
-//    }
-//
-//    public void checkDetails(View view) {
-//
-//    }
 }
