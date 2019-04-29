@@ -77,13 +77,6 @@ public class Matching extends AppCompatActivity {
                     startActivity(m);
         startActivity(l);
                     finish();
-//                else {
-//                for (Buddy b:buddies){
-//                    if (b.getNumberOfMatches() < 3){
-//                        bestBud = b;
-//                    }
-//                }
-//                }
 
                 call2.enqueue(new Callback<Student>() {
                     @Override
@@ -151,6 +144,7 @@ public class Matching extends AppCompatActivity {
                 bestBuddy = b;
             }
         }
+
         if(bestBuddy == null){
             for (Buddy b : buddies) {
                 double s =  similarity(b,student);

@@ -35,13 +35,14 @@
         android:paddingTop="35dp"
         app:errorEnabled="true">
 
-        <android.support.design.widget.TextInputEditText
-
+        <Spinner
+            android:id="@+id/facultySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Faculty (e.g Engineering)"
-            android:layout_gravity="center_horizontal"
-            android:inputType="text"/>
+            android:layout_weight="1"
+            android:entries="@array/faculty_array"
+            android:prompt="@string/faculty_prompt"
+            android:spinnerMode="dialog" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -51,42 +52,32 @@
         android:id="@+id/gradyear"
         android:textColorHint="#ffffff"
         android:layout_below="@+id/faculty"
-        app:errorEnabled="true">
-
-        <android.support.design.widget.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Graduation Year (e.g 2021)"
-            android:layout_gravity="center_horizontal"
-            android:inputType="text"/>
-
-    </android.support.design.widget.TextInputLayout>
+        app:errorEnabled="true"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nat"
-        android:textColorHint="#ffffff"
         android:layout_below="@+id/gradyear"
+        android:textColorHint="#ffffff"
         app:errorEnabled="true">
 
-        <android.support.design.widget.TextInputEditText
-
+        <Spinner
+            android:id="@+id/nat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nationality"
-            android:layout_gravity="center_horizontal"
-            android:inputType="text"/>
+            android:layout_weight="1"
+            android:entries="@array/country_arrays"
+            android:prompt="@string/country_prompt"
+            android:spinnerMode="dialog" />
 
     </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/nat"
+        android:layout_marginTop="275dp"
         android:layout_centerHorizontal="true"
-        android:text="    Interests (Please select all that apply)"
+        android:text="       Interests (Please select all that apply)"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -107,6 +98,7 @@
         android:layout_marginTop="350dp"
         android:textColor="#ffffff"
         android:textSize="10dp"
+
         android:text="Television"
         />
     <CheckBox
