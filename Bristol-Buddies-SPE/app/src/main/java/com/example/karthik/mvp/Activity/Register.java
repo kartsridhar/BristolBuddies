@@ -100,19 +100,23 @@ public class Register extends AppCompatActivity {
                             if (db_uname.isEmpty()) {
                                 uName.setError("Field can't be empty");
                                 errorCount += 1;
-                            } else if (!checkUsername(db_uname)) {
-                                uName.setError("Enter right format");
-                                errorCount += 1;
-                            } else if (db_uname.length() > 7) {
-                                uName.setError("Username too long");
-                                errorCount += 1;
-                            } else if(db_uname.equals(s.getUserName().trim())) {
-                                uName.setError("Username Exists");
-                                errorCount += 1;
-                            } else {
-                                uName.setError(null);
                             }
 
+                            if (db_uname.length() != 7) {
+                                uName.setError("Invalid format");
+                                errorCount += 1;
+                            }
+
+                            else {
+                                if (!checkUsername(db_uname)) {
+                                    uName.setError("Enter right format");
+                                    errorCount += 1;
+                                }
+                                else if(db_uname.equals(s.getUserName().trim())) {
+                                    uName.setError("Username Exists");
+                                    errorCount += 1;
+                                }
+                            }
 
                             if (db_upass.isEmpty()) {
                                 uPass.setError("Field can't be empty");
