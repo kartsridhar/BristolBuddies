@@ -66,7 +66,6 @@ public class MyProfile extends AppCompatActivity {
                 case R.id.messaging:
                     Intent m = new Intent(getApplicationContext(), Messaging.class);
                     startActivity(m);
-                    finish();
                     break;
                 case R.id.myProfile:
                     break;
