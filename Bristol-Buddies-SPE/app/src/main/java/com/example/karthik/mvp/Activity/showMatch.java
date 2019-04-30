@@ -102,8 +102,8 @@ public class showMatch extends AppCompatActivity {
 
                     }
                     else {
-                        printpers += "Only time will tell!";
-                        printint += "Only time will tell!";
+                        printpers += "No matching traits yet...";
+                        printint += "No matching traits yet...";
                     }
 
 

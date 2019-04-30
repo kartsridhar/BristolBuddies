@@ -64,7 +64,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="220dp"
         android:background="@color/colorPrimary"
-        android:text="GET BUDDY DETAILS"
+        android:text="GET MATCH DETAILS"
         android:textColor="#fff" />
 
     <TextView
