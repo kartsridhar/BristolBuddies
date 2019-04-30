@@ -42,7 +42,7 @@ public class EventAPITest extends BristolBuddiesApplicationTests {
                 .andExpect(jsonPath("$[0].id").value("2"))
                 .andExpect(jsonPath("$[0].date").value("2019-06-15"))
                 .andExpect(jsonPath("$[0].title").value("Table Tennis Socials"))
-                .andExpect(jsonPath("$[0].description").value("Love ping ping? test your reaction time and show your experience to win exciting prizes!"))
+                .andExpect(jsonPath("$[0].description").value("Love pong ping? test your reaction time and show your experience to win exciting prizes!"))
                 .andExpect(jsonPath("$[0].venue").value("The Courtrooms, BS1 2AF"))
                 .andExpect(jsonPath("$[0].time").value("10am onwards"));
 
