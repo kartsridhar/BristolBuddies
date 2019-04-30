@@ -1,8 +1,11 @@
 package com.example.karthik.mvp.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.karthik.mvp.R;
@@ -20,10 +23,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class showMatch extends AppCompatActivity {
 
     private RetroAPI retroAPI;
-    TextView personality,interests,personality1,interests1,personality2,interests2,bud1,bud2,bud3;
+    TextView personality, interests, personality1, interests1, personality2, interests2, bud1, bud2, bud3;
+    Button close;
 
     List<Buddy> buddies;
-    List <Student> students;
+    List<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class showMatch extends AppCompatActivity {
 
         final Student student = (Student)getIntent().getSerializableExtra("User");
         final Buddy buddy = (Buddy)getIntent().getSerializableExtra("Buddy");
+
         personality = (TextView) findViewById(R.id.INT);
         interests = (TextView) findViewById(R.id.PERS);
         personality1 = (TextView) findViewById(R.id.INT1);
@@ -49,11 +54,16 @@ public class showMatch extends AppCompatActivity {
         bud1 = findViewById(R.id.MATCH1);
         bud2 = findViewById(R.id.MATCH2);
         bud3 = findViewById(R.id.MATCH3);
+        close = findViewById(R.id.closeDetails);
 
-
-
-
-
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         if (student != null) {
             Call<List<Buddy>> call = retroAPI.getBuddies();
@@ -67,9 +77,6 @@ public class showMatch extends AppCompatActivity {
                             foundbuddy = b;
                         }
                     }
-
-
-                    Log.d("XXXX", student.getUserName());
 
                     String buddyint = foundbuddy.getInterests();
                     String buddypers = foundbuddy.getPersonality();
@@ -85,25 +92,18 @@ public class showMatch extends AppCompatActivity {
 
 
                     commonint = hamming(buddyint,studentint);
-                    Log.d("YYYY",commonint);
                     commonpers = hamming(buddypers,studentpers);
 
                     if (!commonint.equals("") && !commonpers.equals("")) {
-
 
                         printint += buildInt(commonint);
 
                         printpers += buildPers(commonpers);
 
-
-
-
                     }
                     else {
-                        printpers += "Only time will tell! ";
-                        printint += "Only time will tell";
-
-
+                        printpers += "Only time will tell!";
+                        printint += "Only time will tell!";
                     }
 
 
@@ -117,18 +117,7 @@ public class showMatch extends AppCompatActivity {
                         String fullbudname = foundbuddy.getFirstName()+" "+foundbuddy.getLastName();
                         String display= "Buddy 1 name: " + fullbudname;
                         bud1.setText(display);
-
-
                     }
-
-
-
-
-
-
-
-
-
 
                 }
 
@@ -193,12 +182,6 @@ public class showMatch extends AppCompatActivity {
                                 String display= "Student 1 name: " + fullbudname;
                                 bud1.setText(display);
 
-
-
-
-
-
-
                             }
 
                             if (buddy.getNumberOfMatches() > 1){
@@ -221,7 +204,6 @@ public class showMatch extends AppCompatActivity {
 
                                     printint = printint.trim().substring(0,printint.length() -2);
                                     printpers = printpers.trim().substring(0,printpers.length() -2);
-
 
                                     personality1.setText(printpers);
                                     interests1.setText(printint);
@@ -247,8 +229,6 @@ public class showMatch extends AppCompatActivity {
                                         commonpers = hamming(studentpers2, buddypers);
                                     }
 
-
-
                                     printint += buildInt(commonint);
                                     printpers += buildPers(commonpers);
 
@@ -267,11 +247,6 @@ public class showMatch extends AppCompatActivity {
 
                         }
 
-
-
-
-
-
                     }
 
                 }
@@ -281,12 +256,7 @@ public class showMatch extends AppCompatActivity {
 
                 }
             });
-
-
         }
-
-
-
     }
 
     private static String buildPers(String commonpers){
@@ -301,12 +271,12 @@ public class showMatch extends AppCompatActivity {
             printpers += "Introverted, ";
         }
         if (commonpers.charAt(2) == '1') {
-            printpers += "Curious and Open-minded , ";
+            printpers += "Curious and Open-minded, ";
         }
         if (commonpers.charAt(3) == '1') {
-            printpers += "Creative , ";
+            printpers += "Creative, ";
         } else if (commonpers.equals("0000")) {
-            printpers = "Only time will tell..";
+            printpers = "No common traits yet...";
 
         }
 
@@ -338,7 +308,7 @@ public class showMatch extends AppCompatActivity {
         if (commonint.charAt(6) == '1') {
             printint += "Sport, ";
         } else if (commonint.equals("000000")) {
-            printint = "Only time will tell..";
+            printint = "No common traits yet...";
 
         }
 
@@ -349,10 +319,6 @@ public class showMatch extends AppCompatActivity {
     private static String hamming(String s1, String s2){
 
         String same = "";
-
-        Log.d("YYYY",s1);
-        Log.d("ZZZZ",s2);
-
 
         if(s1.length() != s2.length()) return same;
 
@@ -367,4 +333,3 @@ public class showMatch extends AppCompatActivity {
         return same;
     }
    }
-
