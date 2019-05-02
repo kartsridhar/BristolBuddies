@@ -1,9 +1,25 @@
 # Development Testing
 
-Making sure the database works as intended is going to be one of the most crucial aspects of our development process. We have to test it properly to ensure the security of the data. To do this, we will start by using white box testing: using stubs and drivers.We will insert any data we want and check if the database functions we wrote works as intended, and the mapping of the data is correct. We will use unit tests to automate this process. Next, once the server side is functional, we can do integration testing using black box testing. Black box testing does not allow us to see what is happening inside of the database. Instead, we do operations from the front end and check if the results we obtain are accurate. We will test the data integrity by testing the CRUD operations - Create, read, update, delete – and check if the database is still correct.
+As we can see from our architecture diagram in the previous section, our system involves a Phone Interface, Web Service and a database. It is important that the system performs per required on the designated platforms, giving the user the best experience. We ran our system on multiple mobile devices with different **android versions** to make sure the front-end is well compatible and consistent. At the same time, we had to ensure the foundation of the system was well tested. When a system is developed with multiple function calls, it is natural to overlook some exceptional cases which can cause the system to crash. To avoid scenarios like this, we decided to test each component of our system using different testing frameworks and implementations. 
 
-Next, we shall test the matching algorithm and all the functionalities of the application. To do this we are going to use unit tests. This will allow us to test every functionality such as clicking on a notification brings you to the relevant information, and test corner cases in an efficient manner. We’ll be using JUnit to write and check those tests.
 
-The user interface is a component that is going to be challenging to test.  we are unable to test it objectively and thus cannot write unit tests to test functionality.Instead, We will use a panel of students, coming both from European and Asian countries, to see if they find the design intuitive. Our goal is that both groups can navigate through the app and use every function without any help.
+## Challenges Faced
 
+Choosing the ideal testing framework was the biggest challenge we faced as a developer team. Since our system involved many interconnected components, our first goal was to identify the possible edge cases for each of our functions and work around tests from there. Initially, our functions were naive, but with systematic testing, we were able to improve the performance of our functions as well as increase the scope.
+
+## Testing Frameworks 
+
+Since the heart of our application was user data, we decided to follow a **Data Driven Testing Framework**. At the beginning of our testing, we created five test values in our table, each covering a different case for our functions. This allowed us to reuse the values for multiple tests and also standardise our testing process. 
+
+### Back-end and Web Service
+
+The middle man of our system is the Web Service, powered by SpringBoot. The Web Service establishes connection to the MySQL database, the back-end of the system. Since the database simply stores the information, we did not feel the need to ensure that it stores the information properly. However, it was extremely important to test whether our Web-Service _functions_ correctly by establishes the right connection. We made use of Spring's **MockMvc** framework to perform integration tests on our WebMvc Controllers in order to make sure our service receives the right values from the database. This also helped us test our service's CRUD operations by every single component with a mocked platform.
+
+### Android App - API calls and Matching
+
+Testing the API calls made on our android application was crucial as all the activities were linked and each of them relied on the information received from the Web Service. We used the **Mockito** Java testing framework to make sure we are *POSTING* and *GETTING* the data per the requirements. On the other hand, we performed unit tests for our Matching algorithm using **JUnit**. We tested each of our test values against different questionnaire scores, covering all the edge cases, thereby confirming our algorithm.
+
+### Continuous Integration
+
+Since there are multiple components in the system interacting with each other, we wanted to run our integration tests sequentially. We used continuous integration through **CircleCI** to do the same, followed by continuous deployment on the *Oracle VM*. Not only did this help us identify our build failures, but also automated our deployment on the cloud.
 
