@@ -29,16 +29,18 @@ ___
 
 ![](StudentFlow.jpg)
 
-* Initially, the user will have to register if they haven't already signed up so this involves filling in the questionaire which in turn triggers the matching process to find a suitable buddy.
-* If the user has already registered before the student can log in where their login credentials are cross-checked with the database and then they are given access to both the community and messaging features.
+
 
 ### Using the Messaging Service: Alternative flow
 1. The Student must login by entering his/her credentials.
 2. The Student can access the Community to check the upcoming events and announcements. On choosing the option to send a message to the buddy about the event, the Student can access the messaging service.
 
-### Using the Messaging Service: Exceptional flow
-1. The Student tries to login with the wrong credentials.
-2. The Student should be redirected to the login page with an alert message asking to login again.
+### User registration : Exceptional flow
+
+1. The student opens the registration page and fills in the credentials.
+2. The app retrieves the list of students.
+3. The student tries to create an account with the same username as an existing student.
+4. The account is not created and an error message is displayed.
 
 ___
 
@@ -52,7 +54,6 @@ Some Non-Human Actors Include:
 4.Circle CI 
 5.Oracle Cloud Hosting
 6.Google Playstore 
-
 
 
 
@@ -94,7 +95,6 @@ Some Non-Human Actors Include:
     * Group messaging should also be supported to create a channel of communication between all buddies and all students.
     * needs to be scalable because the global transfer programme is set to expand within a few years time so it needs to be able to cope with the load on the system.
 * Third-party Messaging Services(Outside of Application) - students are also given the option of using any third party messaging applications such as Facebook Messenger, WeChat and WhatsApp to communicate with their buddy in case of strong preference by sharing details such as name and email ID in the Profile Page for each matching so they are not forced to use the integrated messaging service if they are not comfortable with doing so.
-
 
 ___
 
