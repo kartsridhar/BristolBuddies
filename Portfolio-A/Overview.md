@@ -10,7 +10,7 @@ The University of Bristol International Office is responsible for engaging with 
 
 
 ## Application Domain
-Since our client is the University of Bristol International Office, the domain of our application is going to be primarily in the Higher-Education sector. The application itself is a social media application since we have to provide means of communication between buddies and students through a messaging service and a social events calendar.Our application also needs to function on an international domain so we cannot just rely on Google and Facebook services since it is not available in study abroad scheme hotspots such as China. Our application would add to the support scheme already in place for students by our client so we must limit the application to the domain that is already established. 
+Since our client is the University of Bristol International Office, the domain of our application is going to be primarily in the Higher-Education sector. The application itself is a social media application since we have to provide means of communication between buddies and students through a messaging service and a social events calendar.Our application also needs to function on an international domain so we cannot just rely on Google and Facebook services since it is not available in study abroad scheme hotspots such as China. Our application would add to the support scheme already in place for students by our client so we must limit the application to the domain that is already established.Our application will be primarily used within the University. 
 
 
 ## The Problem
