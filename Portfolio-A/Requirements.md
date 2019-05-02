@@ -42,6 +42,21 @@ ___
 
 ___
 
+## Non-Human Actors
+
+Some Non-Human Actors Include: 
+
+1.*AppLozic* Messaging Service
+2.Google Login API
+3.Retrofit API
+4.Circle CI 
+5.Oracle Cloud Hosting
+
+
+
+
+---
+
 ## Functional Requirements
 
 1. **Student/Buddy registration**
