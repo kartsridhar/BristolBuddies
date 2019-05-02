@@ -127,9 +127,9 @@ public class Questionaire extends AppCompatActivity {
         question1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                fac = faculty.getEditText().getText().toString();
-                nat = Nationality.getEditText().getText().toString();
+                fac = faculty.getSelectedItem().toString();
+                nat = nationality.getSelectedItem().toString();
+
                 String interests = "";
                 if (ArtandMus.isChecked()){
                     interests += "1";
@@ -155,70 +155,33 @@ public class Questionaire extends AppCompatActivity {
                 if (sport.isChecked()){
                     interests += "1";
                 }
+                else interests += "0";
+
                 if (clubs.isChecked()){
                     interests += "1";
                 }
+
                 else interests +="0";
                 if (none.isChecked()){
-                    interests = "000000";
+                    interests = "0000000";
                 }
-=======
-        fac = faculty.getSelectedItem().toString();
-        nat = nationality.getSelectedItem().toString();
-
-        String interests = "";
-        if (ArtandMus.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Tele.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Vidgames.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Gigs.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (creat.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-
-        if (sport.isChecked()){
-            interests += "1";
-        }
-        else interests += "0";
-
-        if (clubs.isChecked()){
-            interests += "1";
-        }
-
-        else interests +="0";
-        if (none.isChecked()){
-            interests = "0000000";
-        }
->>>>>>> master
 
 
-            if (student != null) {
-                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(),fac, nat, interests, "", "", "");
-                Intent k = new Intent(getApplicationContext(), questionaire2.class);
-                k.putExtra("serialize_data2", student1);
-                startActivity(k);
-                finish();
-            }
+                if (student != null) {
+                    final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(), fac, nat, interests, "", "", "");
+                    Intent k = new Intent(getApplicationContext(), questionaire2.class);
+                    k.putExtra("serialize_data2", student1);
+                    startActivity(k);
+                    finish();
+                }
 
-            if (buddy != null){
-                final Buddy buddy1 = new Buddy(buddy.getFirstName(),buddy.getLastName(),buddy.getUsername(),fac,nat,interests,"","",buddy.getPassword(),0,"","","");
-                Intent k = new Intent(getApplicationContext(), questionaire2.class);
-                k.putExtra("buddy_data1", buddy1);
-                startActivity(k);
-                finish();
-            }
+                if (buddy != null){
+                    final Buddy buddy1 = new Buddy(buddy.getFirstName(),buddy.getLastName(),buddy.getUsername(),fac,nat,interests,"","",buddy.getPassword(),0,"","","");
+                    Intent k = new Intent(getApplicationContext(), questionaire2.class);
+                    k.putExtra("buddy_data1", buddy1);
+                    startActivity(k);
+                    finish();
+                }
             }
 
 

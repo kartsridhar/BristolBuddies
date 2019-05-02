@@ -27,9 +27,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:layout_centerHorizontal="true"
-        android:text="     Personality Reflections (Please select all that apply)"
+        android:text="  Personality Reflections (Please select all that apply)"
         android:textColor="#ffffff"
         android:textSize="15sp" />
     <CheckBox
@@ -39,7 +39,6 @@
         android:layout_marginTop="80dp"
         android:textColor="#ffffff"
         android:textSize="10dp"
-
         android:text="I consider myself to be outgoing and sociable"
         />
     <CheckBox

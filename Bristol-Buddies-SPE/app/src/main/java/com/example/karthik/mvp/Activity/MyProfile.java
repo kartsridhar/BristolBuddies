@@ -64,6 +64,8 @@ public class MyProfile extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.messaging:
+                    Intent m = new Intent(getApplicationContext(), Messaging.class);
+                    startActivity(m);
                     break;
                 case R.id.myProfile:
                     break;
@@ -407,7 +409,7 @@ public class MyProfile extends AppCompatActivity {
                             id.setText("User ID: " + String.valueOf(5000));
                             fullName.setText("Name: " + studentname);
                             BudName.setText("Buddy Name: " + buddyname);
-                            BudMail.setText("Buddy Email " + buddymail);
+                            BudMail.setText("Buddy Email: " + buddymail);
 
 
                         }
@@ -488,7 +490,7 @@ public class MyProfile extends AppCompatActivity {
                     email.setText("Email: " + studntmail);
                     id.setText("User ID: " + idd);
                     BudName.setText("Buddy Name: " + budyname);
-                    BudMail.setText("Buddy Email " + budymail);
+                    BudMail.setText("Buddy Email: " + budymail);
                     BudName1.setText("");
                     BudMail1.setText("");
                     BudName2.setText("");
