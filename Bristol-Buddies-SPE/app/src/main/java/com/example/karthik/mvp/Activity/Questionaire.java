@@ -127,14 +127,9 @@ public class Questionaire extends AppCompatActivity {
         question1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< Updated upstream
                 fac = faculty.getSelectedItem().toString();
                 nat = nationality.getSelectedItem().toString();
 
-=======
-                fac = faculty.getEditText().getText().toString();
-                nat = Nationality.getEditText().getText().toString();
->>>>>>> Stashed changes
                 String interests = "";
                 if (ArtandMus.isChecked()){
                     interests += "1";
@@ -168,61 +163,8 @@ public class Questionaire extends AppCompatActivity {
 
                 else interests +="0";
                 if (none.isChecked()){
-<<<<<<< Updated upstream
                     interests = "0000000";
                 }
-=======
-                    interests = "000000";
-                }
-=======
-        fac = faculty.getSelectedItem().toString();
-        nat = nationality.getSelectedItem().toString();
-
-        String interests = "";
-        if (ArtandMus.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Tele.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Vidgames.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (Gigs.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-        if (creat.isChecked()){
-            interests += "1";
-        }
-        else interests +="0";
-
-        if (sport.isChecked()){
-            interests += "1";
-        }
-        else interests += "0";
-
-        if (clubs.isChecked()){
-            interests += "1";
-        }
-
-        else interests +="0";
-        if (none.isChecked()){
-            interests = "0000000";
-        }
-
-
-            if (student != null) {
-                final Student student1 = new Student(student.getFirstName(), student.getLastName(), student.getUserName(), student.getPassword(),fac, nat, interests, "", "", "");
-                Intent k = new Intent(getApplicationContext(), questionaire2.class);
-                k.putExtra("serialize_data2", student1);
-                startActivity(k);
-                finish();
-            }
->>>>>>> Stashed changes
 
 
                 if (student != null) {
