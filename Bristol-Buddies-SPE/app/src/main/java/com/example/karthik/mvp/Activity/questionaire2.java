@@ -296,7 +296,29 @@ public class questionaire2 extends AppCompatActivity {
         question2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPost();
+                if ((int1.isChecked() || int2.isChecked() || int3.isChecked() || int4.isChecked())){
+
+                    if ((pers1.isChecked() || pers2.isChecked() || pers3.isChecked() || pers4.isChecked())){
+
+                        if ((nat1.isChecked() || nat2.isChecked() || nat3.isChecked() || nat4.isChecked())){
+
+                            createPost();
+
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+                else {
+                    question2.setError("Choose at least one option for each preference");
+                }
+
+
             }
         });
     }
