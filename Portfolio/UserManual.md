@@ -1,32 +1,32 @@
-### User Manual
+# User Manual
 
 ## 1) Pre-Login 
 * When you first open the application you will see the pre-login screen which gives you the option of using either Google Login or Logging in via Bristol Buddies Login if you have already registered .It also gives the user the option of registering if they are a new user.
 
-![](Pre-Login-Screen.png =210x380)
+![](Pre-Login-Screen.jpg =210x380)
 
 ## 2) Login 
 * This screen gives the user the option of logging in as either a Student or a Buddy. You cannot login if you have not registered already. 
 
-![](Login-Page.png =210x380)
+![](Login-Page.jpg =210x380)
 
 
 ## 3) Register
 
 * If you are a New User you have to Register to the application. The Application will ask for simple personal details but make sure to use the username given to you by the university to Register.This screen allows you to register as either a Buddy or a Student through the toggle button.
 
-![](StudentReg.png =210x380)
+![](StudentReg.jpg =210x380)
 
 ## 4) Questionnaire
 * After Registering you will have to fill in a questionnaire to help with the matching process for users.Use the dropdowns to select your Faculty and Nationality and proceed to fill in the rest of the questionaire. For Preferences, make sure you select to specify all features in order of Most Important to Least Important. After completing this you will have already been matched with a buddy if you are a student.
 
 
-![](Questionnaire-1.png =210x380)
+![](Questionnaire-1.jpg =210x380)
 
 
-                 
+​                 
 
-![](ques2.png =210x380)
+![](ques2.jpg =210x380)
 
 ## 5) Events 
 
@@ -46,7 +46,7 @@
 
 * This feature has not been fully implemented yet but once complete you can communicate with your buddy instantly and be part of a groupchat with all members of the Bristol Buddies Scheme. 
 
-![](Messaging-App.png =210x380)
+![](Messaging-App.jpg =210x380)
 
 
 ## 7) My Profile
@@ -55,11 +55,11 @@
 
 For a Student Account: 
 
-![](Student MyPro.jpeg =210x380)
+![](StudentMyPro.jpeg =210x380)
 
 For a Buddy Account:
 
-![](Buddy MyPro.jpeg =210x380)
+![](BuddyMyPro.jpeg =210x380)
 
 
 
@@ -71,11 +71,11 @@ For a Buddy Account:
 
 For a Student Account: 
 
-![](Stu Show Match.jpeg =210x380)
+![](StuShowMatch.jpeg =210x380)
 
 For a Buddy Account:
 
-![](Buddy ShoMatch.jpeg =210x380)
+![](BuddyShoMatch.jpeg =210x380)
 
 
 
