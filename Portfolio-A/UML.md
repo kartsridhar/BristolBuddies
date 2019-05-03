@@ -48,7 +48,7 @@ The Student and Buddy are the users of the application.
 When a user wants to register themselves, they provide their first name, last name, a unique username which is used as a primary key and a password. The key functions used in this class are as follows:
 * *getters* - Initialise functions to get the user values.
 * *setters* - Initialise functions to set the user values. 
-* *retrofit.POST* - A retrofit call is used to store the data collected from the user interface into the database.
+* *retrofit.GET* - A retrofit call is used to check if the user has already created an account.
 
 ### Login
 For a user login, a valid username and stored password must be entered 
@@ -58,19 +58,19 @@ For a user login, a valid username and stored password must be entered
 ### Questionnaire
 The Questionnaire section comprises of two classes. The user selects checkboxes that describe them best from three different sections. These include _interests, personalities and their order of importance_. The latter means the user can choose the factors he/she feels must be prioritised for finding a suitable match.
 * *finalAnswers(i, per, pre)* - This function gets all the selected options and store the respective sections as a string of bits.
-* *retrofit.POST* - A retrofit call is made to post the user's choices into the database 
 
 ### Matching
 The crux of the application. This class gets the newly registered student and a list of buddies. The answers of each are extracted from their respective rows in the database in order to return the perfect match. The following functions are used to generate a match:
-* *retrofit.GET* - As mentioned, a retrofit get call is made to get the student, buddy and their answers.
+* *retrofit.GET* - As mentioned, a retrofit get call is made to get a list of all buddies with their answers to the questionnaire.
 * *hamming(studentAns, buddyAns)* - Since the lengths of the user's answers are the same, we compute the hamming distance between the student and buddy's answer strings.
 * *similarity(buddy, student)* - This function takes in a buddy and a student, calculates the similarity between that buddy and student's answers keeping track of the student's order of preferences.
 * *bestMatch(buddies, student)* - This function iterates through the buddies list, calculates the similarities between each buddy and student's answers and returns the buddy who has the closest score to the student's answers.
-* *matchingBuddy()* - This function iterates through the buddies list and checks whether the buddy can accept the match or not, as every buddy can have upto three matches only. 
+* *matchingBuddy()* - This function update the newly matched buddy with the student's information.
+* *retrofit.POST* - A retrofit call is used to store the data collected from the user interface into the database.
 
 ### Events
 The Events activity and class is the home page of the application. All the current events added by the client are displayed in the form of a list on the main page. The user can select an event, view the event details and mark the event as interested.
-* *retrofit.GET* - Since the events are only displayed, a retrofit GET API call is made to display the list of events in a customised list layout.
+* *retrofit.GET* - Since the events are only displayed, a retrofit GET API call is made to display the list of events in a customized list layout.
 
 ### Messaging
 An open source messaging service provided by _Applozic_ has been integrated into the app to create groups and personal chat space for the buddy and his/her respective students. In order to make sure the conversations are only within the matched students and buddies, the database needs to be linked with the company's (Applozic) database. Once successful, the Messaging API provides a user object which then invokes respective methods to start a conversation. The conversations are stored in the form of JSON objects on Firebase which is secured.

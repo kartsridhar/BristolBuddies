@@ -5,11 +5,11 @@ As we can see from our architecture diagram in the previous section, our system 
 
 ## Challenges Faced
 
-Choosing the ideal testing framework was the biggest challenge we faced as a developer team. Since our system involved many interconnected components, our first goal was to identify the possible edge cases for each of our functions and work around tests from there. Initially, our functions were naive, but with systematic testing, we were able to improve the performance of our functions as well as increase the scope.
+Choosing the ideal testing framework was the biggest challenge we faced as a developer team. Since our system involved many interconnected components, our first goal was to identify the possible edge cases for each of our functions and work around tests from there. Initially, our functions were naïve, but with systematic testing, we were able to improve the performance of our functions as well as increase the scope.
 
 ## Testing Frameworks 
 
-Since the heart of our application was user data, we decided to follow a **Data Driven Testing Framework**. At the beginning of our testing, we created five test values in our table, each covering a different case for our functions. This allowed us to reuse the values for multiple tests and also standardise our testing process. 
+Since the heart of our application was user data, we decided to follow a **Data Driven Testing Framework**. At the beginning of our testing, we created five test values in our table, each covering a different case for our functions. This allowed us to reuse the values for multiple tests and also standardize our testing process. 
 
 ### Back-end and Web Service
 
